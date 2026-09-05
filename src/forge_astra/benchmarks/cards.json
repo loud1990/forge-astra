@@ -1,0 +1,805 @@
+[
+  {
+    "id": "llanowar_elves",
+    "tier": 1,
+    "source_name": "Llanowar Elves",
+    "source_url": "https://scryfall.com/card/fdn/227/llanowar-elves?utm_source=api",
+    "card": {
+      "id": "2fa408ba-36c4-5d0f-85f7-3d83b2ddbe01",
+      "oracle_id": "2fa408ba-36c4-5d0f-85f7-3d83b2ddbe01",
+      "name": "Astra Grove Tender",
+      "set_code": "t1a",
+      "collector_number": "1",
+      "layout": "normal",
+      "keywords": [],
+      "colors": [
+        "G"
+      ],
+      "released_at": "2024-11-15",
+      "previewed_at": "2024-06-28",
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Grove Tender",
+          "mana_cost": "{G}",
+          "type_line": "Creature — Elf Druid",
+          "oracle_text": "{T}: Add {G}.",
+          "power": "1",
+          "toughness": "1",
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "^A:AB\\$ Mana\\b[^\\n]*Cost\\$ T(?:\\s*\\||$)[^\\n]*Produced\\$ G\\b",
+        "description": "Needs a tap ability producing one green mana",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "^A:",
+        "description": "Needs exactly one activated ability",
+        "min": 1,
+        "max": 1
+      }
+    ]
+  },
+  {
+    "id": "lightning_bolt",
+    "tier": 1,
+    "source_name": "Lightning Bolt",
+    "source_url": "https://scryfall.com/card/msc/806/lightning-bolt?utm_source=api",
+    "card": {
+      "id": "9bb2bdad-2c1c-58b7-8007-4b6fed8ec09f",
+      "oracle_id": "9bb2bdad-2c1c-58b7-8007-4b6fed8ec09f",
+      "name": "Astra Ember Lance",
+      "set_code": "t1a",
+      "collector_number": "2",
+      "layout": "normal",
+      "keywords": [],
+      "colors": [
+        "R"
+      ],
+      "released_at": "2026-06-26",
+      "previewed_at": null,
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Ember Lance",
+          "mana_cost": "{R}",
+          "type_line": "Instant",
+          "oracle_text": "Astra Ember Lance deals 3 damage to any target.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "^A:SP\\$ DealDamage\\b[^\\n]*ValidTgts\\$ Any\\b[^\\n]*NumDmg\\$ 3\\b",
+        "description": "Needs a spell dealing three damage to any target",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "^A:",
+        "description": "Needs exactly one spell ability",
+        "min": 1,
+        "max": 1
+      }
+    ]
+  },
+  {
+    "id": "murder",
+    "tier": 1,
+    "source_name": "Murder",
+    "source_url": "https://scryfall.com/card/dsk/110/murder?utm_source=api",
+    "card": {
+      "id": "98f7d073-f9ed-56a5-9956-6b418f5e28ae",
+      "oracle_id": "98f7d073-f9ed-56a5-9956-6b418f5e28ae",
+      "name": "Astra Final Verdict",
+      "set_code": "t1a",
+      "collector_number": "3",
+      "layout": "normal",
+      "keywords": [],
+      "colors": [
+        "B"
+      ],
+      "released_at": "2024-09-27",
+      "previewed_at": "2024-09-09",
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Final Verdict",
+          "mana_cost": "{1}{B}{B}",
+          "type_line": "Instant",
+          "oracle_text": "Destroy target creature.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "^A:SP\\$ Destroy\\b[^\\n]*ValidTgts\\$ Creature(?:\\s*\\||$)",
+        "description": "Needs unconditional destruction of target creature",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "Condition\\w*\\$",
+        "description": "Unconditional destroy must not gain a condition",
+        "min": 0,
+        "max": 0
+      }
+    ]
+  },
+  {
+    "id": "divination",
+    "tier": 1,
+    "source_name": "Divination",
+    "source_url": "https://scryfall.com/card/m19/51/divination?utm_source=api",
+    "card": {
+      "id": "5d2357e0-23a3-514e-865f-06b9188cd389",
+      "oracle_id": "5d2357e0-23a3-514e-865f-06b9188cd389",
+      "name": "Astra Clear Insight",
+      "set_code": "t1a",
+      "collector_number": "4",
+      "layout": "normal",
+      "keywords": [],
+      "colors": [
+        "U"
+      ],
+      "released_at": "2018-07-13",
+      "previewed_at": null,
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Clear Insight",
+          "mana_cost": "{2}{U}",
+          "type_line": "Sorcery",
+          "oracle_text": "Draw two cards.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "^A:SP\\$ Draw\\b[^\\n]*NumCards\\$ 2\\b",
+        "description": "Needs a spell drawing two cards",
+        "min": 1,
+        "max": 10000
+      }
+    ]
+  },
+  {
+    "id": "giant_growth",
+    "tier": 1,
+    "source_name": "Giant Growth",
+    "source_url": "https://scryfall.com/card/msh/167/giant-growth?utm_source=api",
+    "card": {
+      "id": "c02379f2-8732-587c-9e33-e2411968711a",
+      "oracle_id": "c02379f2-8732-587c-9e33-e2411968711a",
+      "name": "Astra Sudden Stature",
+      "set_code": "t1a",
+      "collector_number": "5",
+      "layout": "normal",
+      "keywords": [],
+      "colors": [
+        "G"
+      ],
+      "released_at": "2026-06-26",
+      "previewed_at": null,
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Sudden Stature",
+          "mana_cost": "{G}",
+          "type_line": "Instant",
+          "oracle_text": "Target creature gets +3/+3 until end of turn.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "\\bPump\\b[^\\n]*ValidTgts\\$ Creature\\b",
+        "description": "Needs to pump a target creature",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "NumAtt\\$ \\+?3\\b",
+        "description": "Needs +3 power",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "NumDef\\$ \\+?3\\b",
+        "description": "Needs +3 toughness",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "Permanent\\$ True",
+        "description": "Pump must expire at end of turn",
+        "min": 0,
+        "max": 0
+      }
+    ]
+  },
+  {
+    "id": "fatal_push",
+    "tier": 2,
+    "source_name": "Fatal Push",
+    "source_url": "https://scryfall.com/card/2xm/93/fatal-push?utm_source=api",
+    "card": {
+      "id": "838eb471-3c39-5c9e-9d58-0a1396da1fb1",
+      "oracle_id": "838eb471-3c39-5c9e-9d58-0a1396da1fb1",
+      "name": "Astra Quiet Removal",
+      "set_code": "t2a",
+      "collector_number": "6",
+      "layout": "normal",
+      "keywords": [
+        "Revolt"
+      ],
+      "colors": [
+        "B"
+      ],
+      "released_at": "2020-08-07",
+      "previewed_at": "2020-07-26",
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Quiet Removal",
+          "mana_cost": "{B}",
+          "type_line": "Instant",
+          "oracle_text": "Destroy target creature if it has mana value 2 or less.\nRevolt — Destroy that creature if it has mana value 4 or less instead if a permanent left the battlefield under your control this turn.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "SP\\$ Destroy\\b",
+        "description": "Needs a destroy spell",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "ValidTgts\\$ Creature(?:\\s*\\||$)",
+        "description": "Mana value belongs to the resolution condition, not targeting restriction",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "ConditionDefined\\$ Targeted",
+        "description": "Needs to test the targeted creature at resolution",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "ConditionPresent\\$ Creature\\.cmcLE\\w+",
+        "description": "Needs the mana-value resolution check",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "Count\\$\\s*Revolt\\.4\\.2",
+        "description": "Needs revolt's four/two thresholds",
+        "min": 1,
+        "max": 10000
+      }
+    ]
+  },
+  {
+    "id": "tragic_slip",
+    "tier": 2,
+    "source_name": "Tragic Slip",
+    "source_url": "https://scryfall.com/card/inr/134/tragic-slip?utm_source=api",
+    "card": {
+      "id": "ed5ade95-8b1a-5819-8fb2-03ca157dd808",
+      "oracle_id": "ed5ade95-8b1a-5819-8fb2-03ca157dd808",
+      "name": "Astra Grave Diminution",
+      "set_code": "t2a",
+      "collector_number": "7",
+      "layout": "normal",
+      "keywords": [
+        "Morbid"
+      ],
+      "colors": [
+        "B"
+      ],
+      "released_at": "2025-01-24",
+      "previewed_at": null,
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Grave Diminution",
+          "mana_cost": "{B}",
+          "type_line": "Instant",
+          "oracle_text": "Target creature gets -1/-1 until end of turn.\nMorbid — That creature gets -13/-13 until end of turn instead if a creature died this turn.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "SP\\$ Pump\\b[^\\n]*ValidTgts\\$ Creature\\b",
+        "description": "Needs to weaken target creature",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "NumAtt\\$ -X\\b",
+        "description": "Power reduction must use the conditional amount",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "NumDef\\$ -X\\b",
+        "description": "Toughness reduction must use the conditional amount",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "Count\\$\\s*Morbid\\.13\\.1",
+        "description": "Needs morbid's thirteen/one amounts",
+        "min": 1,
+        "max": 10000
+      }
+    ]
+  },
+  {
+    "id": "wild_slash",
+    "tier": 2,
+    "source_name": "Wild Slash",
+    "source_url": "https://scryfall.com/card/frf/118/wild-slash?utm_source=api",
+    "card": {
+      "id": "f4b609e0-1ab7-551e-b907-d6c27b6f1db2",
+      "oracle_id": "f4b609e0-1ab7-551e-b907-d6c27b6f1db2",
+      "name": "Astra Fierce Spark",
+      "set_code": "t2a",
+      "collector_number": "8",
+      "layout": "normal",
+      "keywords": [
+        "Ferocious"
+      ],
+      "colors": [
+        "R"
+      ],
+      "released_at": "2015-01-23",
+      "previewed_at": null,
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Fierce Spark",
+          "mana_cost": "{R}",
+          "type_line": "Instant",
+          "oracle_text": "Ferocious — If you control a creature with power 4 or greater, damage can't be prevented this turn.\nAstra Fierce Spark deals 2 damage to any target.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "ConditionPresent\\$ Creature\\.YouCtrl\\+powerGE4",
+        "description": "Prevention suppression needs ferocious",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "Mode\\$ CantPreventDamage",
+        "description": "Needs a damage-prevention suppression effect",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "DB\\$ DealDamage[^\\n]*ValidTgts\\$ Any[^\\n]*NumDmg\\$ 2\\b",
+        "description": "Needs the separate two-damage ability regardless of ferocious",
+        "min": 1,
+        "max": 10000
+      }
+    ]
+  },
+  {
+    "id": "jace_beleren",
+    "tier": 3,
+    "source_name": "Jace Beleren",
+    "source_url": "https://scryfall.com/card/cmm/850/jace-beleren?utm_source=api",
+    "card": {
+      "id": "4be30de0-ea0a-5888-b5c8-e855183e27fa",
+      "oracle_id": "4be30de0-ea0a-5888-b5c8-e855183e27fa",
+      "name": "Astra Memory Keeper",
+      "set_code": "t3a",
+      "collector_number": "9",
+      "layout": "normal",
+      "keywords": [
+        "Mill"
+      ],
+      "colors": [
+        "U"
+      ],
+      "released_at": "2023-08-04",
+      "previewed_at": null,
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Memory Keeper",
+          "mana_cost": "{1}{U}{U}",
+          "type_line": "Legendary Planeswalker — Jace",
+          "oracle_text": "+2: Each player draws a card.\n−1: Target player draws a card.\n−10: Target player mills twenty cards.",
+          "power": null,
+          "toughness": null,
+          "loyalty": "3",
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "^A:AB\\$",
+        "description": "Needs three separate loyalty abilities",
+        "min": 3,
+        "max": 3
+      },
+      {
+        "pattern": "Cost\\$ AddCounter<2/LOYALTY>[^\\n]*Defined\\$ Player",
+        "description": "+2 must make all players draw",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "Cost\\$ SubCounter<1/LOYALTY>[^\\n]*ValidTgts\\$ Player",
+        "description": "-1 must make a target player draw",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "AB\\$ Mill[^\\n]*SubCounter<10/LOYALTY>[^\\n]*NumCards\\$ 20",
+        "description": "-10 must mill twenty",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "Planeswalker\\$ True",
+        "description": "All three abilities need loyalty timing",
+        "min": 3,
+        "max": 3
+      }
+    ]
+  },
+  {
+    "id": "liliana_of_the_veil",
+    "tier": 3,
+    "source_name": "Liliana of the Veil",
+    "source_url": "https://scryfall.com/card/inr/475/liliana-of-the-veil?utm_source=api",
+    "card": {
+      "id": "4bac36bf-3075-5f2c-9663-ea83bdcb5d9a",
+      "oracle_id": "4bac36bf-3075-5f2c-9663-ea83bdcb5d9a",
+      "name": "Astra Veil Arbiter",
+      "set_code": "t3a",
+      "collector_number": "10",
+      "layout": "normal",
+      "keywords": [],
+      "colors": [
+        "B"
+      ],
+      "released_at": "2025-01-24",
+      "previewed_at": "2024-12-03",
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Veil Arbiter",
+          "mana_cost": "{1}{B}{B}",
+          "type_line": "Legendary Planeswalker — Liliana",
+          "oracle_text": "+1: Each player discards a card.\n−2: Target player sacrifices a creature.\n−6: Separate all permanents target player controls into two piles. That player sacrifices all permanents in the pile of their choice.",
+          "power": null,
+          "toughness": null,
+          "loyalty": "3",
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "^A:AB\\$",
+        "description": "Needs three separate loyalty abilities",
+        "min": 3,
+        "max": 3
+      },
+      {
+        "pattern": "AB\\$ Discard[^\\n]*AddCounter<1/LOYALTY>[^\\n]*Defined\\$ Player",
+        "description": "+1 must make each player discard",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "AB\\$ Sacrifice[^\\n]*SubCounter<2/LOYALTY>[^\\n]*SacValid\\$ Creature",
+        "description": "-2 must make target player sacrifice a creature",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "AB\\$ TwoPiles[^\\n]*SubCounter<6/LOYALTY>",
+        "description": "-6 must partition permanents into piles",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "DB\\$ SacrificeAll[^\\n]*Permanent\\.IsRemembered",
+        "description": "Chosen pile must be sacrificed",
+        "min": 1,
+        "max": 10000
+      }
+    ]
+  },
+  {
+    "id": "bonecrusher_giant",
+    "tier": 4,
+    "source_name": "Bonecrusher Giant",
+    "source_url": "https://scryfall.com/card/clb/781/bonecrusher-giant-stomp?utm_source=api",
+    "card": {
+      "id": "29cfe19d-7ee3-51ab-9242-7169e78180e3",
+      "oracle_id": "29cfe19d-7ee3-51ab-9242-7169e78180e3",
+      "name": "Astra Stone Sentinel Aspect 1 // Astra Stone Sentinel Aspect 2",
+      "set_code": "t4a",
+      "collector_number": "11",
+      "layout": "adventure",
+      "keywords": [],
+      "colors": [
+        "R"
+      ],
+      "released_at": "2022-06-10",
+      "previewed_at": null,
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Stone Sentinel Aspect 1",
+          "mana_cost": "{2}{R}",
+          "type_line": "Creature — Giant",
+          "oracle_text": "Whenever this creature becomes the target of a spell, this creature deals 2 damage to that spell's controller.",
+          "power": "4",
+          "toughness": "3",
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        },
+        {
+          "name": "Astra Stone Sentinel Aspect 2",
+          "mana_cost": "{1}{R}",
+          "type_line": "Instant — Adventure",
+          "oracle_text": "Damage can't be prevented this turn. Astra Stone Sentinel Aspect 2 deals 2 damage to any target.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "^T:Mode\\$ BecomesTarget[^\\n]*ValidTarget\\$ Card\\.Self[^\\n]*ValidSource\\$ Spell",
+        "description": "Front must trigger when targeted by a spell",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "Defined\\$ TriggeredSourceController[^\\n]*NumDmg\\$ 2",
+        "description": "Front must damage the targeting spell's controller",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "Mode\\$ CantPreventDamage",
+        "description": "Adventure must suppress damage prevention",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "DB\\$ DealDamage[^\\n]*ValidTgts\\$ Any[^\\n]*NumDmg\\$ 2",
+        "description": "Adventure must deal two damage",
+        "min": 1,
+        "max": 10000
+      }
+    ]
+  },
+  {
+    "id": "bala_ged_recovery",
+    "tier": 4,
+    "source_name": "Bala Ged Recovery",
+    "source_url": "https://scryfall.com/card/znr/180/bala-ged-recovery-bala-ged-sanctuary?utm_source=api",
+    "card": {
+      "id": "e5e7d6ed-51df-5c84-a3eb-9934a2236b3b",
+      "oracle_id": "e5e7d6ed-51df-5c84-a3eb-9934a2236b3b",
+      "name": "Astra Verdant Recall Aspect 1 // Astra Verdant Recall Aspect 2",
+      "set_code": "t4a",
+      "collector_number": "12",
+      "layout": "modal_dfc",
+      "keywords": [],
+      "colors": [
+        "G"
+      ],
+      "released_at": "2020-09-25",
+      "previewed_at": "2020-09-02",
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Verdant Recall Aspect 1",
+          "mana_cost": "{2}{G}",
+          "type_line": "Sorcery",
+          "oracle_text": "Return target card from your graveyard to your hand.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        },
+        {
+          "name": "Astra Verdant Recall Aspect 2",
+          "mana_cost": "",
+          "type_line": "Land",
+          "oracle_text": "This land enters tapped.\n{T}: Add {G}.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "SP\\$ ChangeZone[^\\n]*ValidTgts\\$ Card\\.YouOwn[^\\n]*Origin\\$ Graveyard[^\\n]*Destination\\$ Hand",
+        "description": "Front must return an owned graveyard card to hand",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "^R:Event\\$ Moved[^\\n]*Destination\\$ Battlefield",
+        "description": "Back must replace entering the battlefield",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "DB\\$ Tap[^\\n]*ETB\\$ True",
+        "description": "Back must enter tapped",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "AB\\$ Mana[^\\n]*Cost\\$ T[^\\n]*Produced\\$ G",
+        "description": "Back must tap for green",
+        "min": 1,
+        "max": 10000
+      }
+    ]
+  },
+  {
+    "id": "rest_in_peace",
+    "tier": 4,
+    "source_name": "Rest in Peace",
+    "source_url": "https://scryfall.com/card/big/4/rest-in-peace?utm_source=api",
+    "card": {
+      "id": "b608c1af-a379-59ae-b56d-7a08885d5756",
+      "oracle_id": "b608c1af-a379-59ae-b56d-7a08885d5756",
+      "name": "Astra Silent Repose",
+      "set_code": "t4a",
+      "collector_number": "13",
+      "layout": "normal",
+      "keywords": [],
+      "colors": [
+        "W"
+      ],
+      "released_at": "2024-04-19",
+      "previewed_at": null,
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Silent Repose",
+          "mana_cost": "{1}{W}",
+          "type_line": "Enchantment",
+          "oracle_text": "When this enchantment enters, exile all graveyards.\nIf a card or token would be put into a graveyard from anywhere, exile it instead.",
+          "power": null,
+          "toughness": null,
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [
+      {
+        "pattern": "^T:Mode\\$ ChangesZone[^\\n]*Destination\\$ Battlefield",
+        "description": "Needs an enters trigger",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "DB\\$ ChangeZoneAll[^\\n]*Origin\\$ Graveyard[^\\n]*Destination\\$ Exile",
+        "description": "Enters trigger must exile all graveyards",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "^R:Event\\$ Moved[^\\n]*Destination\\$ Graveyard[^\\n]*ValidCard\\$ Card",
+        "description": "Replacement must include cards and tokens going to any graveyard",
+        "min": 1,
+        "max": 10000
+      },
+      {
+        "pattern": "DB\\$ ChangeZone[^\\n]*Origin\\$ All[^\\n]*Destination\\$ Exile[^\\n]*Defined\\$ ReplacedCard",
+        "description": "Replacement must exile the moved object instead",
+        "min": 1,
+        "max": 10000
+      }
+    ]
+  },
+  {
+    "id": "unsupported_chronoweave",
+    "tier": 5,
+    "source_name": null,
+    "card": {
+      "id": "astra-unknown",
+      "oracle_id": "astra-unknown",
+      "name": "Astra Unwritten Voyager",
+      "set_code": "t5a",
+      "collector_number": "",
+      "layout": "normal",
+      "keywords": [
+        "Chronoweave"
+      ],
+      "colors": [],
+      "released_at": "2030-01-01",
+      "previewed_at": null,
+      "source_url": "",
+      "faces": [
+        {
+          "name": "Astra Unwritten Voyager",
+          "mana_cost": "{2}{U}",
+          "type_line": "Creature — Wizard",
+          "oracle_text": "Chronoweave (Whenever this creature attacks, open a parallel turn. Play that turn simultaneously with this turn, sharing permanents but tracking independent stacks and phases.)",
+          "power": "2",
+          "toughness": "3",
+          "loyalty": null,
+          "defense": null,
+          "color_indicator": []
+        }
+      ]
+    },
+    "checks": [],
+    "expected_status": "blocked"
+  }
+]

@@ -47,6 +47,7 @@ class Card(BaseModel):
     released_at: date
     previewed_at: date | None = None
     source_url: str = ""
+    oracle_complete: bool = True
     faces: list[Face]
 
     @classmethod
@@ -63,7 +64,19 @@ class Card(BaseModel):
             released_at=data["released_at"],
             previewed_at=(data.get("preview") or {}).get("previewed_at"),
             source_url=data.get("scryfall_uri", ""),
-            faces=[Face.model_validate(f) for f in data.get("card_faces", [data])],
+            oracle_complete=all(
+                f.get("oracle_text") is not None for f in data.get("card_faces", [data])
+            ),
+            faces=[
+                Face.model_validate(
+                    {
+                        **f,
+                        "oracle_text": f.get("oracle_text") or "",
+                        "type_line": f.get("type_line") or "",
+                    }
+                )
+                for f in data.get("card_faces", [data])
+            ],
         )
 
     @property

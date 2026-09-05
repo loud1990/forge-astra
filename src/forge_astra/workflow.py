@@ -191,6 +191,9 @@ class Workflow:
         }
 
     def plan_card(self, state: State) -> dict:
+        log.info(
+            "Planning %s from %d evidence excerpts", state["card"]["name"], len(state["evidence"])
+        )
         return {"plan": self.llm.ask(PLAN_TASK, self.context(state), Plan).model_dump()}
 
     def gate(self, state: State) -> dict:
@@ -244,6 +247,7 @@ class Workflow:
         }
 
     def generate(self, state: State) -> dict:
+        log.info("Generating %s (revision %d)", state["card"]["name"], state["revisions"])
         return {
             "draft": self.llm.ask(DRAFT_TASK, self.context(state), Draft).model_dump(),
             "status": "",
@@ -268,6 +272,7 @@ class Workflow:
         return "generate" if state["status"] == "revise" else END
 
     def review_card(self, state: State) -> dict:
+        log.info("Reviewing %s", state["card"]["name"])
         result = self.llm.ask(
             REVIEW_TASK, {**self.context(state), "script": state["script"]}, Review, review=True
         )

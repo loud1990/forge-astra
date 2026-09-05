@@ -222,5 +222,24 @@ def export_knowledge(ctx: typer.Context, output: Path):
         store.close()
 
 
+@app.command("evaluate")
+def evaluate_command(
+    ctx: typer.Context, tier: int | None = None, case: str = "", sync: bool = True
+):
+    """Run renamed-card benchmarks against the configured real model endpoint."""
+    from forge_astra.evaluation import evaluate
+
+    application = Application(ctx.obj)
+    try:
+        with application.lock():
+            prepare(application, sync)
+            result = evaluate(application, tier=tier, case_id=case or None)
+            typer.echo(json.dumps(result, indent=2))
+            if result["passed"] != result["total"]:
+                raise typer.Exit(1)
+    finally:
+        application.close()
+
+
 if __name__ == "__main__":
     app()

@@ -19,6 +19,8 @@ LANDS = {"W": "Plains", "U": "Island", "B": "Swamp", "R": "Mountain", "G": "Fore
 
 def metadata_issues(card: Card) -> list[str]:
     issues = []
+    if not card.oracle_complete:
+        issues.append("Scryfall has not supplied complete Oracle text for every face")
     if card.layout not in SINGLE_LAYOUTS | ALTERNATES.keys():
         issues.append(f"Layout {card.layout} needs explicit layout/linkage support")
     expected = 2 if card.layout in ALTERNATES else 1
