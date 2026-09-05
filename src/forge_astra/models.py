@@ -89,6 +89,7 @@ class Card(BaseModel):
             {
                 "faces": [f.model_dump() for f in self.faces],
                 "layout": self.layout,
+                "oracle_complete": self.oracle_complete,
                 "keywords": sorted(self.keywords),
             }
         )

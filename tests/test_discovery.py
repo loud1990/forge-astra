@@ -73,3 +73,22 @@ def test_discovery_reads_all_pages_and_rejects_foreign_next_page():
     with pytest.raises(RemoteError, match="pagination URL"):
         Scryfall(bad).search("test")
     bad.close()
+
+
+def test_missing_later_page_is_not_a_successful_partial_scan():
+    def handler(request):
+        if "page=2" in str(request.url):
+            return httpx.Response(404, json={"object": "error"})
+        return httpx.Response(
+            200,
+            json={
+                "data": [{"name": "First"}],
+                "has_more": True,
+                "next_page": "https://api.scryfall.com/cards/search?page=2",
+            },
+        )
+
+    http = JsonHTTP("https://api.scryfall.com", transport=httpx.MockTransport(handler))
+    with pytest.raises(RemoteError, match="missing page"):
+        Scryfall(http).search("test")
+    http.close()

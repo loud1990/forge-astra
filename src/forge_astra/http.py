@@ -36,7 +36,9 @@ class JsonHTTP:
             try:
                 response = self.client.request(method, path, **kwargs)
             except httpx.TransportError as exc:
-                if attempt == 3:
+                # A timed-out POST may still be generating server-side. Do not
+                # multiply an ambiguous request by retrying it automatically.
+                if attempt == 3 or method.upper() != "GET":
                     raise RemoteError(f"Network request failed ({type(exc).__name__})") from None
                 time.sleep(2**attempt)
                 continue

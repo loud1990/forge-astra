@@ -1,9 +1,10 @@
 import json
 
 import httpx
+import pytest
 
 from forge_astra.config import Settings
-from forge_astra.http import JsonHTTP
+from forge_astra.http import JsonHTTP, RemoteError
 from forge_astra.llm import ChatClient
 from forge_astra.models import Plan
 from forge_astra.observability import Telemetry
@@ -33,4 +34,18 @@ def test_generic_endpoint_no_native_json_or_tools_required():
     assert "tools" not in requests[0]
     assert requests[0]["model"] == "local-model"
     assert client.url == "http://example.test/custom/v1/chat/completions"
+    http.close()
+
+
+def test_ambiguous_post_timeout_is_not_automatically_duplicated():
+    calls = []
+
+    def handler(request):
+        calls.append(request)
+        raise httpx.ReadTimeout("still generating")
+
+    http = JsonHTTP("http://example.test", transport=httpx.MockTransport(handler))
+    with pytest.raises(RemoteError, match="ReadTimeout"):
+        http.request("POST", "/chat/completions", json={})
+    assert len(calls) == 1
     http.close()

@@ -2,7 +2,7 @@ import re
 from collections import Counter
 
 from forge_astra.corpus import Corpus, active_lines
-from forge_astra.models import Card, Draft, Plan
+from forge_astra.models import Card, Draft, Plan, normalize
 
 ALTERNATES = {
     "transform": "Transform",
@@ -86,6 +86,31 @@ def assemble(card: Card, draft: Draft) -> str:
         lines.append("Oracle:" + face.oracle_text.replace("\n", "\\n"))
         faces.append("\n".join(lines))
     return "\n\nALTERNATE\n\n".join(faces) + "\n"
+
+
+def metadata_matches(card: Card, script: str) -> bool:
+    """An Oracle match must not hide corrected costs or face statistics."""
+    blocks = re.split(r"(?m)^ALTERNATE\s*$", script)
+    if len(blocks) != len(card.faces):
+        return False
+    for face, block in zip(card.faces, blocks, strict=True):
+        fields = dict(
+            re.findall(r"^(Name|ManaCost|Types|PT|Loyalty|Defense|Oracle):([^\n]*)", block, re.M)
+        )
+        cost = " ".join(re.findall(r"\{([^}]+)\}", face.mana_cost)) or "no cost"
+        if fields.get("Name") != face.name or fields.get("ManaCost") != cost:
+            return False
+        if set(fields.get("Types", "").split()) != set(face.type_line.replace("—", " ").split()):
+            return False
+        for key, value in [("Loyalty", face.loyalty), ("Defense", face.defense)]:
+            if value is not None and fields.get(key) != value:
+                return False
+        if face.power is not None and fields.get("PT") != f"{face.power}/{face.toughness}":
+            return False
+        oracle = fields.get("Oracle", "").replace("\\n", "\n").replace(face.name, "CARDNAME")
+        if normalize(oracle) != normalize(face.oracle_text.replace(face.name, "CARDNAME")):
+            return False
+    return True
 
 
 def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[dict]) -> list[str]:

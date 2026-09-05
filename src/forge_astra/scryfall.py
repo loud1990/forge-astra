@@ -29,6 +29,8 @@ class Scryfall:
             visited.add(path)
             page = self.http.request("GET", path, params=params, empty_404=True)
             if page is None:
+                if len(visited) > 1:
+                    raise RemoteError("Scryfall pagination returned a missing page")
                 return result
             result.extend(page["data"])
             if not page.get("has_more") or (max_pages and len(visited) >= max_pages):

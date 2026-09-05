@@ -215,3 +215,51 @@ def test_multiface_metadata_and_hybrid_cost(corpus):
     assert "AlternateMode:Modal" in script
     assert script.count("ALTERNATE") == 1
     assert "Name:Night\nManaCost:no cost\nTypes:Land" in script
+
+
+def test_existing_oracle_does_not_hide_changed_cost(corpus, tmp_path):
+    from forge_astra.scripting import metadata_matches
+
+    card = renamed_bolt()
+    card.name = card.faces[0].name = "Lightning Bolt"
+    card.faces[0].oracle_text = "Lightning Bolt deals 3 damage to any target."
+    existing = corpus.named("Lightning Bolt")[0]["body"]
+    assert metadata_matches(card, existing)
+    card.faces[0].mana_cost = "{1}{R}"
+    assert not metadata_matches(card, existing)
+
+
+def test_generic_implementation_label_does_not_create_false_mechanic_blocker(corpus, tmp_path):
+    store = Store(tmp_path / "state.db")
+    llm = FakeLLM()
+    workflow = Workflow(Settings(_env_file=None), store, corpus, FakeScryfall(), FakeGitHub(), llm)
+    state = {
+        "card": renamed_bolt().model_dump(mode="json"),
+        "evidence": corpus.named("Lightning Bolt"),
+    }
+    plan = llm.ask("plan", {**state, "clauses": renamed_bolt().clauses()}, Plan)
+    state["plan"] = plan.model_dump()
+    state["plan"]["mechanics"] = [
+        {"name": "Damage Spell", "needs_engine": False, "explanation": "Existing spell ability"}
+    ]
+    assert workflow.gate(state)["status"] == ""
+    store.close()
+
+
+def test_bad_citation_is_replanned_before_scripting(corpus, tmp_path):
+    class RepairLLM(FakeLLM):
+        def ask(self, task, context, schema, review=False):
+            result = super().ask(task, context, schema, review)
+            if schema is Plan and self.calls.count("Plan") == 1:
+                result.clauses[0].citations[0].quote = "A fabricated quote"
+            return result
+
+    store = Store(tmp_path / "state.db")
+    llm = RepairLLM()
+    workflow = Workflow(Settings(_env_file=None), store, corpus, FakeScryfall(), FakeGitHub(), llm)
+    workflow.support_pool = lambda card: pool()
+    result = workflow.build().invoke({"card": renamed_bolt().model_dump(mode="json")})
+    assert result["status"] == "draft"
+    assert llm.calls == ["Plan", "Plan", "Draft", "Review"]
+    assert result["planning_revisions"] == 1
+    store.close()

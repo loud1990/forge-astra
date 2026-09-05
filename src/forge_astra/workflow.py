@@ -7,11 +7,17 @@ from langgraph.graph import END, START, StateGraph
 from forge_astra.config import Settings
 from forge_astra.corpus import Corpus, active_lines
 from forge_astra.llm import ChatClient
-from forge_astra.models import Card, Draft, Plan, Review, normalize
-from forge_astra.scripting import assemble, metadata_issues, plan_issues, validate_draft
+from forge_astra.models import Card, Draft, Plan, Review
+from forge_astra.scripting import (
+    assemble,
+    metadata_issues,
+    metadata_matches,
+    plan_issues,
+    validate_draft,
+)
 from forge_astra.scryfall import Scryfall
 from forge_astra.storage import Store
-from forge_astra.upstream import GitHub
+from forge_astra.upstream import DOCS, GitHub
 
 log = logging.getLogger(__name__)
 
@@ -30,6 +36,7 @@ class State(TypedDict, total=False):
     pr_candidates: dict
     issues: list[str]
     revisions: int
+    planning_revisions: int
     status: str
 
 
@@ -39,6 +46,7 @@ Forge scripts; Oracle text or documentation alone is not implementation evidence
 Explain each adaptation, including changed numbers, conditions, costs and targets.
 Flag needs_engine when no faithful implementation exists, even for unnamed new rules.
 List ALL Scryfall keywords in mechanics, plus any new named mechanics you identify.
+Do not list generic implementation categories like 'mana ability' or 'damage spell'.
 Existing ability words can use generic triggers if executable analogue scripts implement
 their rules. Do not assume that a familiar-looking new mechanic is supported.
 """
@@ -84,7 +92,16 @@ class Workflow:
         graph.add_edge(START, "research")
         graph.add_conditional_edges("research", lambda s: END if s.get("status") else "plan_card")
         graph.add_edge("plan_card", "gate")
-        graph.add_conditional_edges("gate", lambda s: END if s.get("blockers") else "generate")
+        graph.add_conditional_edges(
+            "gate",
+            lambda s: (
+                "plan_card"
+                if s.get("status") == "replan"
+                else END
+                if s.get("status")
+                else "generate"
+            ),
+        )
         graph.add_edge("generate", "validate")
         graph.add_conditional_edges("validate", lambda s: self.after_validation(s))
         graph.add_conditional_edges(
@@ -101,11 +118,15 @@ class Workflow:
         existing = self.corpus.named(card.name)
         expected_oracle = "\n".join(f.oracle_text.replace(f.name, "CARDNAME") for f in card.faces)
         for entry in existing:
-            if normalize(entry["oracle"]) == normalize(expected_oracle) and (
+            if metadata_matches(card, entry["body"]) and (
                 not expected_oracle.strip() or active_lines(entry["body"])
             ):
                 return {"status": "already_upstream", "evidence": [entry], "blockers": []}
         evidence = {}
+        for part in ("0-0", "1-0", "1-1", "2-0"):
+            entry = self.corpus.get(f"{DOCS}/Card-scripting-API.md#{part}")
+            if entry:
+                evidence[entry["id"]] = entry
         searches = []
         for clause in card.clauses():
             face = card.faces[clause["face"]]
@@ -145,6 +166,7 @@ class Workflow:
             "knowledge": self.store.knowledge(" ".join(card.keywords) + " " + expected_oracle),
             "support_pool": pool,
             "revisions": 0,
+            "planning_revisions": 0,
             "issues": [],
             "blockers": [],
         }
@@ -200,8 +222,10 @@ class Workflow:
         card = Card.model_validate(state["card"])
         plan = Plan.model_validate(state["plan"])
         blockers = plan_issues(card, plan, state["evidence"])
+        engine_blocked = any(c.needs_engine or c.blocker for c in plan.clauses)
         candidates = {}
         declared = {m.name.casefold(): m for m in plan.mechanics}
+        text = " ".join([*card.keywords, *(f.oracle_text for f in card.faces)]).casefold()
         for keyword in card.keywords:
             if keyword.casefold() not in declared:
                 blockers.append(f"Plan omitted keyword {keyword}")
@@ -213,8 +237,8 @@ class Workflow:
                 "reason": m.explanation,
             }
             for m in plan.mechanics
+            if m.needs_engine or m.name.casefold() in text
         }
-        text = " ".join([*card.keywords, *(f.oracle_text for f in card.faces)]).casefold()
         for record in self.store.mechanics():
             if record["pattern"].casefold() in text or record["name"] in relevant:
                 relevant.setdefault(record["name"], {"name": record["name"], "needs_engine": False})
@@ -234,15 +258,25 @@ class Workflow:
             if item.get("pr"):
                 pr_ok, pr_reason = self.github.merged_in_snapshot(item["pr"], self.corpus.commit)
             if not supported or item.get("needs_engine") or not pr_ok:
+                engine_blocked = True
                 reason = (
                     pr_reason or f"{name}: {item.get('reason', 'no executable upstream evidence')}"
                 )
                 blockers.append(reason)
                 self.store.track_mechanic(name, name, reason, item.get("pr"))
                 candidates[name] = self.github.implementation_prs(name)
+        if blockers and not engine_blocked:
+            attempts = state.get("planning_revisions", 0)
+            return {
+                "issues": sorted(set(blockers)),
+                "blockers": [],
+                "planning_revisions": attempts + 1,
+                "status": "replan" if attempts < self.settings.max_revisions else "needs_review",
+            }
         return {
             "blockers": sorted(set(blockers)),
             "pr_candidates": candidates,
+            "issues": [],
             "status": "blocked" if blockers else "",
         }
 
@@ -289,6 +323,7 @@ class Workflow:
             return {
                 "review": result.model_dump(),
                 "status": "blocked",
+                "script": "",
                 "blockers": issues + [m.explanation for m in missing]
                 or ["Reviewer found missing engine support"],
             }

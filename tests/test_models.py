@@ -30,3 +30,20 @@ def test_multiface_oracle_is_preserved_and_printings_share_identity():
     ]
     b.faces[1].oracle_text = "Menace"
     assert a.fingerprint != b.fingerprint
+
+
+def test_missing_oracle_is_not_a_vanilla_card():
+    from forge_astra.scripting import metadata_issues
+
+    raw = {
+        "id": "incomplete",
+        "name": "Incomplete Card",
+        "set": "abc",
+        "released_at": "2026-10-01",
+        "type_line": "Instant",
+    }
+    card = Card.from_scryfall(raw)
+    assert any("complete Oracle" in issue for issue in metadata_issues(card))
+    complete = Card.from_scryfall({**raw, "oracle_text": ""})
+    assert complete.oracle_complete
+    assert card.fingerprint != complete.fingerprint
