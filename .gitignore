@@ -1,0 +1,11 @@
+.venv/
+.env
+.astra/
+output/
+forge-1/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+
