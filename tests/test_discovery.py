@@ -1,10 +1,11 @@
+import json
 from datetime import date
 
 import httpx
 import pytest
 
 from forge_astra.http import JsonHTTP, RemoteError
-from forge_astra.models import Card
+from forge_astra.models import Card, digest
 from forge_astra.scryfall import Scryfall
 from forge_astra.storage import Store
 
@@ -101,4 +102,24 @@ def test_late_preview_date_can_promote_a_baselined_card(tmp_path):
     assert store.queue(10) == []
     assert store.observe([card(preview=str(day))], day, "default")["new"] == 1
     assert store.queue(10)[0]["discovery_reason"] == "preview_date"
+    store.close()
+
+
+def test_schema_upgrade_preserves_baseline_but_detects_oracle_changes(tmp_path):
+    store = Store(tmp_path / "state.db")
+    day = date(2026, 9, 5)
+    original = card()
+    store.observe([original], day, "default")
+    legacy = original.model_dump(mode="json")
+    legacy.pop("oracle_complete")
+    old_hash = digest({k: legacy[k] for k in ("faces", "layout", "keywords")})
+    with store.db:
+        store.db.execute(
+            "UPDATE cards SET payload=?,fingerprint=? WHERE key=?",
+            (json.dumps(legacy), old_hash, original.key),
+        )
+    assert store.observe([original], day, "default")["changed"] == 0
+    assert store.queue(10) == []
+    assert store.observe([card(text="Vigilance")], day, "default")["changed"] == 1
+    assert store.queue(10)[0]["discovery_reason"] == "oracle_changed"
     store.close()

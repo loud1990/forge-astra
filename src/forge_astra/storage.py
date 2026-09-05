@@ -55,11 +55,14 @@ class Store:
             for card in cards:
                 old = self.db.execute("SELECT * FROM cards WHERE key=?", (card.key,)).fetchone()
                 if old:
-                    changed = old["fingerprint"] != card.fingerprint
+                    # Recompute both sides with the current schema. A newly added
+                    # field's default must not turn an upgrade into an Oracle change.
+                    previous = Card.model_validate_json(old["payload"])
+                    changed = previous.fingerprint != card.fingerprint
                     newly_dated_preview = (
                         old["status"] == "baseline"
                         and card.previewed_at == day
-                        and Card.model_validate_json(old["payload"]).previewed_at != day
+                        and previous.previewed_at != day
                     )
                     self.db.execute(
                         "UPDATE cards SET payload=?,fingerprint=?,last_seen=? WHERE key=?",
