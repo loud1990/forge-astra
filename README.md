@@ -221,6 +221,8 @@ may fall outside a diagnostic pattern and need review. `passed` means static
 checks and model review passed, not that Forge execution proved correctness.
 Functional validation belongs to the external engine/gameplay harness; Forge
 also has headless simulation test infrastructure that such a harness can use.
+See [controlled scenarios and acceptance criteria](docs/testing.md) for the
+Astra Ember Lance example, harness boundaries, and a recorded live benchmark.
 
 ## Langfuse
 
@@ -231,6 +233,8 @@ includes card prompts, source examples, model output, and review results. API ke
 and request authorization headers are never included in graph state. Without
 keys, the workflow runs with tracing disabled. Flushes occur after runs and during
 shutdown. A self-hosted Langfuse 3 server is supported by the pinned v3 SDK.
+Card reports also retain model-call timings, token usage, finish reasons, and
+schema validation errors locally, including when remote trace ingestion fails.
 
 ## Container and Proxmox
 
@@ -252,7 +256,10 @@ reporting success.
 
 On Proxmox, run Compose inside a Docker-capable guest rather than installing the
 application into the PVE host OS. Deployment uses the existing guest's SSH alias
-and verified host key. Back up both named volumes; preserve SQLite's WAL files or
+and verified host key. To install or update an authorized Docker guest, run
+`scripts/deploy.sh SSH_ALIAS /absolute/path/to/private.env`; this pulls `main`,
+copies the private configuration, and rebuilds the worker while preserving volumes.
+Back up both named volumes; preserve SQLite's WAL files or
 use SQLite's online backup API for consistent live backups. Do not use
 `docker compose down -v` unless intentionally deleting history and drafts.
 
