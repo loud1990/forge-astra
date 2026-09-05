@@ -17,6 +17,16 @@ class Scryfall:
             },
         )
         self.cache: dict[str, list[dict]] = {}
+        self._ability_words: set[str] | None = None
+
+    def ability_words(self) -> set[str]:
+        """Scryfall distinguishes descriptive ability words from keyword rules."""
+        if self._ability_words is None:
+            values = self.http.request("GET", "/catalog/ability-words")["data"]
+            if not isinstance(values, list) or not all(isinstance(v, str) for v in values):
+                raise RemoteError("Invalid Scryfall ability-word catalog")
+            self._ability_words = {value.casefold() for value in values}
+        return self._ability_words
 
     def search(self, query: str, *, max_pages: int | None = None) -> list[dict]:
         path = "/cards/search"

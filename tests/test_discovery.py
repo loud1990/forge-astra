@@ -95,6 +95,23 @@ def test_missing_later_page_is_not_a_successful_partial_scan():
     http.close()
 
 
+def test_ability_word_catalog_is_cached_and_casefolded():
+    requests = []
+
+    def handler(request):
+        requests.append(request.url.path)
+        return httpx.Response(200, json={"data": ["Infusion", "Landfall"]})
+
+    http = JsonHTTP("https://api.scryfall.com", transport=httpx.MockTransport(handler))
+    try:
+        scryfall = Scryfall(http)
+        assert scryfall.ability_words() == {"infusion", "landfall"}
+        assert scryfall.ability_words() == {"infusion", "landfall"}
+        assert requests == ["/catalog/ability-words"]
+    finally:
+        http.close()
+
+
 def test_late_preview_date_can_promote_a_baselined_card(tmp_path):
     store = Store(tmp_path / "state.db")
     day = date(2026, 9, 5)

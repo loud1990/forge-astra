@@ -38,6 +38,7 @@ class State(TypedDict, total=False):
     issues: list[str]
     revisions: int
     planning_revisions: int
+    ability_words: list[str]
     status: str
 
 
@@ -53,7 +54,9 @@ Flag needs_engine when no faithful implementation exists, even for unnamed new r
 List ALL Scryfall keywords in mechanics, plus any new named mechanics you identify.
 Do not list generic implementation categories like 'mana ability' or 'damage spell'.
 Existing ability words can use generic triggers if executable analogue scripts implement
-their rules. Do not assume that a familiar-looking new mechanic is supported.
+their rules. The supplied ability_words are descriptive labels, not separate engine
+mechanics; all underlying costs, conditions and effects still need executable evidence.
+Do not assume that a familiar-looking new mechanic is supported.
 """
 DRAFT_TASK = """Implement the approved plan using the supplied scripts and API docs. Return
 one faces entry per card face, in order. Each entry contains ONLY executable lines and
@@ -130,6 +133,7 @@ class Workflow:
             ):
                 return {"status": "already_upstream", "evidence": [entry], "blockers": []}
         evidence = {}
+        ability_words = sorted(self.scryfall.ability_words())
         for part in ("0-0", "1-0", "1-1", "2-0"):
             entry = self.corpus.get(f"{DOCS}/Card-scripting-API.md#{part}")
             if entry:
@@ -169,6 +173,7 @@ class Workflow:
         pool = self.support_pool(card)
         return {
             "evidence": list(evidence.values()),
+            "ability_words": ability_words,
             "searches": searches,
             "knowledge": self.store.knowledge(" ".join(card.keywords) + " " + expected_oracle),
             "support_pool": pool,
@@ -214,7 +219,15 @@ class Workflow:
             "upstream_commit": self.corpus.commit,
             **{
                 k: state[k]
-                for k in ("evidence", "knowledge", "support_pool", "plan", "draft", "issues")
+                for k in (
+                    "evidence",
+                    "ability_words",
+                    "knowledge",
+                    "support_pool",
+                    "plan",
+                    "draft",
+                    "issues",
+                )
                 if k in state
             },
         }
@@ -252,7 +265,11 @@ class Workflow:
                 relevant[record["name"]].update(pr=record["pr"], reason=record["reason"])
         for item in relevant.values():
             name = item["name"]
-            supported = bool(self.corpus.mechanic_examples(name))
+            # An ability word has no independent rules meaning. Its underlying
+            # implementation remains subject to clause evidence and engine flags.
+            supported = name.casefold() in state.get("ability_words", []) or bool(
+                self.corpus.mechanic_examples(name)
+            )
             if not supported:
                 # Ability words can be implemented by ordinary effects/triggers.
                 supported = any(

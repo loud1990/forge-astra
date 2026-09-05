@@ -47,6 +47,9 @@ def pool():
 
 
 class FakeScryfall:
+    def ability_words(self):
+        return set()
+
     def analogues(self, text, name):
         return [{"name": "Lightning Bolt"}], [f'o:"{text}"']
 
@@ -373,6 +376,41 @@ def test_generic_implementation_label_does_not_create_false_mechanic_blocker(cor
     ]
     assert workflow.gate(state)["status"] == ""
     store.close()
+
+
+@pytest.mark.parametrize(
+    "catalog,engine,fabricated,expected",
+    [
+        (["infusion"], False, False, ""),
+        ([], False, False, "blocked"),
+        (["infusion"], True, False, "blocked"),
+        (["infusion"], False, True, "replan"),
+    ],
+)
+def test_ability_word_label_does_not_bypass_implementation_evidence(
+    corpus, tmp_path, catalog, engine, fabricated, expected
+):
+    store = Store(tmp_path / "state.db")
+    llm = FakeLLM()
+    workflow = Workflow(Settings(_env_file=None), store, corpus, FakeScryfall(), FakeGitHub(), llm)
+    card = renamed_bolt()
+    card.keywords = ["Infusion"]
+    state = {
+        "card": card.model_dump(mode="json"),
+        "evidence": corpus.named("Lightning Bolt"),
+        "ability_words": catalog,
+    }
+    plan = llm.ask("plan", {**state, "clauses": card.clauses()}, Plan).model_dump()
+    plan["mechanics"] = [
+        {"name": "Infusion", "needs_engine": engine, "explanation": "Descriptive ability word"}
+    ]
+    if fabricated:
+        plan["clauses"][0]["citations"][0]["quote"] = "invented evidence"
+    state["plan"] = plan
+    try:
+        assert workflow.gate(state)["status"] == expected
+    finally:
+        store.close()
 
 
 def test_bad_citation_is_replanned_before_scripting(corpus, tmp_path):

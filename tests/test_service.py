@@ -52,6 +52,8 @@ def test_discovery_generation_exports_and_retry_survive_reopening(corpus, tmp_pa
     discovered = [card("baseline", "old")]
 
     def scryfall(request):
+        if request.url.path == "/catalog/ability-words":
+            return httpx.Response(200, json={"data": ["Infusion", "Landfall"]})
         data = discovered if "date>=" in request.url.params["q"] else [{"name": "Lightning Bolt"}]
         return httpx.Response(200, json={"data": data, "has_more": False})
 
