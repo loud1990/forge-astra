@@ -230,6 +230,19 @@ def test_existing_oracle_does_not_hide_changed_cost(corpus, tmp_path):
     assert not metadata_matches(card, existing)
 
 
+@pytest.mark.parametrize(
+    "cost,expected",
+    [("1 RW", True), ("1 R/W", True), ("RW 1", True), ("1 R W", False), ("2 RW", False)],
+)
+def test_existing_hybrid_cost_accepts_forge_spellings_without_merging_shards(cost, expected):
+    from forge_astra.scripting import metadata_matches
+
+    card = renamed_bolt()
+    card.faces[0].mana_cost = "{1}{R/W}"
+    script = assemble(card, draft()).replace("ManaCost:1 R/W", f"ManaCost:{cost}")
+    assert metadata_matches(card, script) is expected
+
+
 def test_generic_implementation_label_does_not_create_false_mechanic_blocker(corpus, tmp_path):
     store = Store(tmp_path / "state.db")
     llm = FakeLLM()

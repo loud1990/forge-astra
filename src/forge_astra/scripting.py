@@ -99,7 +99,11 @@ def metadata_matches(card: Card, script: str) -> bool:
             re.findall(r"^(Name|ManaCost|Types|PT|Loyalty|Defense|Oracle):([^\n]*)", block, re.M)
         )
         cost = " ".join(re.findall(r"\{([^}]+)\}", face.mana_cost)) or "no cost"
-        if fields.get("Name") != face.name or fields.get("ManaCost") != cost:
+        # Forge's ManaCostShard parser accepts both RW and R/W for one hybrid
+        # shard. Preserve shard boundaries so R W remains two separate symbols.
+        actual_cost = Counter(fields.get("ManaCost", "").replace("/", "").split())
+        expected_cost = Counter(cost.replace("/", "").split())
+        if fields.get("Name") != face.name or actual_cost != expected_cost:
             return False
         if set(fields.get("Types", "").split()) != set(face.type_line.replace("—", " ").split()):
             return False
