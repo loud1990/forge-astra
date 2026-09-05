@@ -1,7 +1,9 @@
 import json
 import sqlite3
+from collections.abc import Collection
 from datetime import UTC, date, datetime
 from importlib.resources import files
+from itertools import islice
 from pathlib import Path
 
 from forge_astra.models import Card, digest
@@ -125,16 +127,26 @@ class Store:
                 ),
             )
 
-    def queue(self, limit: int) -> list[dict]:
+    def queue(self, limit: int, *, exclude: Collection[str] = ()) -> list[dict]:
         # A killed process leaves no in-progress lease; a later invocation retries the card.
-        return [
-            dict(r)
-            for r in self.db.execute(
-                "SELECT * FROM cards WHERE status IN ('pending','error','blocked') "
-                "ORDER BY CASE status WHEN 'pending' THEN 0 WHEN 'error' THEN 1 ELSE 2 END, attempts,last_seen,key LIMIT ?",
-                (limit,),
-            )
-        ]
+        excluded = set(exclude)
+        cursor = self.db.execute(
+            "SELECT * FROM cards WHERE status IN ('pending','error','blocked') "
+            "ORDER BY CASE status WHEN 'pending' THEN 0 WHEN 'error' THEN 1 ELSE 2 END, attempts,last_seen,key"
+        )
+        try:
+            # Stream past already-attempted cards without an unbounded SQL IN clause.
+            return list(islice((dict(row) for row in cursor if row["key"] not in excluded), limit))
+        finally:
+            cursor.close()
+
+    def recover_runs(self) -> int:
+        """Mark abandoned runs interrupted; caller must hold the worker lock."""
+        with self.db:
+            return self.db.execute(
+                "UPDATE runs SET status='interrupted',finished_at=? WHERE status='running'",
+                (now_iso(),),
+            ).rowcount
 
     def finish(self, key: str, status: str, report: dict):
         with self.db:

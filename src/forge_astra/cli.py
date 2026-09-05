@@ -79,6 +79,7 @@ def run(
     discover: bool = True,
     sync: bool = True,
     backfill: bool = False,
+    drain: bool = False,
 ):
     """Run one poll and process the durable queue, exporting one group per set."""
     application = Application(ctx.obj)
@@ -88,7 +89,12 @@ def run(
             prepare(application, sync)
             if discover:
                 application.discover(target, backfill)
-            typer.echo(json.dumps(application.process(target), indent=2))
+            result = (
+                {"batches": list(application.drain(target))}
+                if drain
+                else application.process(target)
+            )
+            typer.echo(json.dumps(result, indent=2))
     finally:
         application.close()
 
@@ -97,28 +103,13 @@ def run(
 def watch(ctx: typer.Context):
     """Poll continuously; stop cleanly on SIGTERM/SIGINT. Suitable for a container."""
     settings: Settings = ctx.obj
+    from forge_astra.worker import poll_once
+
     stopping = threading.Event()
     for sig in (signal.SIGTERM, signal.SIGINT):
         signal.signal(sig, lambda *_: stopping.set())
     while not stopping.is_set():
-        application = Application(settings)
-        status = "ok"
-        try:
-            with application.lock():
-                application.sync()
-                application.discover(application.today())
-                result = application.process(application.today())
-                if any(c["status"] == "error" for c in result["cards"]):
-                    status = "card_errors"
-        except Exception as exc:
-            status = "error"
-            logging.error("Poll failed (%s); will retry next interval", type(exc).__name__)
-        finally:
-            application.close()
-            write_atomic(
-                settings.data_dir / "health.json",
-                json.dumps({"last_poll": datetime.now(UTC).isoformat(), "status": status}),
-            )
+        poll_once(settings, stopping)
         stopping.wait(settings.poll_seconds)
 
 
@@ -130,9 +121,14 @@ def health(ctx: typer.Context):
     if not path.exists():
         raise typer.Exit(1)
     record = json.loads(path.read_text())
-    age = (datetime.now(UTC) - datetime.fromisoformat(record["last_poll"])).total_seconds()
+    last_activity = record.get("last_activity", record["last_poll"])
+    age = (datetime.now(UTC) - datetime.fromisoformat(last_activity)).total_seconds()
     typer.echo(json.dumps(record))
-    if record["status"] != "ok" or age > settings.poll_seconds * 2 + 600:
+    if (
+        record["status"] not in {"ok", "running"}
+        or record.get("phase") == "stopped"
+        or age > settings.poll_seconds * 2 + 600
+    ):
         raise typer.Exit(1)
 
 

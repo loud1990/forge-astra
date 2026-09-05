@@ -3,6 +3,9 @@
 Application code checked: `a7f29e4335df1fac852759e91e65d4551b823486`.
 [CI passed lint, formatting, 40 tests, container build, and packaged CLI startup](https://github.com/loud1990/forge-astra/actions/runs/33981448378).
 The application is running in a Docker container inside a Proxmox guest.
+This record describes that snapshot. Subsequent worker development adds queue
+draining, interruption recovery, and progress health checks. Live Langfuse server
+verification is now on hold at the operator's request; it is not a development gate.
 
 | Requirement | Evidence and result |
 | --- | --- |
@@ -16,7 +19,7 @@ The application is running in a Docker container inside a Proxmox guest.
 | Tiered renamed-card tests | Fourteen live cases span five tiers. The full run passed 12; both failed cases subsequently passed individual rechecks. See [the recorded benchmark](testing.md#recorded-live-generation-check-2026-09-05) for limitations and model settings. |
 | Public application repository and Conventional Commits | Published at `loud1990/forge-astra`; implementation, fixes and tests have separate Conventional Commits. The pre-existing Forge checkout remains clean. |
 | Container operation on Proxmox | The rebuilt worker starts, preserves its existing history, polls successfully and reports healthy. Runtime acceptance checked installed package resources, real model generation, artifacts and feedback using a separate verification database. |
-| Langfuse observability | The installed Langfuse SDK and LangGraph callback emit connected card, graph, node and generation spans with model usage, session metadata and tags; an in-memory exporter test verifies this without sending credentials in spans. **Full live ingestion remains blocked by the existing Langfuse server's storage capacity.** The server disk change awaits operator authorization. |
+| Langfuse observability | The installed Langfuse SDK and LangGraph callback emit connected card, graph, node and generation spans with model usage, session metadata and tags; an in-memory exporter test verifies this without sending credentials in spans. Full live ingestion was blocked by the existing server's storage capacity and is now deferred at the operator's request. |
 
 The runtime acceptance record is stored in the operator's persistent output volume
 under `verification/acceptance-20260905T173821Z/2026-09-05/173821-c19d73ac/acceptance.json`.

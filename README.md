@@ -73,11 +73,18 @@ Scryfall snapshot. An empty or failed scan is never silently treated as a comple
 partial page. HTTP errors leave previous history intact.
 
 The queue deduplicates by Oracle ID across printings, tracks content changes,
-and persists pending/error/blocked work in SQLite. Each invocation processes up
-to `ASTRA_MAX_CARDS`; subsequent polls continue the queue. Only one worker may
-use a data directory at a time. Blocked cards are reconsidered against refreshed
-upstream evidence on later polls. Routine runs retry unfinished cards, not
-already-exported drafts.
+and persists pending/error/blocked work in SQLite. `run` processes up to
+`ASTRA_MAX_CARDS`; `run --drain` and the continuous worker process successive
+batches until every eligible card has been attempted once. Failed and blocked
+cards wait for the next poll, avoiding immediate retry loops. Each poll refreshes
+upstream evidence and discovery once. Only one worker may use a data directory
+at a time. Routine runs retry unfinished cards, not already-exported drafts.
+
+During shutdown the worker finishes its current card and leaves the rest queued.
+A later process marks abandoned runs interrupted only after acquiring the worker
+lock; previously exported results remain available. Health records include the
+current phase, activity timestamp, and processed/error counts, so a long batch
+can demonstrate progress before the entire poll finishes.
 
 ## Research and generation
 
@@ -224,7 +231,7 @@ also has headless simulation test infrastructure that such a harness can use.
 See [controlled scenarios and acceptance criteria](docs/testing.md) for the
 Astra Ember Lance example, harness boundaries, and a recorded live benchmark.
 The [verification record](docs/verification.md) maps the requirements to tests,
-runtime evidence, and the remaining live-observability dependency.
+runtime evidence, and the deferred live-observability verification.
 
 ## Langfuse
 
@@ -237,6 +244,9 @@ keys, the workflow runs with tracing disabled. Flushes occur after runs and duri
 shutdown. A self-hosted Langfuse 3 server is supported by the pinned v3 SDK.
 Card reports also retain model-call timings, token usage, finish reasons, and
 schema validation errors locally, including when remote trace ingestion fails.
+Use `ASTRA_LANGFUSE_ENABLED=false` to suspend tracing while continuing discovery,
+generation, tests, and local diagnostics. Live server verification is currently
+on hold at the operator's request; it does not block other development.
 
 ## Container and Proxmox
 

@@ -1,5 +1,6 @@
 import json
 import logging
+from collections.abc import Callable, Collection, Iterator
 from contextlib import contextmanager
 from datetime import date, datetime
 from uuid import uuid4
@@ -44,6 +45,9 @@ class Application:
     @contextmanager
     def lock(self):
         with FileLock(self.settings.data_dir / "run.lock", timeout=0):
+            recovered = self.store.recover_runs()
+            if recovered:
+                log.info("Recovered %d interrupted runs", recovered)
             yield
 
     def today(self) -> date:
@@ -64,7 +68,32 @@ class Application:
         log.info("Discovery: %s", result)
         return result
 
-    def process(self, day: date) -> dict:
+    def drain(
+        self,
+        day: date,
+        *,
+        should_stop: Callable[[], bool] | None = None,
+        on_card: Callable[[dict], None] | None = None,
+    ) -> Iterator[dict]:
+        """Process successive batches; failed/blocked cards get one attempt per poll."""
+        attempted: set[str] = set()
+        while not (should_stop and should_stop()):
+            if not self.store.queue(1, exclude=attempted):
+                break
+            result = self.process(day, exclude=attempted, should_stop=should_stop, on_card=on_card)
+            attempted.update(entry["card_key"] for entry in result["cards"])
+            yield result
+            if result["interrupted"]:
+                break
+
+    def process(
+        self,
+        day: date,
+        *,
+        exclude: Collection[str] = (),
+        should_stop: Callable[[], bool] | None = None,
+        on_card: Callable[[dict], None] | None = None,
+    ) -> dict:
         run_id = datetime.now().strftime("%H%M%S") + "-" + uuid4().hex[:8]
         writer = BatchWriter(self.settings.output_dir, str(day), run_id)
         with self.store.db:
@@ -74,8 +103,12 @@ class Application:
         graph = Workflow(
             self.settings, self.store, self.corpus, self.scryfall, self.github, self.llm
         ).build()
+        interrupted = False
         try:
-            for row in self.store.queue(self.settings.max_cards):
+            for row in self.store.queue(self.settings.max_cards, exclude=exclude):
+                if should_stop and should_stop():
+                    interrupted = True
+                    break
                 card = Card.model_validate_json(row["payload"])
                 self.llm.history.clear()
                 with self.telemetry.span(
@@ -129,12 +162,24 @@ class Application:
                     if span:
                         span.update(output={"status": state["status"], "report": entry["report"]})
                     log.info("%s: %s", card.name, state["status"])
+                    if on_card:
+                        on_card(entry)
             writer.flush()
-            result = {"run_id": run_id, "path": str(writer.path.resolve()), "cards": writer.entries}
+            result = {
+                "run_id": run_id,
+                "path": str(writer.path.resolve()),
+                "cards": writer.entries,
+                "interrupted": interrupted,
+            }
             with self.store.db:
                 self.store.db.execute(
-                    "UPDATE runs SET finished_at=?,status='complete',manifest=? WHERE id=?",
-                    (now_iso(), json.dumps(result), run_id),
+                    "UPDATE runs SET finished_at=?,status=?,manifest=? WHERE id=?",
+                    (
+                        now_iso(),
+                        "interrupted" if interrupted else "complete",
+                        json.dumps(result),
+                        run_id,
+                    ),
                 )
             return result
         except BaseException:
