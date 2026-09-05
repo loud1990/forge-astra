@@ -1,10 +1,12 @@
 # Verification record — 2026-09-05
 
-Application code checked: `6fc345946b78c6366f07cc7f8f4140a44309503f`.
-[CI passed lint, formatting, 51 tests, container build, and packaged CLI startup](https://github.com/loud1990/forge-astra/actions/runs/33982744372).
+Application code checked: `686d503e45e9eddba578cb3dc956c9a889f8051e`.
+[CI passed lint, formatting, 74 tests, container build, and packaged CLI startup](https://github.com/loud1990/forge-astra/actions/runs/33991257113).
 The application is running in a Docker container inside a Proxmox guest.
 This snapshot includes queue draining, interruption recovery, progress health
 checks, and CLI commands for listing cards and inspecting review results.
+It also includes temporary target-script exclusions for real-card evaluations
+and validation fixes found by the [Hobbit sample](hobbit-evaluation.md).
 Live Langfuse tracing was re-enabled and verified after the operator restored
 the server; the worker is healthy with tracing enabled.
 

@@ -261,6 +261,8 @@ is separate from the spoiler queue and learned knowledge. Each report records
 the withheld paths, and artifacts remain grouped by set. A sample pass means
 static validation and model review passed; unlike the built-in benchmarks,
 arbitrary samples do not have independent per-card semantic assertions.
+See the [Hobbit sample report](docs/hobbit-evaluation.md) for real-model outcomes,
+retrieval-exclusion checks, and defects found by source inspection.
 
 ## Langfuse
 
