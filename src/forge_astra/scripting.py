@@ -10,6 +10,7 @@ ALTERNATES = {
     "modal_dfc": "Modal",
     "split": "Split",
     "adventure": "Adventure",
+    "prepare": "Prepare",
     "flip": "Flip",
 }
 SINGLE_LAYOUTS = {"normal", "leveler", "saga", "class", "prototype", "mutate", "host"}

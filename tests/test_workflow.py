@@ -298,6 +298,53 @@ def test_existing_oracle_does_not_hide_changed_cost(corpus, tmp_path):
     assert not metadata_matches(card, existing)
 
 
+def test_prepared_card_preserves_creature_and_spell_as_separate_faces():
+    from forge_astra.scripting import metadata_issues, metadata_matches
+
+    card = Card.from_scryfall(
+        {
+            "id": "prepared",
+            "name": "Astra Apprentice // Leafward Journey",
+            "set": "abc",
+            "layout": "prepare",
+            "released_at": "2026-09-05",
+            "card_faces": [
+                {
+                    "name": "Astra Apprentice",
+                    "type_line": "Creature — Bear Wizard",
+                    "power": "1",
+                    "toughness": "1",
+                    "mana_cost": "{G}",
+                    "oracle_text": "This creature enters prepared.",
+                },
+                {
+                    "name": "Leafward Journey",
+                    "type_line": "Sorcery",
+                    "mana_cost": "{1}{G}",
+                    "oracle_text": "Draw a card.",
+                },
+            ],
+        }
+    )
+    value = draft()
+    value.faces = [
+        type(value.faces[0])(
+            lines=[
+                "K:ETBReplacement:Other:Prepare",
+                "SVar:Prepare:DB$ AlterAttribute | Attributes$ Prepared",
+            ]
+        ),
+        type(value.faces[0])(lines=["A:SP$ Draw | NumCards$ 1"]),
+    ]
+    assert metadata_issues(card) == []
+    script = assemble(card, value)
+    assert "AlternateMode:Prepare" in script and "AlternateMode:Adventure" not in script
+    assert "Name:Leafward Journey\nManaCost:1 G\nTypes:Sorcery" in script
+    assert metadata_matches(card, script)
+    card.faces.pop()
+    assert "Expected 2 faces for layout prepare" in metadata_issues(card)
+
+
 @pytest.mark.parametrize(
     "cost,expected",
     [("1 RW", True), ("1 R/W", True), ("RW 1", True), ("1 R W", False), ("2 RW", False)],
