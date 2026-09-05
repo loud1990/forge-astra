@@ -151,6 +151,19 @@ ever labeled gameplay-tested by this application.
 
 ## Output and the external testing harness
 
+Find cards to review or retry without opening the database:
+
+```sh
+uv run forge-astra cards --status blocked --set abc
+uv run forge-astra cards --status draft --limit 20 --offset 0
+uv run forge-astra cards --name "Ember"
+uv run forge-astra show CARD_KEY
+```
+
+These commands return JSON with card keys, discovery history, attempt counts,
+blockers, and latest artifact paths. `show` also includes the source card data.
+They do not change queue state or invoke the model.
+
 ```text
 output/YYYY-MM-DD/RUN_ID/
   manifest.json

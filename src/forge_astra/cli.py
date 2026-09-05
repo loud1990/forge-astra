@@ -160,6 +160,53 @@ def import_cards(ctx: typer.Context, path: Path):
         application.close()
 
 
+@app.command("cards")
+def list_cards(
+    ctx: typer.Context,
+    status: Annotated[str, typer.Option("--status")] = "",
+    set_code: Annotated[str, typer.Option("--set")] = "",
+    name: str = "",
+    limit: Annotated[int, typer.Option(min=1, max=500)] = 50,
+    offset: Annotated[int, typer.Option(min=0)] = 0,
+):
+    """List card keys, statuses, blockers and latest artifact paths as JSON."""
+    if status and status not in {
+        "baseline",
+        "pending",
+        "error",
+        "blocked",
+        "needs_review",
+        "draft",
+        "already_upstream",
+    }:
+        raise typer.BadParameter("Unknown card status")
+    store = Store(ctx.obj.db_path)
+    try:
+        typer.echo(
+            json.dumps(
+                store.list_cards(
+                    status=status, set_code=set_code, name=name, limit=limit, offset=offset
+                ),
+                indent=2,
+            )
+        )
+    finally:
+        store.close()
+
+
+@app.command("show")
+def show_card(ctx: typer.Context, card_key: str):
+    """Inspect a card's source metadata, discovery history and latest result."""
+    store = Store(ctx.obj.db_path)
+    try:
+        card = store.get_card(card_key)
+        if card is None:
+            raise typer.BadParameter("Unknown card key")
+        typer.echo(json.dumps(card, indent=2))
+    finally:
+        store.close()
+
+
 @app.command()
 def retry(ctx: typer.Context, card_key: str):
     """Queue a card again after feedback or a local review."""

@@ -161,6 +161,54 @@ class Store:
             if not result.rowcount:
                 raise ValueError(f"Unknown card key: {key}")
 
+    @staticmethod
+    def card_summary(row) -> dict:
+        card = Card.model_validate_json(row["payload"])
+        return {
+            "card_key": row["key"],
+            "name": row["name"],
+            "set_code": card.set_code,
+            "status": row["status"],
+            "attempts": row["attempts"],
+            "first_seen": row["first_seen"],
+            "last_seen": row["last_seen"],
+            "batch_day": row["batch_day"],
+            "discovery_reason": row["discovery_reason"],
+            "latest_result": json.loads(row["report"]) if row["report"] else None,
+        }
+
+    def list_cards(
+        self,
+        *,
+        status: str = "",
+        set_code: str = "",
+        name: str = "",
+        limit: int = 50,
+        offset: int = 0,
+    ) -> list[dict]:
+        conditions, values = [], []
+        for expression, value in (
+            ("status=?", status),
+            ("json_extract(payload,'$.set_code')=? COLLATE NOCASE", set_code),
+            ("instr(lower(name),lower(?))>0", name),
+        ):
+            if value:
+                conditions.append(expression)
+                values.append(value)
+        where = " AND ".join(conditions) or "1=1"
+        rows = self.db.execute(
+            f"SELECT * FROM cards WHERE {where} "
+            "ORDER BY CASE WHEN status='baseline' THEN 1 ELSE 0 END,last_seen DESC,name,key LIMIT ? OFFSET ?",
+            [*values, limit, offset],
+        )
+        return [self.card_summary(row) for row in rows]
+
+    def get_card(self, key: str) -> dict | None:
+        row = self.db.execute("SELECT * FROM cards WHERE key=?", (key,)).fetchone()
+        if row is None:
+            return None
+        return {**self.card_summary(row), "card": json.loads(row["payload"])}
+
     def lesson(self, content: str, status: str, provenance: dict, card_key: str | None = None):
         identifier = digest([content, provenance])[:24]
         with self.db:
