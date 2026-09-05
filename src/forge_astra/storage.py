@@ -117,7 +117,7 @@ class Store:
             dict(r)
             for r in self.db.execute(
                 "SELECT * FROM cards WHERE status IN ('pending','error','blocked') "
-                "ORDER BY CASE status WHEN 'pending' THEN 0 WHEN 'error' THEN 1 ELSE 2 END, last_seen,key LIMIT ?",
+                "ORDER BY CASE status WHEN 'pending' THEN 0 WHEN 'error' THEN 1 ELSE 2 END, attempts,last_seen,key LIMIT ?",
                 (limit,),
             )
         ]

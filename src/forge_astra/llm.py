@@ -58,7 +58,7 @@ class ChatClient:
             if self.settings.llm_json_mode:
                 body["response_format"] = {"type": "json_object"}
             with self.telemetry.span(
-                task,
+                schema.__name__,
                 as_type="generation",
                 model=model,
                 input=messages,
