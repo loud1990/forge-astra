@@ -435,6 +435,26 @@ def test_opponent_mill_scope_respects_oracle_targeting(corpus, oracle, target, r
     assert bool(issues) is rejected
 
 
+@pytest.mark.parametrize(
+    "expression,rejected",
+    [
+        ("Count$CardCounters.QUEST GE4", True),
+        ("Count$CardCounters.P1P1 LT2", True),
+        ("Count$CardCounters.QUEST", False),
+        ("Count$CardCounters.P1P1/Plus.1", False),
+    ],
+)
+def test_counter_count_does_not_turn_a_comparison_into_a_custom_counter_name(
+    corpus, expression, rejected
+):
+    value = draft()
+    value.faces[0].lines.append("SVar:X:" + expression)
+    corpus.capabilities["param"].add("Count")
+    issues = validate_draft(renamed_bolt(), value, corpus, pool())
+    assert any("inline comparison" in issue for issue in issues) is rejected
+    assert bool(issues) is rejected
+
+
 def test_bad_citation_is_replanned_before_scripting(corpus, tmp_path):
     class RepairLLM(FakeLLM):
         def ask(self, task, context, schema, review=False):

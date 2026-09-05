@@ -172,6 +172,14 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
                     issues.append(f"Duplicate ability parameter: {param}")
             params = dict(fields)
             params = {k: v.strip() for k, v in params.items()}
+            if kind == "SVar" and re.search(
+                r"^CardCounters\.[A-Z0-9_]+\s+(?:GE|GT|EQ|NE|LE|LT)[+-]?\d+$",
+                params.get("Count", ""),
+            ):
+                issues.append(
+                    "Counter-count SVar contains an inline comparison: keep the count numeric "
+                    "and put the threshold in SVarCompare or ConditionSVarCompare"
+                )
             for param in params:
                 if param not in caps["param"]:
                     issues.append(f"Unknown upstream parameter: {param}")
