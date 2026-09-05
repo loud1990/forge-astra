@@ -34,6 +34,10 @@ def test_generic_endpoint_no_native_json_or_tools_required():
     assert "tools" not in requests[0]
     assert requests[0]["model"] == "local-model"
     assert client.url == "http://example.test/custom/v1/chat/completions"
+    assert len(client.history) == 2
+    assert client.history[0]["validation_errors"][0]["type"] == "json_invalid"
+    assert "validation_errors" not in client.history[1]
+    assert "not json" not in json.dumps(client.history)
     http.close()
 
 

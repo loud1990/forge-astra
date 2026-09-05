@@ -89,6 +89,7 @@ def evaluate(
     results = []
     try:
         for case in selected:
+            application.llm.history.clear()
             card = Card.model_validate(case["card"])
             if application.corpus.named(card.name):
                 raise ValueError("Benchmark name collision with upstream; cannot fairly evaluate")
@@ -123,6 +124,7 @@ def evaluate(
                         "status": "error",
                         "issues": [type(exc).__name__],
                     }
+                state["model_calls"] = list(application.llm.history)
                 failures = assess(case, state)
                 entry = writer.add(
                     state, application.corpus.commit, {"reason": "renamed_benchmark"}

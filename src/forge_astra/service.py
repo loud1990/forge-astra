@@ -77,6 +77,7 @@ class Application:
         try:
             for row in self.store.queue(self.settings.max_cards):
                 card = Card.model_validate_json(row["payload"])
+                self.llm.history.clear()
                 with self.telemetry.span(
                     "forge-astra.card",
                     as_type="span",
@@ -105,6 +106,7 @@ class Application:
                                 f"{type(exc).__name__}: processing failed; check configured services and traces"
                             ],
                         }
+                    state["model_calls"] = list(self.llm.history)
                     entry = writer.add(
                         state,
                         self.corpus.commit,
