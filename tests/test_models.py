@@ -47,3 +47,26 @@ def test_missing_oracle_is_not_a_vanilla_card():
     complete = Card.from_scryfall({**raw, "oracle_text": ""})
     assert complete.oracle_complete
     assert card.fingerprint != complete.fingerprint
+
+
+def test_reminder_sentences_stay_with_their_ability_without_losing_conditions():
+    from forge_astra.models import oracle_sentences
+
+    oracle = (
+        "Counter target spell. If its mana value was 2 or less, recruit. "
+        "(Draw a card, then discard a card. If you discarded a nonland card, create a token.)"
+    )
+    parts = oracle_sentences(oracle)
+    assert len(parts) == 2
+    assert parts[1].startswith("If its mana value")
+    assert parts[1].endswith("create a token.)")
+    assert " ".join(parts) == oracle
+    assert oracle_sentences("Draw a card. Then discard a card.") == [
+        "Draw a card.",
+        "Then discard a card.",
+    ]
+    nested = "Recruit. (Draw a card. (Keep its identity.) Then discard a card.)"
+    assert oracle_sentences(nested) == [nested]
+    assert oracle_sentences("Draw a card. (Reminder is incomplete. Keep all of it.") == [
+        "Draw a card. (Reminder is incomplete. Keep all of it."
+    ]

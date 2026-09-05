@@ -44,6 +44,7 @@ class State(TypedDict, total=False):
 PLAN_TASK = """Plan the card's complete implementation. Cover each supplied clause ID exactly
 once. Cite exact executable lines or substrings (A:,K:,T:,R:,S:,SVar:) from the supplied
 Forge scripts; Oracle text or documentation alone is not implementation evidence.
+For parenthesized reminder rules, cite the executable ability that implements them.
 For behavior provided by a supported card layout, cite the exact matching
 AlternateMode line (for example AlternateMode:Adventure for casting the creature
 from exile after its Adventure). The app emits that line from the card's layout.

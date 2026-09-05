@@ -23,6 +23,24 @@ def normalize(text: str) -> str:
     return " ".join(re.findall(r"[\w]+", text.casefold()))
 
 
+def oracle_sentences(paragraph: str) -> list[str]:
+    """Keep parenthesized reminder rules attached to the ability they explain."""
+    parts = []
+    start = scanned = depth = 0
+    for boundary in re.finditer(r"(?<=[.!?])\s+(?=[A-Z{])", paragraph):
+        for char in paragraph[scanned : boundary.start()]:
+            if char == "(":
+                depth += 1
+            elif char == ")":
+                depth = max(0, depth - 1)
+        scanned = boundary.end()
+        if not depth:
+            parts.append(paragraph[start : boundary.start()])
+            start = boundary.end()
+    parts.append(paragraph[start:])
+    return [part.strip() for part in parts if part.strip()]
+
+
 class Face(BaseModel):
     name: str
     mana_cost: str = ""
@@ -99,7 +117,7 @@ class Card(BaseModel):
         for face_index, face in enumerate(self.faces):
             # Preserve costs, modal bullets, ability words, and reminders; never discard text.
             for paragraph in face.oracle_text.splitlines():
-                for text in re.split(r"(?<=[.!?])\s+(?=[A-Z{])", paragraph):
+                for text in oracle_sentences(paragraph):
                     if text.strip():
                         clauses.append(
                             {
