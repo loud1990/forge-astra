@@ -1,0 +1,31 @@
+name: forge-astra
+services:
+  worker:
+    build: .
+    image: forge-astra:local
+    restart: unless-stopped
+    init: true
+    env_file: .env
+    environment:
+      ASTRA_DATA_DIR: /data
+      ASTRA_OUTPUT_DIR: /output
+    volumes:
+      - astra-data:/data
+      - astra-output:/output
+    mem_limit: 2g
+    cpus: 2
+    pids_limit: 128
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    stop_grace_period: 5m
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+volumes:
+  astra-data:
+  astra-output:
+
