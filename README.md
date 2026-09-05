@@ -223,6 +223,8 @@ Functional validation belongs to the external engine/gameplay harness; Forge
 also has headless simulation test infrastructure that such a harness can use.
 See [controlled scenarios and acceptance criteria](docs/testing.md) for the
 Astra Ember Lance example, harness boundaries, and a recorded live benchmark.
+The [verification record](docs/verification.md) maps the requirements to tests,
+runtime evidence, and the remaining live-observability dependency.
 
 ## Langfuse
 
