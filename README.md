@@ -244,7 +244,7 @@ also has headless simulation test infrastructure that such a harness can use.
 See [controlled scenarios and acceptance criteria](docs/testing.md) for the
 Astra Ember Lance example, harness boundaries, and a recorded live benchmark.
 The [verification record](docs/verification.md) maps the requirements to tests,
-runtime evidence, and the deferred live-observability verification.
+runtime evidence, and verified live observability.
 
 ## Langfuse
 
@@ -258,8 +258,10 @@ shutdown. A self-hosted Langfuse 3 server is supported by the pinned v3 SDK.
 Card reports also retain model-call timings, token usage, finish reasons, and
 schema validation errors locally, including when remote trace ingestion fails.
 Use `ASTRA_LANGFUSE_ENABLED=false` to suspend tracing while continuing discovery,
-generation, tests, and local diagnostics. Live server verification is currently
-on hold at the operator's request; it does not block other development.
+generation, tests, and local diagnostics. Live tracing was re-enabled and verified
+on the deployed worker on 2026-09-05. Passing and review-required benchmark runs
+both persisted connected graph observations, model inputs/outputs, token usage,
+and scores; see the [verification record](docs/verification.md).
 
 ## Container and Proxmox
 
