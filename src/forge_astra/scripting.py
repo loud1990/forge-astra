@@ -198,6 +198,19 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
                 if key in params:
                     refs.update(re.split(r",\s*", params[key]))
             api = next((params[k] for k in ("AB", "SP", "DB") if k in params), "")
+            # A single opponent-only mill instruction cannot target its controller.
+            # Keep faces with multiple target instructions outside this narrow check;
+            # those require per-ability gameplay contracts.
+            oracle = card.faces[i].oracle_text
+            if (
+                api == "Mill"
+                and re.search(r"\btarget opponent mills\b", oracle, re.I)
+                and len(re.findall(r"\btarget\b", oracle, re.I)) == 1
+                and any(t.strip() == "Player" for t in params.get("ValidTgts", "").split(","))
+            ):
+                issues.append(
+                    "Opponent-only mill targets all players: use an opponent-restricted target filter"
+                )
             # CountersPutEffect resolves Defined through getDefinedEntities;
             # a bare validity selector does not enumerate matching permanents.
             if api == "PutCounter" and re.match(

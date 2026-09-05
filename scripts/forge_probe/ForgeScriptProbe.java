@@ -12,12 +12,16 @@ import java.nio.file.Path;
 
 /** Construct abilities in Forge without a game, player controller, or GUI. */
 public class ForgeScriptProbe {
-    public static void main(String[] args) throws Exception {
+    public static void initialize() throws Exception {
         Path resources = Path.of(System.getProperty("forge.resources"));
         Localizer.getInstance().initialize("en-US", resources.resolve("languages").toString());
         Lang.createInstance("en-US");
         FileSection.parseSections(Files.readAllLines(resources.resolve("lists/TypeLists.txt")))
             .forEach(CardType.Helper::parseTypes);
+    }
+
+    public static void main(String[] args) throws Exception {
+        initialize();
         boolean failed = false;
         for (String arg : args) {
             String stage = "read";

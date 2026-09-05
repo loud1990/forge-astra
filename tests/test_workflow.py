@@ -413,6 +413,28 @@ def test_ability_word_label_does_not_bypass_implementation_evidence(
         store.close()
 
 
+@pytest.mark.parametrize(
+    "oracle,target,rejected",
+    [
+        ("Target opponent mills three cards.", "Player", True),
+        ("Target opponent mills three cards.", "Opponent", False),
+        ("Target opponent mills three cards.", "Player.Opponent", False),
+        ("Target player mills three cards.", "Player", False),
+        ("Target opponent mills three cards. Target player mills one card.", "Player", False),
+    ],
+)
+def test_opponent_mill_scope_respects_oracle_targeting(corpus, oracle, target, rejected):
+    card = renamed_bolt()
+    card.faces[0].oracle_text = oracle
+    value = draft()
+    value.faces[0].lines = [f"A:SP$ Mill | ValidTgts$ {target} | NumCards$ 3"]
+    corpus.capabilities["api"].add("Mill")
+    corpus.capabilities["param"].add("NumCards")
+    issues = validate_draft(card, value, corpus, pool())
+    assert any("Opponent-only mill" in issue for issue in issues) is rejected
+    assert bool(issues) is rejected
+
+
 def test_bad_citation_is_replanned_before_scripting(corpus, tmp_path):
     class RepairLLM(FakeLLM):
         def ask(self, task, context, schema, review=False):

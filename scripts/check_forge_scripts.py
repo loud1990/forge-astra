@@ -8,7 +8,9 @@ import tempfile
 from pathlib import Path
 
 
-def check(forge_root: Path, scripts: list[Path], *, java: str, javac: str) -> dict:
+def check(
+    forge_root: Path, scripts: list[Path], *, java: str, javac: str, contract: str = "construction"
+) -> dict:
     root = forge_root.resolve()
     dependencies = (root / "forge-game/target/probe-classpath.txt").read_text().strip()
     classpath = os.pathsep.join(
@@ -18,22 +20,21 @@ def check(forge_root: Path, scripts: list[Path], *, java: str, javac: str) -> di
             dependencies,
         ]
     )
-    source = Path(__file__).parent / "forge_probe/ForgeScriptProbe.java"
+    sources = sorted((Path(__file__).parent / "forge_probe").glob("*.java"))
     with tempfile.TemporaryDirectory(prefix="astra-forge-probe-") as directory:
-        subprocess.run([javac, "-cp", classpath, "-d", directory, str(source)], check=True)
+        subprocess.run([javac, "-cp", classpath, "-d", directory, *map(str, sources)], check=True)
         command = [
             java,
             "-Djava.awt.headless=true",
             f"-Dforge.resources={root / 'forge-gui/res'}",
             "-cp",
             directory + os.pathsep + classpath,
-            "ForgeScriptProbe",
         ]
 
-        def probe(paths):
+        def probe(paths, main="ForgeScriptProbe"):
             paths = [p.resolve() for p in paths]
             result = subprocess.run(
-                [*command, *map(str, paths)], capture_output=True, text=True, timeout=120
+                [*command, main, *map(str, paths)], capture_output=True, text=True, timeout=120
             )
             rows = []
             for line in result.stdout.splitlines():
@@ -78,14 +79,35 @@ def check(forge_root: Path, scripts: list[Path], *, java: str, javac: str) -> di
             raise RuntimeError(
                 "Forge loader controls failed; candidate results would be unreliable"
             )
-        rows = probe(scripts)
+        checks = {"valid_controls_accepted": len(controls), "invalid_api_rejected": True}
+        if contract == "opponent-mill":
+            variants = []
+            for target in ("Opponent", "Player"):
+                path = Path(directory) / (target + ".txt")
+                path.write_text(
+                    "Name:Astra Target Control\nManaCost:U\nTypes:Instant\n"
+                    f"A:SP$ Mill | ValidTgts$ {target} | NumCards$ 3\n"
+                    "Oracle:Target opponent mills three cards.\n"
+                )
+                variants.append(path)
+            targeting = probe(variants, "OpponentMillProbe")
+            if not targeting[0]["passed"] or targeting[1]["passed"]:
+                raise RuntimeError("Forge opponent-targeting controls failed")
+            checks["opponent_targeting_controls_passed"] = True
+            rows = probe(scripts, "OpponentMillProbe")
+        else:
+            rows = probe(scripts)
     return {
-        "validation_level": "forge_card_and_ability_construction",
+        "validation_level": (
+            "forge_opponent_mill_targeting"
+            if contract == "opponent-mill"
+            else "forge_card_and_ability_construction"
+        ),
         "gameplay_tested": False,
         "upstream_commit": subprocess.check_output(
             ["git", "-C", str(root), "rev-parse", "HEAD"], text=True
         ).strip(),
-        "calibration": {"valid_controls_accepted": len(controls), "invalid_api_rejected": True},
+        "calibration": checks,
         "total": len(rows),
         "passed": sum(r["passed"] for r in rows),
         "results": rows,
@@ -98,12 +120,17 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--java", default="java")
     parser.add_argument("--javac", default="javac")
+    parser.add_argument(
+        "--contract", choices=["construction", "opponent-mill"], default="construction"
+    )
     parser.add_argument("scripts", type=Path, nargs="+")
     args = parser.parse_args()
-    result = check(args.forge_root, args.scripts, java=args.java, javac=args.javac)
+    result = check(
+        args.forge_root, args.scripts, java=args.java, javac=args.javac, contract=args.contract
+    )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n")
     print(
-        f"Forge constructed {result['passed']}/{result['total']} scripts; gameplay remains untested."
+        f"Forge {args.contract}: {result['passed']}/{result['total']} passed; resolution remains untested."
     )
     raise SystemExit(int(result["passed"] != result["total"]))
