@@ -30,6 +30,14 @@ class Settings(BaseSettings):
     max_cards: int = Field(default=20, ge=1)
     max_revisions: int = Field(default=2, ge=0, le=5)
     examples_per_clause: int = Field(default=4, ge=1, le=10)
+    langfuse_public_key: str = Field(default="", validation_alias="LANGFUSE_PUBLIC_KEY")
+    langfuse_secret_key: SecretStr = Field(
+        default=SecretStr(""), validation_alias="LANGFUSE_SECRET_KEY"
+    )
+    langfuse_base_url: str = Field(
+        default="https://cloud.langfuse.com", validation_alias="LANGFUSE_BASE_URL"
+    )
+    langfuse_enabled: bool = True
 
     @field_validator("timezone")
     @classmethod
