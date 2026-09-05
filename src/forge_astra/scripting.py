@@ -172,6 +172,15 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
                     issues.append(f"Duplicate ability parameter: {param}")
             params = dict(fields)
             params = {k: v.strip() for k, v in params.items()}
+            if (
+                kind == "SVar"
+                and params.get("Count", "").startswith("Compare ")
+                and len(params["Count"].split(".", 2)) < 3
+            ):
+                issues.append(
+                    "Count$Compare requires both true and false result branches: "
+                    "Compare <value> <comparison>.<true>.<false>"
+                )
             if kind == "SVar" and re.search(
                 r"^CardCounters\.[A-Z0-9_]+\s+(?:GE|GT|EQ|NE|LE|LT)[+-]?\d+$",
                 params.get("Count", ""),

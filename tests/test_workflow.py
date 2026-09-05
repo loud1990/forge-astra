@@ -530,7 +530,13 @@ def test_tracked_mechanic_unblocks_only_after_verified_merge(corpus, tmp_path):
     store.close()
 
 
-def test_deck_choice_outside_pool_is_resolved_against_upstream(corpus, tmp_path):
+@pytest.mark.parametrize("scheme", [False, True])
+def test_deck_choice_outside_pool_is_resolved_against_upstream(corpus, tmp_path, scheme):
+    if scheme:
+        path = corpus.root / "forge-gui/res/cardsfolder/l/lightning_bolt.txt"
+        path.write_text(path.read_text().replace("Types:Instant", "Types:Scheme"))
+        corpus.index(corpus.root, "b" * 40)
+
     class DeckLLM(FakeLLM):
         def ask(self, task, context, schema, review=False):
             result = super().ask(task, context, schema, review)
@@ -543,6 +549,52 @@ def test_deck_choice_outside_pool_is_resolved_against_upstream(corpus, tmp_path)
     workflow = Workflow(Settings(_env_file=None), store, corpus, FakeScryfall(), FakeGitHub(), llm)
     workflow.support_pool = lambda card: pool()
     result = workflow.build().invoke({"card": renamed_bolt().model_dump(mode="json")})
-    assert result["status"] == "draft"
-    assert any(e["name"] == "Lightning Bolt" and e.get("path") for e in result["support_pool"])
+    assert result["status"] == ("needs_review" if scheme else "draft")
+    assert (
+        any(e["name"] == "Lightning Bolt" and e.get("path") for e in result["support_pool"])
+        is not scheme
+    )
     store.close()
+
+
+@pytest.mark.parametrize(
+    "card_type",
+    [
+        "Scheme",
+        "Plane",
+        "Phenomenon",
+        "Vanguard",
+        "Conspiracy",
+        "Dungeon",
+        "Artifact Attraction",
+        "Artifact Contraption",
+        "Emblem",
+    ],
+)
+def test_supplementary_cards_are_excluded_from_main_deck_pool(corpus, tmp_path, card_type):
+    path = corpus.root / "forge-gui/res/cardsfolder/l/lightning_bolt.txt"
+    path.write_text(path.read_text().replace("Types:Instant", "Types:" + card_type))
+    corpus.index(corpus.root, "b" * 40)
+    store = Store(tmp_path / "state.db")
+    workflow = Workflow(
+        Settings(_env_file=None), store, corpus, FakeScryfall(), FakeGitHub(), FakeLLM()
+    )
+    assert "Lightning Bolt" not in {e["name"] for e in workflow.support_pool(renamed_bolt())}
+    store.close()
+
+
+@pytest.mark.parametrize(
+    "expression,rejected",
+    [
+        ("Count$Compare Y GE4", True),
+        ("Count$Compare Y GE4.1", True),
+        ("Count$Compare Y GE4.1.0", False),
+        ("Count$Compare Y GE4.Yes.No", False),
+    ],
+)
+def test_count_compare_requires_both_result_branches(corpus, expression, rejected):
+    value = draft()
+    value.faces[0].lines.extend(["SVar:X:" + expression, "SVar:Y:Count$CardCounters.QUEST"])
+    corpus.capabilities["param"].add("Count")
+    issues = validate_draft(renamed_bolt(), value, corpus, pool())
+    assert any("both true and false result branches" in issue for issue in issues) is rejected

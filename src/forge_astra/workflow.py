@@ -200,19 +200,30 @@ class Workflow:
             for entry in self.corpus.search(query, 30):
                 if entry["name"] == card.name:
                     continue
-                costs = " ".join(re.findall(r"^ManaCost:(.+)", entry["body"], re.M))
-                colored = set(re.findall(r"[WUBRG]", costs))
-                if colored - set(card.colors):
-                    continue
-                if re.search(r"^Types:.*\bLand\b", entry["body"], re.M):
-                    continue
-                pool[entry["name"]] = {
-                    "name": entry["name"],
-                    "oracle": entry["oracle"],
-                    "mana_cost": costs,
-                    "path": entry["path"],
-                }
+                support = self.support_entry(card, entry)
+                if support:
+                    pool[entry["name"]] = support
         return list(pool.values())[:70]
+
+    @staticmethod
+    def support_entry(card: Card, entry: dict) -> dict | None:
+        costs = " ".join(re.findall(r"^ManaCost:(.+)", entry["body"], re.M))
+        colors = set(re.findall(r"[WUBRG]", costs))
+        # Lands are allocated separately. Supplementary game objects do not
+        # belong in the ordinary [Main] deck even with legality checks disabled.
+        if colors - set(card.colors) or re.search(
+            r"^Types:.*\b(?:Land|Scheme|Plane|Phenomenon|Vanguard|Conspiracy|"
+            r"Dungeon|Attraction|Contraption|Emblem)\b",
+            entry["body"],
+            re.M,
+        ):
+            return None
+        return {
+            "name": entry["name"],
+            "oracle": entry["oracle"],
+            "mana_cost": costs,
+            "path": entry["path"],
+        }
 
     def context(self, state: State) -> dict:
         card = Card.model_validate(state["card"])
@@ -317,21 +328,10 @@ class Workflow:
             if support.name in known:
                 continue
             for entry in self.corpus.named(support.name):
-                costs = " ".join(re.findall(r"^ManaCost:(.+)", entry["body"], re.M))
-                colors = set(re.findall(r"[WUBRG]", costs))
-                if colors - set(card.colors) or re.search(
-                    r"^Types:.*\bLand\b", entry["body"], re.M
-                ):
-                    continue
-                pool.append(
-                    {
-                        "name": entry["name"],
-                        "oracle": entry["oracle"],
-                        "mana_cost": costs,
-                        "path": entry["path"],
-                    }
-                )
-                known.add(entry["name"])
+                resolved = self.support_entry(card, entry)
+                if resolved:
+                    pool.append(resolved)
+                    known.add(entry["name"])
         draft = balance_support(draft, pool)
         return {"draft": draft.model_dump(), "support_pool": pool, "status": ""}
 
