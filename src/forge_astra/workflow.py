@@ -10,6 +10,7 @@ from forge_astra.llm import ChatClient
 from forge_astra.models import Card, Draft, Plan, Review
 from forge_astra.scripting import (
     assemble,
+    balance_support,
     metadata_issues,
     metadata_matches,
     plan_issues,
@@ -56,8 +57,8 @@ optional AI/deck hints or Text fields. Never return Name, ManaCost, Types, PT, O
 Colors, Loyalty, Defense, AlternateMode or ALTERNATE: the application assembles metadata.
 Reuse proven syntax, substitute CARDNAME for self-references, and define every SVar.
 Use existing upstream tokens; if a required token is absent, report the need in test_plan
-and do not invent its path. Select exactly 28 support cards from support_pool, maximum
-four of each, synergizing with the target. The app adds eight target copies and 24 basic
+and do not invent its path. Select exactly SEVEN distinct support_pool entries, with
+count=4 for each (7 times 4 = 28 support copies), synergizing with the target. The app adds eight target copies and 24 basic
 lands. Include specific gameplay assertions and edge cases for the external harness.
 Lessons are tentative discoveries, never claims of tested behavior. Address all prior
 lint and review issues when revising.
@@ -282,10 +283,9 @@ class Workflow:
 
     def generate(self, state: State) -> dict:
         log.info("Generating %s (revision %d)", state["card"]["name"], state["revisions"])
-        return {
-            "draft": self.llm.ask(DRAFT_TASK, self.context(state), Draft).model_dump(),
-            "status": "",
-        }
+        draft = self.llm.ask(DRAFT_TASK, self.context(state), Draft)
+        draft = balance_support(draft, state["support_pool"])
+        return {"draft": draft.model_dump(), "status": ""}
 
     def validate(self, state: State) -> dict:
         card, draft = Card.model_validate(state["card"]), Draft.model_validate(state["draft"])

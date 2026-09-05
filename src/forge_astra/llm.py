@@ -1,6 +1,7 @@
 import json
 import re
 from typing import TypeVar
+from urllib.parse import urlsplit, urlunsplit
 
 from pydantic import BaseModel, ValidationError
 
@@ -30,7 +31,12 @@ class ChatClient:
         if settings.llm_api_key.get_secret_value():
             headers["Authorization"] = "Bearer " + settings.llm_api_key.get_secret_value()
         url = settings.llm_base_url
-        self.url = url if url.endswith("/chat/completions") else url + "/chat/completions"
+        parts = urlsplit(url)
+        self.url = (
+            url
+            if parts.path.endswith("/chat/completions")
+            else urlunsplit(parts._replace(path=parts.path.rstrip("/") + "/chat/completions"))
+        )
         self.http = http or JsonHTTP(url, headers, timeout=settings.llm_timeout)
 
     def ask(self, task: str, context: dict, schema: type[T], *, review: bool = False) -> T:

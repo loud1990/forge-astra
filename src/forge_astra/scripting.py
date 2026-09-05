@@ -2,7 +2,7 @@ import re
 from collections import Counter
 
 from forge_astra.corpus import Corpus, active_lines
-from forge_astra.models import Card, Draft, Plan, normalize
+from forge_astra.models import Card, Draft, Plan, SupportCard, normalize
 
 ALTERNATES = {
     "transform": "Transform",
@@ -129,6 +129,9 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
             if not sep or kind not in LINE_TYPES:
                 issues.append(f"Invalid script line type: {kind}")
                 continue
+            if kind in {"AI", "DeckHints", "DeckHas", "DeckNeeds", "Text"}:
+                # These fields use their own metadata grammar, not the ability API.
+                continue
             if kind == "SVar":
                 name, sep, rest = rest.partition(":")
                 if not sep or not name or name in svars:
@@ -204,6 +207,48 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
     if sum(counts.values()) != 28 or any(n > 4 for n in counts.values()):
         issues.append("Test deck needs 28 support cards, at most four of each")
     return sorted(set(issues))
+
+
+def balance_support(draft: Draft, support_pool: list[dict]) -> Draft:
+    """Enforce deck arithmetic without spending script revisions on card counts."""
+    allowed = {entry["name"] for entry in support_pool}
+    if any(card.name not in allowed for card in draft.support_cards):
+        return draft  # Unknown names still require model repair and cannot be exported.
+    selected = {}
+    for card in draft.support_cards:
+        if card.name not in selected:
+            selected[card.name] = card.model_copy()
+        else:
+            selected[card.name].count = min(4, selected[card.name].count + card.count)
+    total = sum(card.count for card in selected.values())
+    if total < 28:
+        for card in selected.values():
+            amount = min(4 - card.count, 28 - total)
+            card.count += amount
+            total += amount
+        for entry in support_pool:
+            if total == 28:
+                break
+            if entry["name"] not in selected:
+                count = min(4, 28 - total)
+                selected[entry["name"]] = SupportCard(
+                    name=entry["name"],
+                    count=count,
+                    purpose="Additional support from the retrieved card pool; check synergy in the scenario plan.",
+                )
+                total += count
+    if total > 28:
+        for name in reversed(list(selected)):
+            amount = min(selected[name].count, total - 28)
+            selected[name].count -= amount
+            total -= amount
+            if selected[name].count == 0:
+                del selected[name]
+            if total == 28:
+                break
+    result = draft.model_copy(deep=True)
+    result.support_cards = list(selected.values())
+    return result
 
 
 def deck_text(card: Card, draft: Draft) -> str:

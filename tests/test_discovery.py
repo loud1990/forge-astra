@@ -92,3 +92,13 @@ def test_missing_later_page_is_not_a_successful_partial_scan():
     with pytest.raises(RemoteError, match="missing page"):
         Scryfall(http).search("test")
     http.close()
+
+
+def test_late_preview_date_can_promote_a_baselined_card(tmp_path):
+    store = Store(tmp_path / "state.db")
+    day = date(2026, 9, 5)
+    store.observe([card()], day, "default")
+    assert store.queue(10) == []
+    assert store.observe([card(preview=str(day))], day, "default")["new"] == 1
+    assert store.queue(10)[0]["discovery_reason"] == "preview_date"
+    store.close()

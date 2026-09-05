@@ -56,6 +56,11 @@ class Store:
                 old = self.db.execute("SELECT * FROM cards WHERE key=?", (card.key,)).fetchone()
                 if old:
                     changed = old["fingerprint"] != card.fingerprint
+                    newly_dated_preview = (
+                        old["status"] == "baseline"
+                        and card.previewed_at == day
+                        and Card.model_validate_json(old["payload"]).previewed_at != day
+                    )
                     self.db.execute(
                         "UPDATE cards SET payload=?,fingerprint=?,last_seen=? WHERE key=?",
                         (card.model_dump_json(), card.fingerprint, timestamp, card.key),
@@ -64,6 +69,12 @@ class Store:
                         counts["changed"] += 1
                         self.db.execute(
                             "UPDATE cards SET status='pending',batch_day=?,discovery_reason='oracle_changed',report=NULL WHERE key=?",
+                            (str(day), card.key),
+                        )
+                    elif newly_dated_preview:
+                        counts["new"] += 1
+                        self.db.execute(
+                            "UPDATE cards SET status='pending',batch_day=?,discovery_reason='preview_date' WHERE key=?",
                             (str(day), card.key),
                         )
                     continue

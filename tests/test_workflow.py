@@ -263,3 +263,21 @@ def test_bad_citation_is_replanned_before_scripting(corpus, tmp_path):
     assert llm.calls == ["Plan", "Plan", "Draft", "Review"]
     assert result["planning_revisions"] == 1
     store.close()
+
+
+def test_deck_hints_are_not_ability_parameters(corpus):
+    value = draft()
+    value.faces[0].lines.append("DeckHas:Ability$Damage")
+    assert validate_draft(renamed_bolt(), value, corpus, pool()) == []
+
+
+def test_deck_arithmetic_is_balanced_without_rewriting_the_script():
+    from forge_astra.scripting import balance_support
+
+    value = draft()
+    value.support_cards = value.support_cards[:5]
+    balanced = balance_support(value, pool())
+    assert sum(c.count for c in balanced.support_cards) == 28
+    assert max(c.count for c in balanced.support_cards) <= 4
+    assert balanced.faces == value.faces
+    assert all(c.name in {p["name"] for p in pool()} for c in balanced.support_cards)
