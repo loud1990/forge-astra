@@ -159,7 +159,11 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
                 if not sep or not name or name in svars:
                     issues.append(f"Invalid or duplicate SVar: {name}")
                 svars.add(name)
-            params = dict(re.findall(r"(?:^|\|)\s*(\w+)\$\s*([^|]*)", rest))
+            fields = re.findall(r"(?:^|\|)\s*(\w+)\$\s*([^|]*)", rest)
+            for param, count in Counter(key for key, _ in fields).items():
+                if count > 1:
+                    issues.append(f"Duplicate ability parameter: {param}")
+            params = dict(fields)
             params = {k: v.strip() for k, v in params.items()}
             for param in params:
                 if param not in caps["param"]:

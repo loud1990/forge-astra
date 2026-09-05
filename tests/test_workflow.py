@@ -162,6 +162,24 @@ def test_invalid_dsl_is_rejected(corpus, line, expected):
     assert any(expected in issue for issue in validate_draft(renamed_bolt(), value, corpus, pool()))
 
 
+def test_repeated_subability_cannot_silently_drop_an_effect(corpus):
+    corpus.capabilities["param"].add("SubAbility")
+    value = draft()
+    value.faces[0].lines = [
+        "A:SP$ DealDamage | ValidTgts$ Any | NumDmg$ 3 | SubAbility$ First | SubAbility$ Second",
+        "SVar:First:DB$ Draw | NumCards$ 1",
+        "SVar:Second:DB$ Draw | NumCards$ 2",
+    ]
+    issues = validate_draft(renamed_bolt(), value, corpus, pool())
+    assert "Duplicate ability parameter: SubAbility" in issues
+    value.faces[0].lines[0] = value.faces[0].lines[0].replace(" | SubAbility$ Second", "")
+    value.faces[0].lines[1] += " | SubAbility$ Second"
+    assert not any(
+        "Duplicate ability parameter" in issue
+        for issue in validate_draft(renamed_bolt(), value, corpus, pool())
+    )
+
+
 def test_citations_require_executable_evidence(corpus):
     evidence = corpus.named("Lightning Bolt")
     plan = Plan.model_validate(
