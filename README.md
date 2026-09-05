@@ -246,6 +246,22 @@ Astra Ember Lance example, harness boundaries, and a recorded live benchmark.
 The [verification record](docs/verification.md) maps the requirements to tests,
 runtime evidence, and verified live observability.
 
+To test real cards that already have upstream scripts, save a Scryfall JSON
+list (or API list response) and run:
+
+```sh
+forge-astra evaluate-cards hobbit-sample.json --no-sync
+```
+
+This command temporarily withholds every supplied card's script from name,
+face, similarity, mechanic-example and keyword-example lookups. Other upstream
+cards remain available for research. Exclusions live only in that database
+connection; the checkout and persistent index are unchanged. Evaluation history
+is separate from the spoiler queue and learned knowledge. Each report records
+the withheld paths, and artifacts remain grouped by set. A sample pass means
+static validation and model review passed; unlike the built-in benchmarks,
+arbitrary samples do not have independent per-card semantic assertions.
+
 ## Langfuse
 
 Set both Langfuse keys to enable graph callbacks, per-card spans, model generation

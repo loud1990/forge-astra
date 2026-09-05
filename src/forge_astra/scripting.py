@@ -176,11 +176,7 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
                 # Forge also has exact plaintext K: statements outside Keyword.java.
                 known = any(k.casefold() == keyword.casefold() for k in caps["keyword"])
                 if not known:
-                    candidates = corpus.db.execute(
-                        "SELECT body FROM evidence WHERE kind='script' AND body LIKE ? LIMIT 100",
-                        ("%K:" + keyword + "%",),
-                    )
-                    known = any(line in active_lines(row[0]) for row in candidates)
+                    known = corpus.has_keyword_line(line)
                 if not known:
                     issues.append(f"Unproven keyword: {keyword}")
             for key in reference_keys:

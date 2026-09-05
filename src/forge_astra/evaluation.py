@@ -49,7 +49,7 @@ def assess(case: dict, state: dict) -> list[str]:
     card = Card.model_validate(case["card"])
     actual_names = re.findall(r"^Name:(.+)$", script, re.M)
     if actual_names != [f.name for f in card.faces]:
-        failures.append("Script did not preserve all renamed face identities")
+        failures.append("Script did not preserve all face identities")
     code = executable(script)
     for check in case["checks"]:
         # Fields on the same ability are unordered in Forge. Check their relationship
@@ -73,6 +73,30 @@ def evaluate(
     ]
     if not selected:
         raise ValueError("No benchmark cases selected")
+    return _evaluate_cases(application, selected)
+
+
+def evaluate_cards(application: Application, cards: list[Card]) -> dict:
+    """Evaluate real cards while withholding all supplied cards' upstream scripts."""
+    if not cards:
+        raise ValueError("No cards selected")
+    if len({card.key for card in cards}) != len(cards):
+        raise ValueError("Duplicate card identities in sample; select one printing per card")
+    selected = [
+        {"id": card.key, "tier": None, "card": card.model_dump(mode="json"), "checks": []}
+        for card in cards
+    ]
+    names = {name for card in cards for name in (card.name, *(f.name for f in card.faces))}
+    with application.corpus.withhold_cards(names) as withheld:
+        log.info("Withholding %d upstream scripts for %d sample cards", len(withheld), len(cards))
+        return _evaluate_cases(application, selected, withheld=withheld)
+
+
+def _evaluate_cases(
+    application: Application, selected: list[dict], *, withheld: list[dict] | None = None
+) -> dict:
+    sample = withheld is not None
+    mode = "held_out_cards" if sample else "renamed_benchmark"
     run_id = "eval-" + uuid4().hex[:10]
     day = datetime.now().date().isoformat()
     writer = BatchWriter(application.settings.output_dir / "evaluations", day, run_id)
@@ -92,16 +116,23 @@ def evaluate(
             application.llm.history.clear()
             card = Card.model_validate(case["card"])
             if application.corpus.named(card.name):
-                raise ValueError("Benchmark name collision with upstream; cannot fairly evaluate")
-            log.info("Benchmark %s (tier %d): %s", case["id"], case["tier"], card.name)
+                raise ValueError(
+                    "Evaluation target still visible in upstream; cannot fairly evaluate"
+                )
+            log.info("Evaluating %s: %s", mode, card.name)
             with application.telemetry.span(
                 "forge-astra.benchmark",
                 as_type="span",
-                input={"case": case["id"], "tier": case["tier"]},
-                metadata={"run_id": run_id, "model": application.settings.llm_model},
+                input={"case": case["id"], "tier": case["tier"], "card": card.name},
+                metadata={
+                    "run_id": run_id,
+                    "model": application.settings.llm_model,
+                    "evaluation_mode": mode,
+                    "withheld_scripts": withheld or [],
+                },
             ) as span:
                 try:
-                    # Original identity, golden checks, and expected result are withheld.
+                    # Checks, expected results and withheld script bodies never enter graph state.
                     state = graph.invoke(
                         {"card": case["card"]},
                         config={
@@ -111,7 +142,8 @@ def evaluate(
                                 "langfuse_tags": [
                                     "forge-astra",
                                     "benchmark",
-                                    f"tier-{case['tier']}",
+                                    mode if sample else f"tier-{case['tier']}",
+                                    card.set_code,
                                 ],
                             },
                             "recursion_limit": 50,
@@ -127,21 +159,31 @@ def evaluate(
                 state["model_calls"] = list(application.llm.history)
                 failures = assess(case, state)
                 entry = writer.add(
-                    state, application.corpus.commit, {"reason": "renamed_benchmark"}
+                    state,
+                    application.corpus.commit,
+                    {"reason": mode, "withheld_scripts": withheld or []},
                 )
                 result = {
                     "case": case["id"],
                     "tier": case["tier"],
                     "passed": not failures,
                     "validation_level": "static_and_model_review",
-                    "interpretation": "Pattern mismatches require review; they do not prove a different implementation is functionally wrong. Forge execution is required for functional verification.",
+                    "interpretation": (
+                        "Static validation and model review only; no card-specific semantic assertions or gameplay execution."
+                        if sample
+                        else "Pattern mismatches require review; they do not prove a different implementation is functionally wrong. Forge execution is required for functional verification."
+                    ),
                     "failures": failures,
                     "artifact": entry,
                 }
                 results.append(result)
                 if span:
                     span.update(output={"passed": not failures, "failures": failures})
-                    span.score(name="script-contract", value=int(not failures), data_type="NUMERIC")
+                    span.score(
+                        name="script-review" if sample else "script-contract",
+                        value=int(not failures),
+                        data_type="NUMERIC",
+                    )
                 log.info(
                     "Benchmark %s: %s %s", case["id"], "PASS" if not failures else "FAIL", failures
                 )
@@ -149,6 +191,8 @@ def evaluate(
                 application.telemetry.flush()
         summary = {
             "run_id": run_id,
+            "mode": mode,
+            "withheld_scripts": withheld or [],
             "model": application.settings.llm_model,
             "upstream_commit": application.corpus.commit,
             "total": len(results),

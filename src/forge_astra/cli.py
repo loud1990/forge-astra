@@ -284,5 +284,26 @@ def evaluate_command(
         application.close()
 
 
+@app.command("evaluate-cards")
+def evaluate_cards_command(ctx: typer.Context, path: Path, sync: bool = True):
+    """Test Scryfall JSON cards with their upstream scripts temporarily withheld."""
+    from forge_astra.evaluation import evaluate_cards
+
+    data = json.loads(path.read_text())
+    if isinstance(data, dict):
+        data = data.get("data", [data])
+    cards = [Card.from_scryfall(item) for item in data]
+    application = Application(ctx.obj)
+    try:
+        with application.lock():
+            prepare(application, sync)
+            result = evaluate_cards(application, cards)
+            typer.echo(json.dumps(result, indent=2))
+            if result["passed"] != result["total"]:
+                raise typer.Exit(1)
+    finally:
+        application.close()
+
+
 if __name__ == "__main__":
     app()
