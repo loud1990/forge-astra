@@ -11,12 +11,16 @@ from forge_astra.config import Settings
 from forge_astra.corpus import Corpus
 
 
+@pytest.mark.parametrize("expanded", [False, True])
 def test_campaign_isolates_workers_checkpoints_sets_and_continues_on_error(
-    corpus, tmp_path, monkeypatch
+    corpus, tmp_path, monkeypatch, expanded
 ):
     cards = [renamed_bolt(code) for code in ("abc", "def", "ghi")]
     cards[0].name = cards[0].faces[0].name = "Lightning Bolt"
     cards[1].name = cards[1].faces[0].name = "Bird"
+    extra = renamed_bolt("extra")
+    extra.name = extra.faces[0].name = "Unsupported"
+    all_holdouts = cards + ([extra] if expanded else [])
     settings = Settings(_env_file=None, output_dir=tmp_path / "out", langfuse_enabled=False)
     parent = SimpleNamespace(settings=settings, corpus=corpus)
     barrier = threading.Barrier(2)
@@ -35,10 +39,11 @@ def test_campaign_isolates_workers_checkpoints_sets_and_continues_on_error(
 
     def evaluate(worker, selected, *, holdout_cards):
         assert len(selected) == 1
-        assert holdout_cards == cards
+        assert holdout_cards == all_holdouts
         with worker.corpus.withhold_cards(c.name for c in holdout_cards):
             assert worker.corpus.named("Lightning Bolt") == []
             assert worker.corpus.named("Bird") == []
+            assert bool(worker.corpus.named("Unsupported")) is not expanded
             if selected[0].set_code in {"abc", "def"}:
                 barrier.wait(timeout=10)
             if selected[0].set_code == "def":
@@ -47,9 +52,13 @@ def test_campaign_isolates_workers_checkpoints_sets_and_continues_on_error(
 
     monkeypatch.setattr(campaign, "Application", Worker)
     monkeypatch.setattr(campaign, "evaluate_cards", evaluate)
-    result = campaign.evaluate_sets(parent, cards, workers=2)
+    result = campaign.evaluate_sets(parent, cards, workers=2, holdout_cards=all_holdouts)
     assert result["total"] == 3 and result["completed"] == result["passed"] == 2
     assert len(threads) == 2 and len(closed) == 3
+    assert result["holdout_card_count"] == len(all_holdouts)
+    assert len(json.loads((Path(result["path"]) / "holdout-cards.json").read_text())) == len(
+        all_holdouts
+    )
     assert result["sets"]["def"]["error"] == "RuntimeError"
     assert result["sets"]["abc"]["results"] == ["abc"]
     assert result["sets"]["ghi"]["results"] == ["ghi"]

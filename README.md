@@ -276,6 +276,10 @@ upstream snapshot fixed. Card results are saved as they finish; the campaign
 summary under `output/campaigns/` is updated after each set. A set-level error
 is recorded without preventing the remaining sets from running.
 
+For focused rechecks, the Python `evaluate_sets` and `evaluate_cards` functions accept
+`holdout_cards=original_sample` separately from the cards being evaluated. Keep the
+entire original sample excluded when comparing a smaller recheck with its baseline.
+
 An optional [Forge Java loader check](scripts/forge_probe/README.md) constructs
 generated cards and their abilities in the actual engine. Its positive and negative
 controls catch a broken harness; successful construction still requires gameplay tests.
