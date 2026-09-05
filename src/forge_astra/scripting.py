@@ -3,6 +3,7 @@ from collections import Counter
 
 from forge_astra.corpus import Corpus, active_lines
 from forge_astra.models import Card, Draft, Plan, SupportCard, normalize
+from forge_astra.upstream import GAME
 
 ALTERNATES = {
     "transform": "Transform",
@@ -118,6 +119,23 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
     if len(draft.faces) != len(card.faces):
         return [*issues, "Draft face count differs from Scryfall"]
     caps = corpus.capabilities
+    reference_keys = {
+        "Execute",
+        "SubAbility",
+        "ReplaceWith",
+        "PreventionSubAbility",
+        "SpellAbilities",
+        "Abilities",
+        "StaticAbilities",
+        "Triggers",
+    }
+    factory = corpus.root / GAME / "ability/AbilityFactory.java"
+    if factory.exists():
+        match = re.search(
+            r"additionalAbilityKeys\s*=\s*Lists.newArrayList\((.*?)\);", factory.read_text(), re.S
+        )
+        if match:
+            reference_keys.update(re.findall(r'"(\w+)"', match.group(1)))
     for i, face in enumerate(draft.faces):
         svars = set()
         refs = set()
@@ -165,23 +183,20 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
                     known = any(line in active_lines(row[0]) for row in candidates)
                 if not known:
                     issues.append(f"Unproven keyword: {keyword}")
-            for key in (
-                "Execute",
-                "SubAbility",
-                "ReplaceWith",
-                "PreventionSubAbility",
-                "WinSubAbility",
-                "LoseSubAbility",
-                "TrueSubAbility",
-                "FalseSubAbility",
-                "SpellAbilities",
-                "Abilities",
-                "StaticAbilities",
-                "Triggers",
-                "Choices",
-            ):
+            for key in reference_keys:
                 if key in params:
                     refs.update(re.split(r",\s*", params[key]))
+            api = next((params[k] for k in ("AB", "SP", "DB") if k in params), "")
+            if (
+                api in {"Charm", "GenericChoice", "AssignGroup", "VillainousChoice", "Vote"}
+                and "Choices" in params
+            ):
+                refs.update(re.split(r",\s*", params["Choices"]))
+            if api == "RollDice" and "ResultSubAbilities" in params:
+                refs.update(
+                    entry.split(":")[-1].strip()
+                    for entry in params["ResultSubAbilities"].split(",")
+                )
             if "TokenScript" in params:
                 for token in params["TokenScript"].split(","):
                     if (

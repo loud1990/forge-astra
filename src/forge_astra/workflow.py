@@ -284,8 +284,30 @@ class Workflow:
     def generate(self, state: State) -> dict:
         log.info("Generating %s (revision %d)", state["card"]["name"], state["revisions"])
         draft = self.llm.ask(DRAFT_TASK, self.context(state), Draft)
-        draft = balance_support(draft, state["support_pool"])
-        return {"draft": draft.model_dump(), "status": ""}
+        pool = list(state["support_pool"])
+        known = {entry["name"] for entry in pool}
+        card = Card.model_validate(state["card"])
+        for support in draft.support_cards:
+            if support.name in known:
+                continue
+            for entry in self.corpus.named(support.name):
+                costs = " ".join(re.findall(r"^ManaCost:(.+)", entry["body"], re.M))
+                colors = set(re.findall(r"[WUBRG]", costs))
+                if colors - set(card.colors) or re.search(
+                    r"^Types:.*\bLand\b", entry["body"], re.M
+                ):
+                    continue
+                pool.append(
+                    {
+                        "name": entry["name"],
+                        "oracle": entry["oracle"],
+                        "mana_cost": costs,
+                        "path": entry["path"],
+                    }
+                )
+                known.add(entry["name"])
+        draft = balance_support(draft, pool)
+        return {"draft": draft.model_dump(), "support_pool": pool, "status": ""}
 
     def validate(self, state: State) -> dict:
         card, draft = Card.model_validate(state["card"]), Draft.model_validate(state["draft"])

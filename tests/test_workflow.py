@@ -151,6 +151,7 @@ def test_blocked_plan_never_calls_writer_or_exports_script(corpus, tmp_path):
         ("A:SP$ Invented | NumDmg$ 3", "Unknown upstream ability"),
         ("A:SP$ DealDamage | Hallucinated$ True", "Unknown upstream parameter"),
         ("T:Mode$ FakeTrigger | Execute$ Missing", "Unknown upstream trigger"),
+        ("A:SP$ DealDamage | ChosenPile$ Missing", "undefined SVar Missing"),
         ("K:Novelty", "Unproven keyword"),
         ("Name:Wrong Name", "Invalid script line type"),
     ],
@@ -281,3 +282,59 @@ def test_deck_arithmetic_is_balanced_without_rewriting_the_script():
     assert max(c.count for c in balanced.support_cards) <= 4
     assert balanced.faces == value.faces
     assert all(c.name in {p["name"] for p in pool()} for c in balanced.support_cards)
+
+
+def test_tracked_mechanic_unblocks_only_after_verified_merge(corpus, tmp_path):
+    store = Store(tmp_path / "state.db")
+    store.track_mechanic("Flying", "Flying", "Implementation pending", 123)
+    github = FakeGitHub()
+    workflow = Workflow(Settings(_env_file=None), store, corpus, FakeScryfall(), github, FakeLLM())
+    card = Card.from_scryfall(
+        {
+            "id": "new-bird",
+            "name": "Trial Bird",
+            "set": "abc",
+            "released_at": "2026-10-01",
+            "mana_cost": "{U}",
+            "type_line": "Creature — Bird",
+            "oracle_text": "Flying",
+            "keywords": ["Flying"],
+            "power": "1",
+            "toughness": "1",
+        }
+    )
+    evidence = corpus.named("Bird")
+    plan = {
+        "clauses": [
+            {
+                "clause_id": "f0c0",
+                "explanation": "Reuse flying keyword",
+                "citations": [{"evidence_id": evidence[0]["id"], "quote": "K:Flying"}],
+                "needs_engine": False,
+            }
+        ],
+        "mechanics": [{"name": "Flying", "needs_engine": False, "explanation": "Upstream keyword"}],
+    }
+    state = {"card": card.model_dump(mode="json"), "plan": plan, "evidence": evidence}
+    assert workflow.gate(state)["status"] == "blocked"
+    github.merged_in_snapshot = lambda number, commit: (True, "Verified merged ancestor")
+    assert workflow.gate(state)["status"] == ""
+    store.close()
+
+
+def test_deck_choice_outside_pool_is_resolved_against_upstream(corpus, tmp_path):
+    class DeckLLM(FakeLLM):
+        def ask(self, task, context, schema, review=False):
+            result = super().ask(task, context, schema, review)
+            if schema is Draft:
+                result.support_cards[0].name = "Lightning Bolt"
+            return result
+
+    store = Store(tmp_path / "state.db")
+    llm = DeckLLM()
+    workflow = Workflow(Settings(_env_file=None), store, corpus, FakeScryfall(), FakeGitHub(), llm)
+    workflow.support_pool = lambda card: pool()
+    result = workflow.build().invoke({"card": renamed_bolt().model_dump(mode="json")})
+    assert result["status"] == "draft"
+    assert any(e["name"] == "Lightning Bolt" and e.get("path") for e in result["support_pool"])
+    store.close()

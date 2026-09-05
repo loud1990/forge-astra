@@ -9,6 +9,7 @@ def corpus(tmp_path):
     root = tmp_path / "forge"
     contents = {
         f"{GAME}/ability/ApiType.java": "    DealDamage(DamageEffect.class),\n    Draw(DrawEffect.class),\n    Mana(ManaEffect.class),",
+        f"{GAME}/ability/AbilityFactory.java": 'public static final List<String> additionalAbilityKeys = Lists.newArrayList("ChosenPile", "UnchosenPile");',
         f"{GAME}/trigger/TriggerType.java": "    ChangesZone(TriggerChangesZone.class),",
         f"{GAME}/replacement/ReplacementType.java": "    Moved(ReplaceMoved.class),",
         f"{GAME}/keyword/Keyword.java": '    FLYING("Flying", SimpleKeyword.class),',
