@@ -22,7 +22,7 @@ public class ForgeScriptProbe {
         for (String arg : args) {
             String stage = "read";
             try {
-                CardRules rules = CardRules.fromScript(Files.readAllLines(Path.of(arg)));
+                CardRules rules = new CardRules.Reader().readCard(Files.readAllLines(Path.of(arg)));
                 stage = "construct";
                 // Negative IDs make Forge build a display-only card and skip its abilities.
                 Card card = CardFactory.getCard(

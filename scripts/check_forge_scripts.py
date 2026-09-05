@@ -59,13 +59,22 @@ def check(forge_root: Path, scripts: list[Path], *, java: str, javac: str) -> di
             root / f"forge-gui/res/cardsfolder/{name[0]}/{name}.txt"
             for name in ("lightning_bolt", "murder", "llanowar_elves")
         ]
+        adventure = Path(directory) / "adventure.txt"
+        adventure.write_text(
+            "# Exercise the same comment and blank-line handling as CardStorageReader.\n\n"
+            "Name:Astra Reader Control\nManaCost:W\nTypes:Creature Scout\nPT:1/1\n"
+            "K:Lifelink\nAlternateMode:Adventure\nOracle:Lifelink\n\nALTERNATE\n\n"
+            "Name:Astra Reading Trip\nManaCost:1 U\nTypes:Instant Adventure\n"
+            "A:SP$ Draw | NumCards$ 1\nOracle:Draw a card.\n"
+        )
+        controls.append(adventure)
         invalid = Path(directory) / "invalid.txt"
         invalid.write_text(
             "Name:Astra Invalid Control\nManaCost:R\nTypes:Instant\n"
             "A:SP$ NonexistentAstraApi\nOracle:Draw a card.\n"
         )
         calibration = probe([*controls, invalid])
-        if not all(r["passed"] for r in calibration[:3]) or calibration[3]["passed"]:
+        if not all(r["passed"] for r in calibration[:-1]) or calibration[-1]["passed"]:
             raise RuntimeError(
                 "Forge loader controls failed; candidate results would be unreliable"
             )
@@ -76,7 +85,7 @@ def check(forge_root: Path, scripts: list[Path], *, java: str, javac: str) -> di
         "upstream_commit": subprocess.check_output(
             ["git", "-C", str(root), "rev-parse", "HEAD"], text=True
         ).strip(),
-        "calibration": {"valid_controls_accepted": 3, "invalid_api_rejected": True},
+        "calibration": {"valid_controls_accepted": len(controls), "invalid_api_rejected": True},
         "total": len(rows),
         "passed": sum(r["passed"] for r in rows),
         "results": rows,

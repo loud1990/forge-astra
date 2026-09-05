@@ -20,7 +20,8 @@ paths. It compiles the small Java probe in a temporary directory. It does not in
 generated cards into Forge or alter the checkout.
 
 Before checking candidates, three upstream controls (Lightning Bolt, Murder, and
-Llanowar Elves) must construct, and an invented API must fail. The probe uses a
+Llanowar Elves) plus a two-face Adventure with comments and blank lines must
+construct, and an invented API must fail. The probe uses a
 positive card ID: Forge's negative-ID display cards skip ability construction and
 would incorrectly accept that invalid control. Environment initialization failures
 must be investigated before attributing a candidate failure to its script.
