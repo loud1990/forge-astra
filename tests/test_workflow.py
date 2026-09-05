@@ -180,6 +180,25 @@ def test_repeated_subability_cannot_silently_drop_an_effect(corpus):
     )
 
 
+@pytest.mark.parametrize(
+    "defined,invalid",
+    [
+        ("Equipment.YouCtrl", True),
+        ("Creature.YouCtrl", True),
+        ("Valid Equipment.YouCtrl", False),
+        ("Self", False),
+        ("Targeted", False),
+        ("Remembered.Equipment", False),
+        ("TriggeredCard", False),
+    ],
+)
+def test_put_counter_distinguishes_defined_objects_from_validity_filters(corpus, defined, invalid):
+    value = draft()
+    value.faces[0].lines = [f"A:AB$ PutCounter | Cost$ 1 | Defined$ {defined} | CounterType$ HONE"]
+    issues = validate_draft(renamed_bolt(), value, corpus, pool())
+    assert any("PutCounter Defined is a validity filter" in issue for issue in issues) is invalid
+
+
 def test_citations_require_executable_evidence(corpus):
     evidence = corpus.named("Lightning Bolt")
     plan = Plan.model_validate(

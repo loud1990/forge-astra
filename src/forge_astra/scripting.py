@@ -197,6 +197,16 @@ def validate_draft(card: Card, draft: Draft, corpus: Corpus, support_pool: list[
                 if key in params:
                     refs.update(re.split(r",\s*", params[key]))
             api = next((params[k] for k in ("AB", "SP", "DB") if k in params), "")
+            # CountersPutEffect resolves Defined through getDefinedEntities;
+            # a bare validity selector does not enumerate matching permanents.
+            if api == "PutCounter" and re.match(
+                r"^(?:Card|Creature|Artifact|Enchantment|Land|Planeswalker|Battle|Equipment|Treasure|Permanent|Token)(?:[.,+]|$)",
+                params.get("Defined", ""),
+            ):
+                issues.append(
+                    "PutCounter Defined is a validity filter, not a defined object: "
+                    "use Defined$ Valid <filter> or PutCounterAll with ValidCards$ <filter>"
+                )
             if (
                 api in {"Charm", "GenericChoice", "AssignGroup", "VillainousChoice", "Vote"}
                 and "Choices" in params
