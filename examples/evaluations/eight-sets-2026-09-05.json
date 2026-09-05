@@ -1,0 +1,2101 @@
+[
+  {
+    "id": "1f9a61a1-454e-4d5b-a6dd-1a79fe9dedf3",
+    "oracle_id": "8fcab221-8737-4357-b8ee-bad9421739a3",
+    "name": "Dwarven Provisioner",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/9/dwarven-provisioner?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{W}",
+    "type_line": "Creature — Dwarf Citizen",
+    "oracle_text": "{3}{W}: Creatures you control get +1/+1 until end of turn.",
+    "power": "2",
+    "toughness": "2",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "9",
+    "rarity": "common"
+  },
+  {
+    "id": "dd32a1dd-3541-4572-a717-1deabc14b827",
+    "oracle_id": "dbcf2a79-b455-43ac-9cf0-9e63708800f4",
+    "name": "Sound the Trumpets",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/55/sound-the-trumpets?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{U}{U}",
+    "type_line": "Instant",
+    "oracle_text": "Counter target spell. If that spell's mana value was 2 or less, recruit. (Draw a card, then discard a card. If you discarded a nonland card, create a 1/1 white Human Soldier creature token.)",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Recruit"
+    ],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "55",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "5ee45a5e-3650-47b3-8d31-6b1de9e27a14",
+    "oracle_id": "008a11c1-d283-49fe-abd7-ff4fe8b1fe79",
+    "name": "Rhovanion Rampager",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/82/rhovanion-rampager?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{B}",
+    "type_line": "Creature — Wolf",
+    "oracle_text": "Whenever this creature attacks, you may sacrifice another creature. If you do, put a number of +1/+1 counters on this creature equal to the sacrificed creature's power.\nWhen this creature dies, amass Goblins X, where X is this creature's power. (Put X +1/+1 counters on an Army you control. It's also a Goblin. If you don't control an Army, create a 0/0 black Goblin Army creature token first.)",
+    "power": "3",
+    "toughness": "2",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Amass"
+    ],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "82",
+    "rarity": "rare"
+  },
+  {
+    "id": "38c16a0a-375e-48cb-9720-dbbc08c603ae",
+    "oracle_id": "5753f4d6-08d0-4e12-85c5-875ee6441626",
+    "name": "Tidings of War",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/115/tidings-of-war?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{R}",
+    "type_line": "Sorcery",
+    "oracle_text": "Amass Goblins 1. If this spell was cast from a graveyard, amass Goblins 3 instead. (To amass Goblins X, put X +1/+1 counters on an Army you control. It's also a Goblin. If you don't control an Army, create a 0/0 black Goblin Army creature token first.)\nFlashback {3}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [
+      "Amass",
+      "Flashback"
+    ],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "115",
+    "rarity": "common"
+  },
+  {
+    "id": "71bec005-2925-4944-be16-2cc5eb30f5d6",
+    "oracle_id": "dc788b66-d03d-4066-be35-481be96ed2f7",
+    "name": "Boughside Wanderers",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/121/boughside-wanderers?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{G}{G}",
+    "type_line": "Creature — Elf Scout",
+    "oracle_text": "When this creature enters, look at the top four cards of your library. You may reveal a permanent card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.\nLandfall — Whenever a land you control enters, this creature gets +2/+2 until end of turn.",
+    "power": "4",
+    "toughness": "4",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Landfall"
+    ],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "121",
+    "rarity": "common"
+  },
+  {
+    "id": "ee88cc80-8fbf-451c-b2b8-09158426c26a",
+    "oracle_id": "b8d563e4-e2bc-4e8b-8841-6655beff9138",
+    "name": "Bifur, Melodic Rider",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/147/bifur-melodic-rider?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{R/W}{R/W}",
+    "type_line": "Legendary Creature — Dwarf Bard",
+    "oracle_text": "Storied (If you control three or more artifacts, legendaries, and/or Sagas, you have an enduring story for the rest of the game.)\nWhenever Bifur enters or attacks, put a +1/+1 counter on target creature.\nAs long as you have an enduring story, if a triggered ability of a Dwarf you control triggers, that ability triggers an additional time.",
+    "power": "4",
+    "toughness": "5",
+    "colors": [
+      "R",
+      "W"
+    ],
+    "color_identity": [
+      "R",
+      "W"
+    ],
+    "keywords": [
+      "Storied"
+    ],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "147",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "b2fb3995-5b43-4776-88b2-346d353edee0",
+    "oracle_id": "d4607026-80b2-4fa6-99d5-694cd3b43868",
+    "name": "Great Gilded Boat",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/42/great-gilded-boat?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{U}",
+    "type_line": "Artifact — Vehicle",
+    "oracle_text": "Whenever you attack, recruit. (Draw a card, then discard a card. If you discarded a nonland card, create a 1/1 white Human Soldier creature token.)\nCrew 2 (Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)",
+    "power": "4",
+    "toughness": "4",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Crew",
+      "Recruit"
+    ],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "42",
+    "rarity": "rare"
+  },
+  {
+    "id": "df29484b-de4b-4bab-995a-7605745780d9",
+    "oracle_id": "539583f4-21c8-4b61-a2c5-f612fadc3ffa",
+    "name": "Last Light of Durin's Day",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/103/last-light-of-durins-day?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{R}",
+    "type_line": "Enchantment",
+    "oracle_text": "Whenever a Mountain you control enters, put a quest counter on this enchantment. If it has six or more quest counters on it, sacrifice it. If you do, search your hand and/or library for a Dragon card and put it onto the battlefield. If you search your library this way, shuffle.\nMountaincycling {2} ({2}, Discard this card: Search your library for a Mountain card, reveal it, put it into your hand, then shuffle.)",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [
+      "Mountaincycling",
+      "Landcycling",
+      "Typecycling",
+      "Cycling"
+    ],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "103",
+    "rarity": "rare"
+  },
+  {
+    "id": "dd1fd2ab-2565-4798-a832-fc849df82f74",
+    "oracle_id": "97a2cd39-6b54-496b-b3ac-dab9dfed7edc",
+    "name": "Elven Passage",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/181/elven-passage?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "{T}, Pay 1 life, Sacrifice this land: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle. You may behold an Elf. If you do, untap that land. (To behold an Elf, choose an Elf you control or reveal an Elf card from your hand.)",
+    "colors": [],
+    "color_identity": [],
+    "keywords": [
+      "Behold"
+    ],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "181",
+    "rarity": "rare"
+  },
+  {
+    "id": "6b8e6435-7de4-41d5-bc7d-8e24c11897d0",
+    "oracle_id": "8a0e35ac-6c03-4922-b3b4-e419419fe3d7",
+    "name": "Bofur, Reliable Guardian // Concerted Care",
+    "released_at": "2026-08-14",
+    "scryfall_uri": "https://scryfall.com/card/hob/6/bofur-reliable-guardian-concerted-care?utm_source=api",
+    "layout": "adventure",
+    "mana_cost": "{W} // {1}{W}",
+    "type_line": "Legendary Creature — Dwarf Scout // Instant — Adventure",
+    "power": "1",
+    "toughness": "1",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [
+      "Lifelink"
+    ],
+    "card_faces": [
+      {
+        "name": "Bofur, Reliable Guardian",
+        "mana_cost": "{W}",
+        "type_line": "Legendary Creature — Dwarf Scout",
+        "oracle_text": "Lifelink",
+        "power": "1",
+        "toughness": "1"
+      },
+      {
+        "name": "Concerted Care",
+        "mana_cost": "{1}{W}",
+        "type_line": "Instant — Adventure",
+        "oracle_text": "Target artifact or creature you control gains hexproof and indestructible until end of turn. (Then exile this card. You may cast the creature later from exile.)"
+      }
+    ],
+    "set": "hob",
+    "set_name": "The Hobbit",
+    "collector_number": "6",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "1383e587-df58-4b45-9067-b9399e90b9ed",
+    "oracle_id": "dae20bcd-dc24-4f9d-9400-a6f013b49f14",
+    "name": "Agent Phil Coulson",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/4/agent-phil-coulson?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{W}",
+    "type_line": "Legendary Creature — Human Spy Hero",
+    "oracle_text": "Vigilance\n{T}: Put a +1/+1 counter on each other Hero you control.",
+    "power": "2",
+    "toughness": "2",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [
+      "Vigilance"
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "4",
+    "rarity": "rare"
+  },
+  {
+    "id": "13b70321-75bd-4d44-b9f6-5f062a5dda0f",
+    "oracle_id": "1abe8246-d2f9-407b-8c16-83da0a6b7de3",
+    "name": "We Say Thee Nay!",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/82/we-say-thee-nay!?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{U}",
+    "type_line": "Instant — Arcane",
+    "oracle_text": "Teamwork 2 (As an additional cost to cast this spell, you may tap any number of creatures you control with total power 2 or more.)\nCounter target spell unless its controller pays {2}. Counter that spell unless its controller pays {4} instead if this spell was cast using teamwork.",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Teamwork"
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "82",
+    "rarity": "common"
+  },
+  {
+    "id": "66550490-74e1-4bf1-8741-1266dfab3a03",
+    "oracle_id": "b92c2da9-eaa4-404b-8114-5527eec6390e",
+    "name": "Roxxon Brutes",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/113/roxxon-brutes?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{B}",
+    "type_line": "Creature — Human Berserker Villain",
+    "oracle_text": "Menace (This creature can't be blocked except by two or more creatures.)\nWhenever you draw your second card each turn, put a +1/+1 counter on target creature.\nBasic landcycling {2} ({2}, Discard this card: Search your library for a basic land card, reveal it, put it into your hand, then shuffle.)",
+    "power": "4",
+    "toughness": "4",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Landcycling",
+      "Menace",
+      "Basic landcycling",
+      "Typecycling",
+      "Cycling"
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "113",
+    "rarity": "common"
+  },
+  {
+    "id": "837265b0-fc15-4d96-9d6b-fd1c78534262",
+    "oracle_id": "150f920c-c942-4feb-824f-79dd9b531687",
+    "name": "Repulsor Blast",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/150/repulsor-blast?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}{R}",
+    "type_line": "Sorcery",
+    "oracle_text": "Teamwork 2 (As an additional cost to cast this spell, you may tap any number of creatures you control with total power 2 or more.)\nRepulsor Blast deals 5 damage to target creature. If this spell was cast using teamwork, it also deals 2 damage to that creature's controller.",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [
+      "Teamwork"
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "150",
+    "rarity": "common"
+  },
+  {
+    "id": "72727c2a-08a9-47bc-a5eb-cda52e21684b",
+    "oracle_id": "556f127f-6131-4171-b1ed-11420c21d345",
+    "name": "Serpent Specialist",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/186/serpent-specialist?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{G}",
+    "type_line": "Creature — Human Snake Villain",
+    "oracle_text": "Deathtouch\nPower-up — {3}{G}: Put two +1/+1 counters on this creature. (Activate each power-up ability only once. Reduce the cost by its mana cost if it entered this turn.)",
+    "power": "1",
+    "toughness": "1",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Power-up",
+      "Deathtouch"
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "186",
+    "rarity": "common"
+  },
+  {
+    "id": "495c08ea-5502-4bfe-aa15-fa85556755ae",
+    "oracle_id": "3eeeb159-aa45-4a9b-9618-8542604b9830",
+    "name": "The Kingpin of Crime",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/220/the-kingpin-of-crime?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{W}{B}",
+    "type_line": "Legendary Creature — Human Villain",
+    "oracle_text": "Extort (Whenever you cast a spell, you may pay {W/B}. If you do, each opponent loses 1 life and you gain that much life.)\nWhenever you attack, you may pay 2 life. If you do, until end of turn, creatures you control with toughness greater than their power assign combat damage equal to their toughness rather than their power.",
+    "power": "1",
+    "toughness": "5",
+    "colors": [
+      "B",
+      "W"
+    ],
+    "color_identity": [
+      "B",
+      "W"
+    ],
+    "keywords": [
+      "Extort"
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "220",
+    "rarity": "rare"
+  },
+  {
+    "id": "38e87542-50f7-4812-9338-84e4b9b7bb44",
+    "oracle_id": "fe7cc414-42d0-4dad-8516-7a0be0860a67",
+    "name": "M.O.D.O.K.",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/106/modok?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}{B}{B}",
+    "type_line": "Legendary Artifact Creature — Villain",
+    "oracle_text": "Flying, lifelink\nMental Organism — Pay 3 life: M.O.D.O.K. connives. Activate only during your turn. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.)\nDesigned Only for Killing — Creatures your opponents control get -1/-1.",
+    "power": "2",
+    "toughness": "2",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Mental Organism",
+      "Flying",
+      "Lifelink",
+      "Designed Only for Killing",
+      "Connive"
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "106",
+    "rarity": "mythic"
+  },
+  {
+    "id": "cf13bfb1-5b44-4363-8de9-ece234233870",
+    "oracle_id": "3cd15225-e9b6-4998-b545-76536c72e948",
+    "name": "Claim the Kingdom",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/163/claim-the-kingdom?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{G}",
+    "type_line": "Enchantment — Plan",
+    "oracle_text": "Landfall — Whenever a land you control enters, put a +1/+1 counter on target creature you control and a plan counter on this enchantment.\nWhen the fourth plan counter is put on this enchantment, sacrifice it. When you do, put an indestructible counter on target creature you control.",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Landfall"
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "163",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "822b0249-e1df-453d-8b60-75a5196ed818",
+    "oracle_id": "cd2888aa-71f3-47ee-ba33-7bb95d5bc836",
+    "name": "Villainous Hideout",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/276/villainous-hideout?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "{T}: Add {C}.\n{T}: Add one mana of any color. Spend this mana only to cast a Villain spell or to activate an ability of a Villain source.\n{3}, {T}: Target Villain you control connives. Activate only as a sorcery. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on that creature.)",
+    "colors": [],
+    "color_identity": [],
+    "keywords": [
+      "Connive"
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "276",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "4cea42fd-035e-4b8f-8b1d-ff363b694f14",
+    "oracle_id": "4a46ea59-6c5d-4bed-9951-b5590f9a1bdb",
+    "name": "Tony Stark // The Invincible Iron Man",
+    "released_at": "2026-06-26",
+    "scryfall_uri": "https://scryfall.com/card/msh/80/tony-stark-the-invincible-iron-man?utm_source=api",
+    "layout": "modal_dfc",
+    "type_line": "Legendary Creature — Human Artificer Hero // Legendary Artifact Creature — Human Hero",
+    "color_identity": [
+      "R",
+      "U"
+    ],
+    "keywords": [
+      "Flying",
+      "Transform",
+      "Haste"
+    ],
+    "card_faces": [
+      {
+        "name": "Tony Stark",
+        "mana_cost": "{1}{U}",
+        "type_line": "Legendary Creature — Human Artificer Hero",
+        "oracle_text": "{1}, {T}: Look at the top four cards of your library. You may reveal an artifact card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.\n{4}{U}{R}: Transform Tony Stark. Activate only as a sorcery.",
+        "colors": [
+          "U"
+        ],
+        "power": "1",
+        "toughness": "3"
+      },
+      {
+        "name": "The Invincible Iron Man",
+        "mana_cost": "{4}{U}{R}",
+        "type_line": "Legendary Artifact Creature — Human Hero",
+        "oracle_text": "Flying, haste\nAt the beginning of combat on your turn, you may put an artifact card from your hand onto the battlefield. If it's an Equipment, attach it to The Invincible Iron Man.",
+        "colors": [
+          "R",
+          "U"
+        ],
+        "power": "5",
+        "toughness": "5"
+      }
+    ],
+    "set": "msh",
+    "set_name": "Marvel Super Heroes",
+    "collector_number": "80",
+    "rarity": "mythic"
+  },
+  {
+    "id": "b756ca13-b904-4510-9bbb-5bc2864abfbd",
+    "oracle_id": "00e94b75-ad31-4e1f-b3be-eed7cd3e4d76",
+    "name": "Stand Up for Yourself",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/34/stand-up-for-yourself?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{W}",
+    "type_line": "Instant",
+    "oracle_text": "Destroy target creature with power 3 or greater.",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "34",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "c59e0004-1d6a-42a1-8ce4-31da2af2e1bf",
+    "oracle_id": "62421084-96e6-40dd-8d34-7c8c1091d4a4",
+    "name": "Muse's Encouragement",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/61/muses-encouragement?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{U}",
+    "type_line": "Instant",
+    "oracle_text": "Create a 3/3 blue and red Elemental creature token with flying.\nSurveil 2. (Look at the top two cards of your library, then put any number of them into your graveyard and the rest on top of your library in any order.)",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Surveil"
+    ],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "61",
+    "rarity": "common"
+  },
+  {
+    "id": "6877180c-22a1-4c4d-9178-316f4c34661b",
+    "oracle_id": "c2e2f21a-0338-44d7-96a5-5a277f0ec419",
+    "name": "Moseo, Vein's New Dean",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/91/moseo-veins-new-dean?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{B}",
+    "type_line": "Legendary Creature — Bird Skeleton Warlock",
+    "oracle_text": "Flying\nWhen Moseo enters, create a 1/1 black and green Pest creature token with \"Whenever this token attacks, you gain 1 life.\"\nInfusion — At the beginning of your end step, if you gained life this turn, return up to one target creature card with mana value X or less from your graveyard to the battlefield, where X is the amount of life you gained this turn.",
+    "power": "2",
+    "toughness": "1",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Infusion",
+      "Flying"
+    ],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "91",
+    "rarity": "rare"
+  },
+  {
+    "id": "d01fe6e9-49ee-4708-833e-75cd5a9f167c",
+    "oracle_id": "fd4f0315-567a-4cc5-bc7e-88a9d2cee910",
+    "name": "Improvisation Capstone",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/120/improvisation-capstone?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{5}{R}{R}",
+    "type_line": "Sorcery — Lesson",
+    "oracle_text": "Exile cards from the top of your library until you exile cards with total mana value 4 or greater. You may cast any number of spells from among them without paying their mana costs.\nParadigm (Then exile this spell. After you first resolve a spell with this name, you may cast a copy of it from exile without paying its mana cost at the beginning of each of your first main phases.)",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [
+      "Paradigm"
+    ],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "120",
+    "rarity": "mythic"
+  },
+  {
+    "id": "24f888dd-785c-4089-a89c-03f9080130ed",
+    "oracle_id": "58b0c737-0a84-4f9a-b3b7-300c5de43874",
+    "name": "Studious First-Year // Rampant Growth",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/162/studious-first-year-rampant-growth?utm_source=api",
+    "layout": "prepare",
+    "mana_cost": "{G} // {1}{G}",
+    "type_line": "Creature — Bear Wizard // Sorcery",
+    "power": "1",
+    "toughness": "1",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Prepared"
+    ],
+    "card_faces": [
+      {
+        "name": "Studious First-Year",
+        "mana_cost": "{G}",
+        "type_line": "Creature — Bear Wizard",
+        "oracle_text": "This creature enters prepared. (While it's prepared, you may cast a copy of its spell. Doing so unprepares it.)",
+        "power": "1",
+        "toughness": "1"
+      },
+      {
+        "name": "Rampant Growth",
+        "mana_cost": "{1}{G}",
+        "type_line": "Sorcery",
+        "oracle_text": "Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle."
+      }
+    ],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "162",
+    "rarity": "common"
+  },
+  {
+    "id": "015afe31-af3c-4c9b-9997-d7c33b915a33",
+    "oracle_id": "2cbccc46-bdef-4dfb-90a4-0278c5c8488a",
+    "name": "Quandrix, the Proof",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/218/quandrix-the-proof?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{G}{U}",
+    "type_line": "Legendary Creature — Elder Dragon",
+    "oracle_text": "Flying, trample\nCascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)\nInstant and sorcery spells you cast from your hand have cascade.",
+    "power": "6",
+    "toughness": "6",
+    "colors": [
+      "G",
+      "U"
+    ],
+    "color_identity": [
+      "G",
+      "U"
+    ],
+    "keywords": [
+      "Cascade",
+      "Flying",
+      "Trample"
+    ],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "218",
+    "rarity": "mythic"
+  },
+  {
+    "id": "87741fbb-b426-4f83-a358-587b0907f081",
+    "oracle_id": "e286a191-39d4-4073-b844-11d2aba911b4",
+    "name": "Strixhaven Skycoach",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/252/strixhaven-skycoach?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}",
+    "type_line": "Artifact — Vehicle",
+    "oracle_text": "Flying\nWhen this Vehicle enters, you may search your library for a basic land card, reveal it, put it into your hand, then shuffle.\nCrew 2 (Tap any number of creatures you control with total power 2 or more: This Vehicle becomes an artifact creature until end of turn.)",
+    "power": "3",
+    "toughness": "2",
+    "colors": [],
+    "color_identity": [],
+    "keywords": [
+      "Flying",
+      "Crew"
+    ],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "252",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "b44ec684-d558-45eb-bcd6-8119428634c2",
+    "oracle_id": "ce1a6c1f-6b4e-4d19-b256-48d073b359b7",
+    "name": "Additive Evolution",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/139/additive-evolution?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}{G}{G}",
+    "type_line": "Enchantment",
+    "oracle_text": "When this enchantment enters, create a 0/0 green and blue Fractal creature token. Put three +1/+1 counters on it.\nAt the beginning of combat on your turn, put a +1/+1 counter on target creature you control. It gains vigilance until end of turn.",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "139",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "42d92674-2664-411c-b9c5-b04da7c845f4",
+    "oracle_id": "a8c70dab-1e27-4a9c-bd2d-910d5720d02d",
+    "name": "Great Hall of the Biblioplex",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/257/great-hall-of-the-biblioplex?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "{T}: Add {C}.\n{T}, Pay 1 life: Add one mana of any color. Spend this mana only to cast an instant or sorcery spell.\n{5}: If this land isn't a creature, it becomes a 2/4 Wizard creature with \"Whenever you cast an instant or sorcery spell, this creature gets +1/+0 until end of turn.\" It's still a land.",
+    "colors": [],
+    "color_identity": [],
+    "keywords": [],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "257",
+    "rarity": "rare"
+  },
+  {
+    "id": "8fbad757-4081-42f7-a460-68ac03e77510",
+    "oracle_id": "0dc76b7f-6405-44a1-8c55-31fa480ff70b",
+    "name": "Ral Zarek, Guest Lecturer",
+    "released_at": "2026-04-24",
+    "scryfall_uri": "https://scryfall.com/card/sos/97/ral-zarek-guest-lecturer?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{B}{B}",
+    "type_line": "Legendary Planeswalker — Ral",
+    "oracle_text": "+1: Surveil 2.\n−1: Any number of target players each discard a card.\n−2: Return target creature card with mana value 3 or less from your graveyard to the battlefield.\n−7: Flip five coins. Target opponent skips their next X turns, where X is the number of coins that came up heads.",
+    "loyalty": "3",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Surveil"
+    ],
+    "set": "sos",
+    "set_name": "Secrets of Strixhaven",
+    "collector_number": "97",
+    "rarity": "mythic"
+  },
+  {
+    "id": "72388199-85fa-4eba-9a9c-c2904e6da9ed",
+    "oracle_id": "9a334434-072a-4486-810a-63efb29dea6d",
+    "name": "Grounded for Life",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/7/grounded-for-life?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{W}",
+    "type_line": "Instant",
+    "oracle_text": "This spell costs {3} less to cast if it targets a tapped creature.\nDestroy target creature.",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "7",
+    "rarity": "common"
+  },
+  {
+    "id": "9ca5327e-df90-483c-875f-73a23781f56d",
+    "oracle_id": "3e0f8ab3-75a6-49a2-a228-fa720cbde3d8",
+    "name": "Kitsune's Technique",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/42/kitsunes-technique?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{U}{U}",
+    "type_line": "Instant",
+    "oracle_text": "Sneak {1}{U} (You may cast this spell for {1}{U} if you also return an unblocked attacker you control to hand during the declare blockers step.)\nTarget opponent mills half their library, rounded up.",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Mill",
+      "Sneak"
+    ],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "42",
+    "rarity": "rare"
+  },
+  {
+    "id": "371ba16d-73f7-450c-8b1f-c05012a4ca93",
+    "oracle_id": "39c813e1-0e26-440a-b9bd-e781f7576b8b",
+    "name": "Bebop, Warthog Warrior",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/59/bebop-warthog-warrior?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{B}",
+    "type_line": "Legendary Creature — Boar Mutant Warrior",
+    "oracle_text": "Menace (This creature can't be blocked except by two or more creatures.)\nRhinos you control have menace.\nSwampcycling {2} ({2}, Discard this card: Search your library for a Swamp card, reveal it, put it into your hand, then shuffle.)",
+    "power": "5",
+    "toughness": "4",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Landcycling",
+      "Menace",
+      "Typecycling",
+      "Cycling",
+      "Swampcycling"
+    ],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "59",
+    "rarity": "common"
+  },
+  {
+    "id": "e640e930-0907-40f2-9015-88f8c1e8ee5c",
+    "oracle_id": "e0d221da-16cd-4399-830f-eecc9a0912eb",
+    "name": "Broadcast Takeover",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/86/broadcast-takeover?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{R}{R}{R}",
+    "type_line": "Sorcery",
+    "oracle_text": "Gain control of all artifacts your opponents control until end of turn. Untap them. They gain haste until end of turn.",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "86",
+    "rarity": "mythic"
+  },
+  {
+    "id": "ebbb5756-80fa-406f-8daa-be1f5a6c3c80",
+    "oracle_id": "f9330a7b-8a65-4e04-a777-bf6512332850",
+    "name": "Rocksteady, Crash Courser",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/131/rocksteady-crash-courser?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{G}{G}",
+    "type_line": "Legendary Creature — Rhino Mutant",
+    "oracle_text": "Rocksteady can't be blocked by more than one creature.\nBoars you control can't be blocked by more than one creature.\nForestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, put it into your hand, then shuffle.)",
+    "power": "7",
+    "toughness": "7",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Landcycling",
+      "Forestcycling",
+      "Typecycling",
+      "Cycling"
+    ],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "131",
+    "rarity": "common"
+  },
+  {
+    "id": "9b5437e2-e3f4-4c19-a2aa-a75f65a001bb",
+    "oracle_id": "2385c8fb-9c38-4ff3-8f61-4e25a8c7d46b",
+    "name": "Krang & Shredder",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/153/krang-&-shredder?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{U/B}{U/B}",
+    "type_line": "Legendary Creature — Utrom Human Ninja",
+    "oracle_text": "Whenever Krang & Shredder enter or attack, each opponent exiles cards from the top of their library until they exile a nonland card.\nDisappear — At the beginning of your end step, if a permanent left the battlefield under your control this turn, you may cast a card exiled with Krang & Shredder without paying its mana cost.",
+    "power": "6",
+    "toughness": "7",
+    "colors": [
+      "B",
+      "U"
+    ],
+    "color_identity": [
+      "B",
+      "U"
+    ],
+    "keywords": [
+      "Disappear"
+    ],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "153",
+    "rarity": "rare"
+  },
+  {
+    "id": "fce6a8b6-b43c-4045-9378-97b2463f9b4d",
+    "oracle_id": "aeb9a2e6-ad11-4e2c-81d0-caf279d31ece",
+    "name": "Turtle Van",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/181/turtle-van?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}",
+    "type_line": "Artifact — Vehicle",
+    "oracle_text": "Whenever this Vehicle attacks, put a +1/+1 counter on target creature that crewed it this turn. Then if that creature is a Mutant, Ninja, or Turtle, double the number of +1/+1 counters on it.\nCrew 1 (Tap any number of creatures you control with total power 1 or more: This Vehicle becomes an artifact creature until end of turn.)",
+    "power": "4",
+    "toughness": "4",
+    "colors": [],
+    "color_identity": [],
+    "keywords": [
+      "Crew",
+      "Double"
+    ],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "181",
+    "rarity": "rare"
+  },
+  {
+    "id": "989da63a-2cbd-41a9-9bbb-99f4ad1c6a25",
+    "oracle_id": "df54b79d-f31d-4582-86c0-1d34ec77be0f",
+    "name": "Does Machines",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/34/does-machines?utm_source=api",
+    "layout": "class",
+    "mana_cost": "{1}{U}",
+    "type_line": "Enchantment — Class",
+    "oracle_text": "(Gain the next level as a sorcery to add its ability.)\nWhen this Class enters, mill two cards, draw two cards, then discard two cards.\n{1}{U}: Level 2\nWhen this Class becomes level 2, return up to two target artifact cards from your graveyard to your hand.\n{4}{U}: Level 3\nAt the beginning of combat on your turn, put three +1/+1 counters on target artifact you control. If it isn't a creature, it becomes a 0/0 Robot creature in addition to its other types.",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Mill"
+    ],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "34",
+    "rarity": "rare"
+  },
+  {
+    "id": "dbca168e-095f-4fbc-88f8-3048d83caf94",
+    "oracle_id": "e05f1a43-16ce-4e88-b0ad-2202efb25516",
+    "name": "Northampton Farm",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/188/northampton-farm?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "{T}: Add {C}.\n{1}, {T}: Exile target creature you own.\n{2}, {T}, Sacrifice this land: Return a creature card exiled with this land to the battlefield under your control. Return each other card exiled with this land to its owner's hand.",
+    "colors": [],
+    "color_identity": [],
+    "keywords": [],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "188",
+    "rarity": "rare"
+  },
+  {
+    "id": "d27b6f2a-84df-4097-a66a-8e463db47f58",
+    "oracle_id": "8df7a58c-053f-4ead-a778-2747718e5f10",
+    "name": "Party Dude",
+    "released_at": "2026-03-06",
+    "scryfall_uri": "https://scryfall.com/card/tmt/128/party-dude?utm_source=api",
+    "layout": "class",
+    "mana_cost": "{G}",
+    "type_line": "Enchantment — Class",
+    "oracle_text": "(Gain the next level as a sorcery to add its ability.)\nWhen this Class enters, each player creates a Food token.\n{1}{G}: Level 2\nWhenever an artifact an opponent controls is put into a graveyard from the battlefield, draw a card.\n{4}{G}: Level 3\nWhenever one or more of your opponents are attacked, up to one target attacking creature gets +X/+X until end of turn, where X is the number of cards in your hand.",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Food"
+    ],
+    "set": "tmt",
+    "set_name": "Teenage Mutant Ninja Turtles",
+    "collector_number": "128",
+    "rarity": "rare"
+  },
+  {
+    "id": "3fc3f5f2-5a83-4358-8f23-42f26f345140",
+    "oracle_id": "4b4dcdb1-0017-494f-8d83-6706b188e575",
+    "name": "Wanderbrine Preacher",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/41/wanderbrine-preacher?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{W}",
+    "type_line": "Creature — Merfolk Cleric",
+    "oracle_text": "Whenever this creature becomes tapped, you gain 2 life.",
+    "power": "2",
+    "toughness": "2",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "41",
+    "rarity": "common"
+  },
+  {
+    "id": "a9a425f4-2103-4f96-88a0-91fe554037d7",
+    "oracle_id": "bad84deb-3f2c-46fd-9dcb-4e3ba9732769",
+    "name": "Rime Chill",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/64/rime-chill?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{6}{U}",
+    "type_line": "Instant",
+    "oracle_text": "Vivid — This spell costs {1} less to cast for each color among permanents you control.\nTap up to two target creatures. Put a stun counter on each of them. (If a permanent with a stun counter would become untapped, remove one from it instead.)\nDraw a card.",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Vivid"
+    ],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "64",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "3515531a-45d6-4fe0-96a3-7ca1ce545068",
+    "oracle_id": "a294968e-9a7f-4d66-bde0-e775ae5f8197",
+    "name": "Blighted Blackthorn",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/90/blighted-blackthorn?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{B}",
+    "type_line": "Creature — Treefolk Warlock",
+    "oracle_text": "Whenever this creature enters or attacks, you may blight 2. If you do, you draw a card and lose 1 life. (To blight 2, put two -1/-1 counters on a creature you control.)",
+    "power": "3",
+    "toughness": "7",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Blight"
+    ],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "90",
+    "rarity": "common"
+  },
+  {
+    "id": "689ed288-6228-4d7e-b198-56a12b8be299",
+    "oracle_id": "7f420633-901d-47f9-ae0f-0f5b0ea8359c",
+    "name": "Burning Curiosity",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/129/burning-curiosity?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{R}",
+    "type_line": "Sorcery",
+    "oracle_text": "As an additional cost to cast this spell, you may blight 1. (You may put a -1/-1 counter on a creature you control.)\nExile the top two cards of your library. If this spell's additional cost was paid, exile the top three cards instead. Until the end of your next turn, you may play those cards.",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [
+      "Blight"
+    ],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "129",
+    "rarity": "common"
+  },
+  {
+    "id": "e187dcc6-19ad-4cf6-94b4-daf07f5144e5",
+    "oracle_id": "d740dbd9-8e90-4121-8d53-c6ddf5178d58",
+    "name": "Chomping Changeling",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/172/chomping-changeling?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{G}",
+    "type_line": "Creature — Shapeshifter",
+    "oracle_text": "Changeling (This card is every creature type.)\nWhen this creature enters, destroy up to one target artifact or enchantment.",
+    "power": "1",
+    "toughness": "2",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Changeling"
+    ],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "172",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "dfe7b8bf-c150-4be0-aef4-e8bb6f09787a",
+    "oracle_id": "dd27c5fa-4355-4e5c-8219-b74cfe209da0",
+    "name": "High Perfect Morcant",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/229/high-perfect-morcant?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{B}{G}",
+    "type_line": "Legendary Creature — Elf Noble",
+    "oracle_text": "Whenever High Perfect Morcant or another Elf you control enters, each opponent blights 1. (They each put a -1/-1 counter on a creature they control.)\nTap three untapped Elves you control: Proliferate. Activate only as a sorcery. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)",
+    "power": "4",
+    "toughness": "4",
+    "colors": [
+      "B",
+      "G"
+    ],
+    "color_identity": [
+      "B",
+      "G"
+    ],
+    "keywords": [
+      "Blight",
+      "Proliferate"
+    ],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "229",
+    "rarity": "rare"
+  },
+  {
+    "id": "81dfbfe1-143a-4637-b683-a34cfc51993d",
+    "oracle_id": "9f6d6e90-7462-46e5-bf2f-725b4badc394",
+    "name": "Gathering Stone",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/257/gathering-stone?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}",
+    "type_line": "Artifact",
+    "oracle_text": "As this artifact enters, choose a creature type.\nSpells you cast of the chosen type cost {1} less to cast.\nWhen this artifact enters and at the beginning of your upkeep, look at the top card of your library. If it's a card of the chosen type, you may reveal it and put it into your hand. If you don't put the card into your hand, you may put it into your graveyard.",
+    "colors": [],
+    "color_identity": [],
+    "keywords": [],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "257",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "3199bea9-fef7-45fe-8777-2103d84a9347",
+    "oracle_id": "8bcbae66-1854-480e-a449-33e5389610ab",
+    "name": "Sapling Nursery",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/192/sapling-nursery?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{6}{G}{G}",
+    "type_line": "Enchantment",
+    "oracle_text": "Affinity for Forests (This spell costs {1} less to cast for each Forest you control.)\nLandfall — Whenever a land you control enters, create a 3/4 green Treefolk creature token with reach.\n{1}{G}, Exile this enchantment: Treefolk and Forests you control gain indestructible until end of turn.",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Affinity",
+      "Landfall"
+    ],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "192",
+    "rarity": "rare"
+  },
+  {
+    "id": "a174f0db-8b4f-4c37-9583-44c92d37b9c0",
+    "oracle_id": "5715ed43-395c-4877-99a7-8e28e7bf9dce",
+    "name": "Eclipsed Realms",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/263/eclipsed-realms?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "As this land enters, choose Elemental, Elf, Faerie, Giant, Goblin, Kithkin, Merfolk, or Treefolk.\n{T}: Add {C}.\n{T}: Add one mana of any color. Spend this mana only to cast a spell of the chosen type or activate an ability of a source of the chosen type.",
+    "colors": [],
+    "color_identity": [],
+    "keywords": [],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "263",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "1dab370a-1067-4d94-be1f-10362d4abf5a",
+    "oracle_id": "a0c956dc-d7de-4f11-b76f-7537fbee1731",
+    "name": "Oko, Lorwyn Liege // Oko, Shadowmoor Scion",
+    "released_at": "2026-01-23",
+    "scryfall_uri": "https://scryfall.com/card/ecl/61/oko-lorwyn-liege-oko-shadowmoor-scion?utm_source=api",
+    "layout": "transform",
+    "type_line": "Legendary Planeswalker — Oko // Legendary Planeswalker — Oko",
+    "color_identity": [
+      "G",
+      "U"
+    ],
+    "keywords": [
+      "Transform",
+      "Mill"
+    ],
+    "card_faces": [
+      {
+        "name": "Oko, Lorwyn Liege",
+        "mana_cost": "{2}{U}",
+        "type_line": "Legendary Planeswalker — Oko",
+        "oracle_text": "At the beginning of your first main phase, you may pay {G}. If you do, transform Oko.\n+2: Up to one target creature gains all creature types. (This effect doesn't end.)\n+1: Target creature gets -2/-0 until your next turn.",
+        "colors": [
+          "U"
+        ],
+        "loyalty": "3"
+      },
+      {
+        "name": "Oko, Shadowmoor Scion",
+        "mana_cost": "",
+        "type_line": "Legendary Planeswalker — Oko",
+        "oracle_text": "At the beginning of your first main phase, you may pay {U}. If you do, transform Oko.\n−1: Mill three cards. You may put a permanent card from among them into your hand.\n−3: Create two 3/3 green Elk creature tokens.\n−6: Choose a creature type. You get an emblem with \"Creatures you control of the chosen type get +3/+3 and have vigilance and hexproof.\"",
+        "colors": [
+          "G"
+        ],
+        "color_indicator": [
+          "G"
+        ],
+        "loyalty": "3"
+      }
+    ],
+    "set": "ecl",
+    "set_name": "Lorwyn Eclipsed",
+    "collector_number": "61",
+    "rarity": "mythic"
+  },
+  {
+    "id": "0a0cdf97-1927-47c6-8ef1-29969e3567ee",
+    "oracle_id": "0c6c4921-c6cb-4b4b-ac9d-10ccc89a5d1d",
+    "name": "Water Tribe Captain",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/41/water-tribe-captain?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{W}",
+    "type_line": "Creature — Human Soldier Ally",
+    "oracle_text": "{5}: Creatures you control get +1/+1 until end of turn.",
+    "power": "3",
+    "toughness": "3",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "41",
+    "rarity": "common"
+  },
+  {
+    "id": "a6335319-6c92-40d4-ab2d-c06c79049c30",
+    "oracle_id": "a63eb744-71c4-447d-9372-c3a734f022c5",
+    "name": "Accumulate Wisdom",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/44/accumulate-wisdom?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{U}",
+    "type_line": "Instant — Lesson",
+    "oracle_text": "Look at the top three cards of your library. Put one of those cards into your hand and the rest on the bottom of your library in any order. Put each of those cards into your hand instead if there are three or more Lesson cards in your graveyard.",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "44",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "ede1bbdb-c726-46e3-aaf1-b8cf2be2c341",
+    "oracle_id": "b37e9bc5-6a2c-4f08-b856-3f8d0d16defb",
+    "name": "Fire Nation Raider",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/135/fire-nation-raider?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}{R}",
+    "type_line": "Creature — Human Soldier",
+    "oracle_text": "Raid — When this creature enters, if you attacked this turn, create a Clue token. (It's an artifact with \"{2}, Sacrifice this token: Draw a card.\")",
+    "power": "4",
+    "toughness": "2",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [
+      "Raid"
+    ],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "135",
+    "rarity": "common"
+  },
+  {
+    "id": "b17e8bdb-4b91-4a9d-bfe1-8a55f0bd040b",
+    "oracle_id": "5cca85e0-43e8-4b97-a43b-1b8f23f541d1",
+    "name": "Jet's Brainwashing",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/143/jets-brainwashing?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{R}",
+    "type_line": "Sorcery",
+    "oracle_text": "Kicker {3} (You may pay an additional {3} as you cast this spell.)\nTarget creature can't block this turn. If this spell was kicked, gain control of that creature until end of turn, untap it, and it gains haste until end of turn.\nCreate a Clue token. (It's an artifact with \"{2}, Sacrifice this token: Draw a card.\")",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [
+      "Kicker"
+    ],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "143",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "8688fce5-74b1-41e1-a59a-05a3878a75cb",
+    "oracle_id": "e43c31ee-1bac-4f96-8b74-334b3238ab73",
+    "name": "Earth Kingdom General",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/173/earth-kingdom-general?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}{G}",
+    "type_line": "Creature — Human Soldier Ally",
+    "oracle_text": "When this creature enters, earthbend 2. (Target land you control becomes a 0/0 creature with haste that's still a land. Put two +1/+1 counters on it. When it dies or is exiled, return it to the battlefield tapped.)\nWhenever you put one or more +1/+1 counters on a creature, you may gain that much life. Do this only once each turn.",
+    "power": "2",
+    "toughness": "2",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Earthbend"
+    ],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "173",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "6fa1197d-7b19-4d86-81e2-5c87de87757b",
+    "oracle_id": "ef80e174-78e8-412d-a6fe-89c7af746669",
+    "name": "Hama, the Bloodbender",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/224/hama-the-bloodbender?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{U/B}{U/B}{U/B}",
+    "type_line": "Legendary Creature — Human Warlock",
+    "oracle_text": "When Hama enters, target opponent mills three cards. Exile up to one noncreature, nonland card from that player's graveyard. For as long as you control Hama, you may cast the exiled card during your turn by waterbending {X} rather than paying its mana cost, where X is its mana value. (While paying a waterbend cost, you can tap your artifacts and creatures to help. Each one pays for {1}.)",
+    "power": "3",
+    "toughness": "3",
+    "colors": [
+      "B",
+      "U"
+    ],
+    "color_identity": [
+      "B",
+      "U"
+    ],
+    "keywords": [
+      "Mill",
+      "Waterbend"
+    ],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "224",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "af5299f5-1633-4c07-ade5-fd47e29ea4aa",
+    "oracle_id": "97369152-3b85-4cf1-aeb9-b3a8f1c37611",
+    "name": "Invasion Submersible",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/57/invasion-submersible?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{U}",
+    "type_line": "Artifact — Vehicle",
+    "oracle_text": "When this Vehicle enters, return up to one other target nonland permanent to its owner's hand.\nExhaust — Waterbend {3}: This Vehicle becomes an artifact creature. Put three +1/+1 counters on it. (While paying a waterbend cost, you can tap your artifacts and creatures to help. Each one pays for {1}. Activate each exhaust ability only once.)",
+    "power": "0",
+    "toughness": "0",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Exhaust",
+      "Waterbend"
+    ],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "57",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "99a90d13-891c-45cc-b1d5-6080ebae5862",
+    "oracle_id": "c4d2fdf9-637d-4e97-ae33-45f2d27bf8cd",
+    "name": "Airbender Ascension",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/6/airbender-ascension?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{W}",
+    "type_line": "Enchantment",
+    "oracle_text": "When this enchantment enters, airbend up to one target creature.\nWhenever a creature you control enters, put a quest counter on this enchantment.\nAt the beginning of your end step, if this enchantment has four or more quest counters on it, exile up to one target creature you control, then return it to the battlefield under its owner's control.",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [
+      "Airbend"
+    ],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "6",
+    "rarity": "rare"
+  },
+  {
+    "id": "bdf3b2be-d0cd-4a3c-a10e-82d32c12d3bd",
+    "oracle_id": "de1ae205-ca5b-4d26-8194-ca85f1406e53",
+    "name": "Ba Sing Se",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/266/ba-sing-se?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "This land enters tapped unless you control a basic land.\n{T}: Add {G}.\n{2}{G}, {T}: Earthbend 2. Activate only as a sorcery. (Target land you control becomes a 0/0 creature with haste that's still a land. Put two +1/+1 counters on it. When it dies or is exiled, return it to the battlefield tapped.)",
+    "colors": [],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Earthbend"
+    ],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "266",
+    "rarity": "rare"
+  },
+  {
+    "id": "5e9a53d3-7f2f-4a9c-9516-0713da740478",
+    "oracle_id": "201b8936-18f4-4881-a1d4-c308cf3832bf",
+    "name": "The Legend of Kuruk // Avatar Kuruk",
+    "released_at": "2025-11-21",
+    "scryfall_uri": "https://scryfall.com/card/tla/61/the-legend-of-kuruk-avatar-kuruk?utm_source=api",
+    "layout": "transform",
+    "type_line": "Enchantment — Saga // Legendary Creature — Avatar",
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Transform",
+      "Exhaust",
+      "Waterbend",
+      "Scry"
+    ],
+    "card_faces": [
+      {
+        "name": "The Legend of Kuruk",
+        "mana_cost": "{2}{U}{U}",
+        "type_line": "Enchantment — Saga",
+        "oracle_text": "(As this Saga enters and after your draw step, add a lore counter.)\nI, II — Scry 2, then draw a card.\nIII — Exile this Saga, then return it to the battlefield transformed under your control.",
+        "colors": [
+          "U"
+        ]
+      },
+      {
+        "name": "Avatar Kuruk",
+        "mana_cost": "",
+        "type_line": "Legendary Creature — Avatar",
+        "oracle_text": "Whenever you cast a spell, create a 1/1 colorless Spirit creature token with \"This token can't block or be blocked by non-Spirit creatures.\"\nExhaust — Waterbend {20}: Take an extra turn after this one. (While paying a waterbend cost, you can tap your artifacts and creatures to help. Each one pays for {1}. Activate each exhaust ability only once.)",
+        "colors": [],
+        "power": "4",
+        "toughness": "3"
+      }
+    ],
+    "set": "tla",
+    "set_name": "Avatar: The Last Airbender",
+    "collector_number": "61",
+    "rarity": "mythic"
+  },
+  {
+    "id": "6eea2718-93d2-4d83-9b5d-eb943a0f1d11",
+    "oracle_id": "8147a759-e387-48f6-9c1e-bb39622ed553",
+    "name": "Sudden Strike",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/19/sudden-strike?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{W}",
+    "type_line": "Instant",
+    "oracle_text": "Destroy target attacking or blocking creature.",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "19",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "37a31d84-e87b-406e-9249-fae1b5e23e72",
+    "oracle_id": "e6637f9f-8293-43a5-a134-93799a016ecb",
+    "name": "Secret Identity",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/43/secret-identity?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{U}",
+    "type_line": "Instant",
+    "oracle_text": "Choose one —\n• Conceal — Until end of turn, target creature you control becomes a Citizen with base power and toughness 1/1 and gains hexproof.\n• Reveal — Until end of turn, target creature you control becomes a Hero with base power and toughness 3/4 and gains flying and vigilance.",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Conceal"
+    ],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "43",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "cb83d54e-6641-4929-99ad-c0ba5b610902",
+    "oracle_id": "10c8cf3b-2530-49e7-b38e-95cdaae8a6e7",
+    "name": "Swarm, Being of Bees",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/69/swarm-being-of-bees?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{B}",
+    "type_line": "Legendary Creature — Insect Villain",
+    "oracle_text": "Flash\nFlying\nMayhem {B} (You may cast this card from your graveyard for {B} if you discarded it this turn. Timing rules still apply.)",
+    "power": "2",
+    "toughness": "2",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Flying",
+      "Mayhem",
+      "Flash"
+    ],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "69",
+    "rarity": "common"
+  },
+  {
+    "id": "4148d7e8-6371-468c-858b-35254995409a",
+    "oracle_id": "43306a78-85b5-4df4-a018-75dd75aa8997",
+    "name": "Heroes' Hangout",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/79/heroes-hangout?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{R}",
+    "type_line": "Sorcery",
+    "oracle_text": "Choose one —\n• Date Night — Exile the top two cards of your library. Choose one of them. Until the end of your next turn, you may play that card.\n• Patrol Night — One or two target creatures each get +1/+0 and gain first strike until end of turn.",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [
+      "Patrol Night",
+      "Date Night"
+    ],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "79",
+    "rarity": "uncommon"
+  },
+  {
+    "id": "65e97c06-55a6-4841-be0f-055c015df90a",
+    "oracle_id": "83eb74df-1c77-48b0-83be-55d7aa4d3618",
+    "name": "Guy in the Chair",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/102/guy-in-the-chair?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{2}{G}",
+    "type_line": "Creature — Human Advisor",
+    "oracle_text": "{T}: Add one mana of any color.\nWeb Support — {2}{G}, {T}: Put a +1/+1 counter on target Spider. Activate only as a sorcery.",
+    "power": "2",
+    "toughness": "3",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Web Support"
+    ],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "102",
+    "rarity": "common"
+  },
+  {
+    "id": "ee771581-f867-48d7-9ddb-897a1ffcdf0a",
+    "oracle_id": "13ab2f3f-f65e-42b5-b743-39b30a4c4751",
+    "name": "Scarlet Spider, Ben Reilly",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/142/scarlet-spider-ben-reilly?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{R}{G}",
+    "type_line": "Legendary Creature — Spider Human Hero",
+    "oracle_text": "Web-slinging {R}{G} (You may cast this spell for {R}{G} if you also return a tapped creature you control to its owner's hand.)\nTrample\nSensational Save — If Scarlet Spider was cast using web-slinging, he enters with X +1/+1 counters on him, where X is the mana value of the returned creature.",
+    "power": "4",
+    "toughness": "3",
+    "colors": [
+      "G",
+      "R"
+    ],
+    "color_identity": [
+      "G",
+      "R"
+    ],
+    "keywords": [
+      "Trample",
+      "Web-slinging",
+      "Sensational Save"
+    ],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "142",
+    "rarity": "rare"
+  },
+  {
+    "id": "7f927f72-fc9b-444f-9e0e-78a5e8e7bcaa",
+    "oracle_id": "1389c9fa-fec2-4212-a7aa-6dfb318dc202",
+    "name": "Bagel and Schmear",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/161/bagel-and-schmear?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}",
+    "type_line": "Artifact — Food",
+    "oracle_text": "Share — {W}, {T}, Sacrifice this artifact: Put a +1/+1 counter on up to one target creature. Draw a card. Activate only as a sorcery.\nNosh — {2}, {T}, Sacrifice this artifact: You gain 3 life and draw a card.",
+    "colors": [],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [
+      "Nosh",
+      "Share"
+    ],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "161",
+    "rarity": "common"
+  },
+  {
+    "id": "3b3c609e-f7c9-4fe5-84d9-4f4c76020a4b",
+    "oracle_id": "33d556c5-1bb4-49bb-88c2-627311eb8c9b",
+    "name": "Web of Life and Destiny",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/122/web-of-life-and-destiny?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{6}{G}{G}",
+    "type_line": "Enchantment",
+    "oracle_text": "Convoke (Your creatures can help cast this spell. Each creature you tap while casting this spell pays for {1} or one mana of that creature's color.)\nAt the beginning of combat on your turn, look at the top five cards of your library. You may put a creature card from among them onto the battlefield. Put the rest on the bottom of your library in a random order.",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Convoke"
+    ],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "122",
+    "rarity": "mythic"
+  },
+  {
+    "id": "1e609d6e-9e37-45d2-87de-8c76675f7cec",
+    "oracle_id": "f432eb6a-f1bf-4ce7-b915-1488dccb4bb9",
+    "name": "Oscorp Industries",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/182/oscorp-industries?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "",
+    "type_line": "Land",
+    "oracle_text": "This land enters tapped.\nWhen this land enters from a graveyard, you lose 2 life.\n{T}: Add {U}, {B}, or {R}.\nMayhem (You may play this card from your graveyard if you discarded it this turn. Timing rules still apply.)",
+    "colors": [],
+    "color_identity": [
+      "B",
+      "R",
+      "U"
+    ],
+    "keywords": [
+      "Mayhem"
+    ],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "182",
+    "rarity": "rare"
+  },
+  {
+    "id": "d5c53af9-7150-4e78-8771-2de7980aa307",
+    "oracle_id": "aa5b06a4-90c3-45e7-ab83-cb5c96ded21d",
+    "name": "Norman Osborn // Green Goblin",
+    "released_at": "2025-09-26",
+    "scryfall_uri": "https://scryfall.com/card/spm/39/norman-osborn-green-goblin?utm_source=api",
+    "layout": "modal_dfc",
+    "type_line": "Legendary Creature — Human Scientist Villain // Legendary Creature — Goblin Human Villain",
+    "color_identity": [
+      "B",
+      "R",
+      "U"
+    ],
+    "keywords": [
+      "Flying",
+      "Goblin Formula",
+      "Transform",
+      "Menace",
+      "Connive"
+    ],
+    "card_faces": [
+      {
+        "name": "Norman Osborn",
+        "mana_cost": "{1}{U}",
+        "type_line": "Legendary Creature — Human Scientist Villain",
+        "oracle_text": "Norman Osborn can't be blocked.\nWhenever Norman Osborn deals combat damage to a player, he connives. (Draw a card, then discard a card. If you discarded a nonland card, put a +1/+1 counter on this creature.)\n{1}{U}{B}{R}: Transform Norman Osborn. Activate only as a sorcery.",
+        "colors": [
+          "U"
+        ],
+        "power": "1",
+        "toughness": "1"
+      },
+      {
+        "name": "Green Goblin",
+        "mana_cost": "{1}{U}{B}{R}",
+        "type_line": "Legendary Creature — Goblin Human Villain",
+        "oracle_text": "Flying, menace\nSpells you cast from your graveyard cost {2} less to cast.\nGoblin Formula — Each nonland card in your graveyard has mayhem. The mayhem cost is equal to its mana cost. (You may cast a card from your graveyard for its mayhem cost if you discarded it this turn. Timing rules still apply.)",
+        "colors": [
+          "B",
+          "R",
+          "U"
+        ],
+        "power": "3",
+        "toughness": "3"
+      }
+    ],
+    "set": "spm",
+    "set_name": "Marvel's Spider-Man",
+    "collector_number": "39",
+    "rarity": "mythic"
+  },
+  {
+    "id": "ce503869-8130-4afe-9691-4e90376b4bc4",
+    "oracle_id": "c96424e7-63c4-4f07-959f-6ad09f91279a",
+    "name": "Beyond the Quiet",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/7/beyond-the-quiet?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}{W}{W}",
+    "type_line": "Sorcery",
+    "oracle_text": "Exile all creatures and Spacecraft.",
+    "colors": [
+      "W"
+    ],
+    "color_identity": [
+      "W"
+    ],
+    "keywords": [],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "7",
+    "rarity": "rare"
+  },
+  {
+    "id": "a16a6555-2e3a-4587-aacd-0307d696b26c",
+    "oracle_id": "e921839f-9d91-41a9-bc89-016af3c757aa",
+    "name": "Consult the Star Charts",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/51/consult-the-star-charts?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{1}{U}",
+    "type_line": "Instant",
+    "oracle_text": "Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.)\nLook at the top X cards of your library, where X is the number of lands you control. Put one of those cards into your hand. If this spell was kicked, put two of those cards into your hand instead. Put the rest on the bottom of your library in a random order.",
+    "colors": [
+      "U"
+    ],
+    "color_identity": [
+      "U"
+    ],
+    "keywords": [
+      "Kicker"
+    ],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "51",
+    "rarity": "rare"
+  },
+  {
+    "id": "f3666a08-d449-496f-969a-bf21d4afbd77",
+    "oracle_id": "e0a35a44-e56d-434e-8043-43d5031b2e84",
+    "name": "Perigee Beckoner",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/112/perigee-beckoner?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{B}",
+    "type_line": "Creature — Horror",
+    "oracle_text": "When this creature enters, until end of turn, another target creature you control gets +2/+0 and gains \"When this creature dies, return it to the battlefield tapped under its owner's control.\"\nWarp {1}{B} (You may cast this card from your hand for its warp cost. Exile this creature at the beginning of the next end step, then you may cast it from exile on a later turn.)",
+    "power": "4",
+    "toughness": "5",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Warp"
+    ],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "112",
+    "rarity": "common"
+  },
+  {
+    "id": "1d18dc06-16f0-4a3b-8d52-dbf4aa2c393d",
+    "oracle_id": "cdda2f04-d59e-4ef8-a26d-964d80750940",
+    "name": "Terminal Velocity",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/163/terminal-velocity?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{4}{R}{R}",
+    "type_line": "Sorcery",
+    "oracle_text": "You may put an artifact or creature card from your hand onto the battlefield. That permanent gains haste, \"When this permanent leaves the battlefield, it deals damage equal to its mana value to each creature,\" and \"At the beginning of your end step, sacrifice this permanent.\"",
+    "colors": [
+      "R"
+    ],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "163",
+    "rarity": "rare"
+  },
+  {
+    "id": "2934c9c8-d23a-462b-83d5-94e88c8663ac",
+    "oracle_id": "e7f53928-a4cc-41ed-877d-b72d786e77d9",
+    "name": "Famished Worldsire",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/182/famished-worldsire?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{5}{G}{G}{G}",
+    "type_line": "Creature — Leviathan",
+    "oracle_text": "Ward {3}\nDevour land 3 (As this creature enters, you may sacrifice any number of lands. It enters with three times that many +1/+1 counters on it.)\nWhen this creature enters, look at the top X cards of your library, where X is this creature's power. Put any number of land cards from among them onto the battlefield tapped, then shuffle.",
+    "power": "0",
+    "toughness": "0",
+    "colors": [
+      "G"
+    ],
+    "color_identity": [
+      "G"
+    ],
+    "keywords": [
+      "Ward",
+      "Devour"
+    ],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "182",
+    "rarity": "mythic"
+  },
+  {
+    "id": "011374c3-f69d-4573-8c32-5bd0fe083d6a",
+    "oracle_id": "76f5445a-5193-4794-8593-b44f961334b6",
+    "name": "Ragost, Deft Gastronaut",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/224/ragost-deft-gastronaut?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{R}{W}",
+    "type_line": "Legendary Creature — Lobster Citizen",
+    "oracle_text": "Artifacts you control are Foods in addition to their other types and have \"{2}, {T}, Sacrifice this artifact: You gain 3 life.\"\n{1}, {T}, Sacrifice a Food: Ragost deals 3 damage to each opponent.\nAt the beginning of each end step, if you gained life this turn, untap Ragost.",
+    "power": "2",
+    "toughness": "2",
+    "colors": [
+      "R",
+      "W"
+    ],
+    "color_identity": [
+      "R",
+      "W"
+    ],
+    "keywords": [],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "224",
+    "rarity": "rare"
+  },
+  {
+    "id": "5688894a-bbec-476b-ae2e-94000be258d0",
+    "oracle_id": "cda39514-86c9-483e-8d95-fd08138ce33a",
+    "name": "Infinite Guideline Station",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/219/infinite-guideline-station?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{W}{U}{B}{R}{G}",
+    "type_line": "Legendary Artifact — Spacecraft",
+    "oracle_text": "When Infinite Guideline Station enters, create a tapped 2/2 colorless Robot artifact creature token for each multicolored permanent you control.\nStation (Tap another creature you control: Put charge counters equal to its power on this Spacecraft. Station only as a sorcery. It's an artifact creature at 12+.)\n12+ | Flying\nWhenever Infinite Guideline Station attacks, draw a card for each multicolored permanent you control.",
+    "power": "7",
+    "toughness": "15",
+    "colors": [
+      "B",
+      "G",
+      "R",
+      "U",
+      "W"
+    ],
+    "color_identity": [
+      "B",
+      "G",
+      "R",
+      "U",
+      "W"
+    ],
+    "keywords": [
+      "Station"
+    ],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "219",
+    "rarity": "rare"
+  },
+  {
+    "id": "7389fe88-f6ff-4497-a037-9ca283fb89e3",
+    "oracle_id": "cd50bff0-c461-4023-b62a-6746eaaeab0e",
+    "name": "Chorale of the Void",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/91/chorale-of-the-void?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}{B}",
+    "type_line": "Enchantment — Aura",
+    "oracle_text": "Enchant creature you control\nWhenever enchanted creature attacks, put target creature card from defending player's graveyard onto the battlefield under your control tapped and attacking.\nVoid — At the beginning of your end step, sacrifice this Aura unless a nonland permanent left the battlefield this turn or a spell was warped this turn.",
+    "colors": [
+      "B"
+    ],
+    "color_identity": [
+      "B"
+    ],
+    "keywords": [
+      "Enchant",
+      "Void"
+    ],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "91",
+    "rarity": "rare"
+  },
+  {
+    "id": "60f3ca25-9dcc-4781-bf7b-ab6736d8db29",
+    "oracle_id": "4fa826ca-d361-4391-ad0d-989ebcfa4a91",
+    "name": "Kavaron, Memorial World",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/255/kavaron-memorial-world?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "",
+    "type_line": "Land — Planet",
+    "oracle_text": "This land enters tapped.\n{T}: Add {R}.\nStation (Tap another creature you control: Put charge counters equal to its power on this Planet. Station only as a sorcery.)\n12+ | {1}{R}, {T}, Sacrifice a land: Create a 2/2 colorless Robot artifact creature token, then creatures you control get +1/+0 and gain haste until end of turn.",
+    "colors": [],
+    "color_identity": [
+      "R"
+    ],
+    "keywords": [
+      "Station"
+    ],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "255",
+    "rarity": "mythic"
+  },
+  {
+    "id": "02e8e540-8aa3-4e6a-9a11-c3949cab5f0f",
+    "oracle_id": "0eb11b2d-a397-48da-a0f3-9f0f83f42282",
+    "name": "Tezzeret, Cruel Captain",
+    "released_at": "2025-08-01",
+    "scryfall_uri": "https://scryfall.com/card/eoe/2/tezzeret-cruel-captain?utm_source=api",
+    "layout": "normal",
+    "mana_cost": "{3}",
+    "type_line": "Legendary Planeswalker — Tezzeret",
+    "oracle_text": "Whenever an artifact you control enters, put a loyalty counter on Tezzeret.\n0: Untap target artifact or creature. If it's an artifact creature, put a +1/+1 counter on it.\n−3: Search your library for an artifact card with mana value 1 or less, reveal it, put it into your hand, then shuffle.\n−7: You get an emblem with \"At the beginning of combat on your turn, put three +1/+1 counters on target artifact you control. If it's not a creature, it becomes a 0/0 Robot artifact creature.\"",
+    "loyalty": "4",
+    "colors": [],
+    "color_identity": [],
+    "keywords": [],
+    "set": "eoe",
+    "set_name": "Edge of Eternities",
+    "collector_number": "2",
+    "rarity": "mythic"
+  }
+]

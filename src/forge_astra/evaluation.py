@@ -76,7 +76,9 @@ def evaluate(
     return _evaluate_cases(application, selected)
 
 
-def evaluate_cards(application: Application, cards: list[Card]) -> dict:
+def evaluate_cards(
+    application: Application, cards: list[Card], *, holdout_cards: list[Card] | None = None
+) -> dict:
     """Evaluate real cards while withholding all supplied cards' upstream scripts."""
     if not cards:
         raise ValueError("No cards selected")
@@ -86,7 +88,11 @@ def evaluate_cards(application: Application, cards: list[Card]) -> dict:
         {"id": card.key, "tier": None, "card": card.model_dump(mode="json"), "checks": []}
         for card in cards
     ]
-    names = {name for card in cards for name in (card.name, *(f.name for f in card.faces))}
+    names = {
+        name
+        for card in [*cards, *(holdout_cards or [])]
+        for name in (card.name, *(f.name for f in card.faces))
+    }
     with application.corpus.withhold_cards(names) as withheld:
         log.info("Withholding %d upstream scripts for %d sample cards", len(withheld), len(cards))
         return _evaluate_cases(application, selected, withheld=withheld)

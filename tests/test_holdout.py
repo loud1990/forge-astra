@@ -57,8 +57,9 @@ def test_holdout_of_either_face_hides_entire_script(corpus, name):
     assert corpus.named("Night")[0]["id"] == "faces"
 
 
+@pytest.mark.parametrize("subset", [False, True])
 def test_real_evaluation_holds_out_all_targets_and_keeps_production_state(
-    corpus, tmp_path, monkeypatch
+    corpus, tmp_path, monkeypatch, subset
 ):
     cards = [renamed_bolt("abc"), renamed_bolt("def")]
     cards[1].name = cards[1].faces[0].name = "Second Ember Test"
@@ -105,12 +106,13 @@ def test_real_evaluation_holds_out_all_targets_and_keeps_production_state(
             == "already_upstream"
         )
         before = [dict(r) for r in store.db.execute("SELECT * FROM cards")]
-        summary = evaluate_cards(application, cards)
+        selected = cards[:1] if subset else cards
+        summary = evaluate_cards(application, selected, holdout_cards=cards)
         assert summary["mode"] == "held_out_cards"
-        assert summary["passed"] == summary["total"] == 2
+        assert summary["passed"] == summary["total"] == len(selected)
         assert len(summary["withheld_scripts"]) == 2
-        assert llm.calls == ["Plan", "Draft", "Review"] * 2
-        assert len(contexts) == 6
+        assert llm.calls == ["Plan", "Draft", "Review"] * len(selected)
+        assert len(contexts) == 3 * len(selected)
         for result in summary["results"]:
             report = json.loads(Path(result["artifact"]["report"]).read_text())
             assert report["discovery"]["withheld_scripts"] == summary["withheld_scripts"]

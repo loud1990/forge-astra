@@ -305,5 +305,31 @@ def evaluate_cards_command(ctx: typer.Context, path: Path, sync: bool = True):
         application.close()
 
 
+@app.command("evaluate-sets")
+def evaluate_sets_command(
+    ctx: typer.Context,
+    path: Path,
+    workers: Annotated[int, typer.Option(min=1, max=2)] = 1,
+    sync: bool = True,
+):
+    """Evaluate one batch per set, withholding every target across all batches."""
+    from forge_astra.campaign import evaluate_sets
+
+    data = json.loads(path.read_text())
+    if isinstance(data, dict):
+        data = data.get("data", [data])
+    cards = [Card.from_scryfall(item) for item in data]
+    application = Application(ctx.obj)
+    try:
+        with application.lock():
+            prepare(application, sync)
+            result = evaluate_sets(application, cards, workers=workers)
+            typer.echo(json.dumps(result, indent=2))
+            if result["passed"] != result["total"]:
+                raise typer.Exit(1)
+    finally:
+        application.close()
+
+
 if __name__ == "__main__":
     app()

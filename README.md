@@ -264,6 +264,18 @@ arbitrary samples do not have independent per-card semantic assertions.
 See the [Hobbit sample report](docs/hobbit-evaluation.md) for real-model outcomes,
 retrieval-exclusion checks, and defects found by source inspection.
 
+For a larger sample, run one batch per set with up to two concurrent workers:
+
+```sh
+forge-astra evaluate-sets examples/evaluations/eight-sets-2026-09-05.json --workers 2 --no-sync
+```
+
+Every target in the input is withheld from every batch. Each worker owns its
+database connections and model history, while one application lock keeps the
+upstream snapshot fixed. Card results are saved as they finish; the campaign
+summary under `output/campaigns/` is updated after each set. A set-level error
+is recorded without preventing the remaining sets from running.
+
 ## Langfuse
 
 Set both Langfuse keys to enable graph callbacks, per-card spans, model generation
