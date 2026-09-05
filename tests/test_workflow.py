@@ -203,6 +203,37 @@ def test_citations_require_executable_evidence(corpus):
     assert any("no executable" in issue for issue in plan_issues(renamed_bolt(), plan, evidence))
 
 
+@pytest.mark.parametrize(
+    "quote,body,grounded",
+    [
+        ("AlternateMode:Adventure", "AlternateMode:Adventure", True),
+        ("AlternateMode:Adventure", "# AlternateMode:Adventure", False),
+        ("AlternateMode:Transform", "AlternateMode:Transform", False),
+        ("Oracle:Cast it from exile.", "Oracle:Cast it from exile.", False),
+    ],
+)
+def test_layout_citations_require_an_active_matching_layout_marker(quote, body, grounded):
+    from forge_astra.evaluation import cases
+
+    card = Card.model_validate(next(c["card"] for c in cases() if c["id"] == "bonecrusher_giant"))
+    evidence = [{"id": "layout-example", "kind": "script", "body": body}]
+    plan = Plan.model_validate(
+        {
+            "clauses": [
+                {
+                    "clause_id": clause["id"],
+                    "explanation": "Check the permitted layout evidence form",
+                    "needs_engine": False,
+                    "citations": [{"evidence_id": "layout-example", "quote": quote}],
+                }
+                for clause in card.clauses()
+            ],
+            "mechanics": [],
+        }
+    )
+    assert (not plan_issues(card, plan, evidence)) is grounded
+
+
 def test_multiface_metadata_and_hybrid_cost(corpus):
     card = Card.from_scryfall(
         {

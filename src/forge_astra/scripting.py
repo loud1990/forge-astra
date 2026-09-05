@@ -55,8 +55,14 @@ def plan_issues(card: Card, plan: Plan, evidence: list[dict]) -> list[str]:
             if not source or citation.quote not in source["body"]:
                 issues.append(f"{clause.clause_id}: fabricated or stale evidence citation")
                 continue
-            if source["kind"] == "script" and citation.quote in "\n".join(
-                active_lines(source["body"])
+            layout_marker = "AlternateMode:" + ALTERNATES.get(card.layout, "")
+            layout_evidence = (
+                card.layout in ALTERNATES
+                and citation.quote == layout_marker
+                and layout_marker in source["body"].splitlines()
+            )
+            if source["kind"] == "script" and (
+                citation.quote in "\n".join(active_lines(source["body"])) or layout_evidence
             ):
                 grounded = True
         if not grounded:

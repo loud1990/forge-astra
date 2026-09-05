@@ -44,6 +44,9 @@ class State(TypedDict, total=False):
 PLAN_TASK = """Plan the card's complete implementation. Cover each supplied clause ID exactly
 once. Cite exact executable lines or substrings (A:,K:,T:,R:,S:,SVar:) from the supplied
 Forge scripts; Oracle text or documentation alone is not implementation evidence.
+For behavior provided by a supported card layout, cite the exact matching
+AlternateMode line (for example AlternateMode:Adventure for casting the creature
+from exile after its Adventure). The app emits that line from the card's layout.
 Explain each adaptation, including changed numbers, conditions, costs and targets.
 Flag needs_engine when no faithful implementation exists, even for unnamed new rules.
 List ALL Scryfall keywords in mechanics, plus any new named mechanics you identify.
@@ -56,6 +59,8 @@ one faces entry per card face, in order. Each entry contains ONLY executable lin
 optional AI/deck hints or Text fields. Never return Name, ManaCost, Types, PT, Oracle,
 Colors, Loyalty, Defense, AlternateMode or ALTERNATE: the application assembles metadata.
 Reuse proven syntax, substitute CARDNAME for self-references, and define every SVar.
+Each parameter can appear only once per line. Chain sequential effects through
+SubAbility on successive SVar lines; repeated SubAbility keys do not create a chain.
 Use existing upstream tokens; if a required token is absent, report the need in test_plan
 and do not invent its path. Select exactly SEVEN distinct support_pool entries, with
 count=4 for each (7 times 4 = 28 support copies), synergizing with the target. The app adds eight target copies and 24 basic
