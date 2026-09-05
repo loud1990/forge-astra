@@ -166,6 +166,9 @@ class Workflow:
         for keyword in card.keywords:
             for entry in self.corpus.mechanic_examples(keyword, 2):
                 evidence[entry["id"]] = entry
+            if keyword.casefold() in ability_words:
+                for entry in self.corpus.ability_word_examples(keyword, 2):
+                    evidence[entry["id"]] = entry
         for entry in self.corpus.search("base structure mana keywords conventions", 2, "doc"):
             evidence[entry["id"]] = entry
         # Bound each example, but never silently use a truncated script as proof.

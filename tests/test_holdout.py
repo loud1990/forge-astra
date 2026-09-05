@@ -132,3 +132,26 @@ def test_sample_rejects_empty_and_duplicate_inputs():
         evaluate_cards(None, [])
     with pytest.raises(ValueError, match="Duplicate"):
         evaluate_cards(None, [card, card])
+
+
+def test_ability_word_retrieval_requires_active_scripts_and_respects_holdout(corpus):
+    oracle = "Raid — When CARDNAME enters, if you attacked this turn, draw a card."
+    with corpus.db:
+        corpus.add(
+            "raid-target", "script", "Raid Target", oracle, "T:Mode$ ChangesZone", "target.txt"
+        )
+        corpus.add(
+            "raid-other",
+            "script",
+            "Other Raid",
+            oracle,
+            "T:Mode$ ChangesZone | Execute$ Draw",
+            "other.txt",
+        )
+        corpus.add("raid-prose", "script", "Prose Only", oracle, "Oracle:" + oracle, "prose.txt")
+        corpus.add("raid-name", "script", "Raid in Name", "Draw a card.", "A:SP$ Draw", "name.txt")
+    assert corpus.ability_word_examples("raid", 1)[0]["name"] == "Raid Target"
+    with corpus.withhold_cards(["Raid Target"]):
+        assert [e["name"] for e in corpus.ability_word_examples("Raid")] == ["Other Raid"]
+        assert corpus.ability_word_examples("Raid", 1)[0]["path"] == "other.txt"
+    assert corpus.ability_word_examples("raid", 1)[0]["name"] == "Raid Target"

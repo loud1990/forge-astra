@@ -197,3 +197,18 @@ class Corpus:
             ("%" + line + "%",),
         )
         return any(line in active_lines(row[0]) for row in candidates)
+
+    def ability_word_examples(self, name: str, limit: int = 4) -> list[dict]:
+        """Find executable implementations whose Oracle ability bears this label."""
+        label = re.compile(r"^\s*" + re.escape(name) + r"\s+—", re.I | re.M)
+        matches = []
+        for row in self.db.execute(
+            "SELECT * FROM visible_evidence WHERE kind='script' AND oracle LIKE ? "
+            "ORDER BY length(body),id",
+            ("%" + name + "%",),
+        ):
+            if label.search(row["oracle"]) and active_lines(row["body"]):
+                matches.append(dict(row))
+                if len(matches) >= limit:
+                    break
+        return matches
