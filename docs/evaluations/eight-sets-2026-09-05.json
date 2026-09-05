@@ -1,0 +1,1628 @@
+{
+  "as_of": "2026-09-05",
+  "scope": "latest eight main paper expansion/core sets; ten varied cards each",
+  "baseline": {
+    "campaign_id": "campaign-59f35e4167",
+    "started_at": "2026-09-05T21:38:38.784116+00:00",
+    "finished_at": "2026-09-05T22:38:45.062731+00:00",
+    "upstream_commit": "89806371a4d1c5b62be45f833535e89e73a27227",
+    "total": 80,
+    "completed": 80,
+    "passed": 27,
+    "gameplay_tested": false
+  },
+  "provenance": {
+    "application_commit": "e5934d391cbba80d5e40fcb800c04f8e14b05d32",
+    "workflow_sha256": "b087002b4a1dd2cca4b48a014307b271180eb5d41bf922c1f2e4db851eb8a2c9",
+    "model": "qwen3.8-27b-pessoa-5090",
+    "max_revisions": 2,
+    "examples_per_clause": 4,
+    "temperature": 0.1,
+    "max_tokens": 6000,
+    "langfuse_enabled": true,
+    "versions": {
+      "forge-astra": "0.1.0",
+      "langgraph": "1.2.11",
+      "langfuse": "3.15.0",
+      "pydantic": "2.13.5"
+    }
+  },
+  "sets": [
+    {
+      "code": "hob",
+      "name": "The Hobbit",
+      "released_at": "2026-08-14",
+      "run_id": "eval-d0129aa01b",
+      "total": 10,
+      "draft": 4,
+      "needs_review": 4,
+      "blocked": 2,
+      "error": 0
+    },
+    {
+      "code": "msh",
+      "name": "Marvel Super Heroes",
+      "released_at": "2026-06-26",
+      "run_id": "eval-bf2410a59d",
+      "total": 10,
+      "draft": 4,
+      "needs_review": 5,
+      "blocked": 1,
+      "error": 0
+    },
+    {
+      "code": "sos",
+      "name": "Secrets of Strixhaven",
+      "released_at": "2026-04-24",
+      "run_id": "eval-232ae479f2",
+      "total": 10,
+      "draft": 5,
+      "needs_review": 2,
+      "blocked": 3,
+      "error": 0
+    },
+    {
+      "code": "tmt",
+      "name": "Teenage Mutant Ninja Turtles",
+      "released_at": "2026-03-06",
+      "run_id": "eval-cf7c8987d3",
+      "total": 10,
+      "draft": 4,
+      "needs_review": 5,
+      "blocked": 1,
+      "error": 0
+    },
+    {
+      "code": "ecl",
+      "name": "Lorwyn Eclipsed",
+      "released_at": "2026-01-23",
+      "run_id": "eval-f76616e312",
+      "total": 10,
+      "draft": 5,
+      "needs_review": 5,
+      "blocked": 0,
+      "error": 0
+    },
+    {
+      "code": "tla",
+      "name": "Avatar: The Last Airbender",
+      "released_at": "2025-11-21",
+      "run_id": "eval-3407b24f5b",
+      "total": 10,
+      "draft": 1,
+      "needs_review": 8,
+      "blocked": 1,
+      "error": 0
+    },
+    {
+      "code": "spm",
+      "name": "Marvel's Spider-Man",
+      "released_at": "2025-09-26",
+      "run_id": "eval-136e988273",
+      "total": 10,
+      "draft": 2,
+      "needs_review": 2,
+      "blocked": 6,
+      "error": 0
+    },
+    {
+      "code": "eoe",
+      "name": "Edge of Eternities",
+      "released_at": "2025-08-01",
+      "run_id": "eval-a66f655030",
+      "total": 10,
+      "draft": 2,
+      "needs_review": 6,
+      "blocked": 2,
+      "error": 0
+    }
+  ],
+  "cards": [
+    {
+      "name": "Dwarven Provisioner",
+      "layout": "normal",
+      "type_line": "Creature — Dwarf Citizen",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/hob/9/dwarven-provisioner?utm_source=api",
+      "set": "hob",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Sound the Trumpets",
+      "layout": "normal",
+      "type_line": "Instant",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Recruit"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/hob/55/sound-the-trumpets?utm_source=api",
+      "set": "hob",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Rhovanion Rampager",
+      "layout": "normal",
+      "type_line": "Creature — Wolf",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Amass"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/hob/82/rhovanion-rampager?utm_source=api",
+      "set": "hob",
+      "status": "needs_review",
+      "model_calls": 7,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Tidings of War",
+      "layout": "normal",
+      "type_line": "Sorcery",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [
+        "Amass",
+        "Flashback"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/hob/115/tidings-of-war?utm_source=api",
+      "set": "hob",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Boughside Wanderers",
+      "layout": "normal",
+      "type_line": "Creature — Elf Scout",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Landfall"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/hob/121/boughside-wanderers?utm_source=api",
+      "set": "hob",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Bifur, Melodic Rider",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Dwarf Bard",
+      "color_identity": [
+        "R",
+        "W"
+      ],
+      "keywords": [
+        "Storied"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/hob/147/bifur-melodic-rider?utm_source=api",
+      "set": "hob",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Great Gilded Boat",
+      "layout": "normal",
+      "type_line": "Artifact — Vehicle",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Crew",
+        "Recruit"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/hob/42/great-gilded-boat?utm_source=api",
+      "set": "hob",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Last Light of Durin's Day",
+      "layout": "normal",
+      "type_line": "Enchantment",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [
+        "Mountaincycling",
+        "Landcycling",
+        "Typecycling",
+        "Cycling"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/hob/103/last-light-of-durins-day?utm_source=api",
+      "set": "hob",
+      "status": "blocked",
+      "model_calls": 5,
+      "script_revisions": 2,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Elven Passage",
+      "layout": "normal",
+      "type_line": "Land",
+      "color_identity": [],
+      "keywords": [
+        "Behold"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/hob/181/elven-passage?utm_source=api",
+      "set": "hob",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Bofur, Reliable Guardian // Concerted Care",
+      "layout": "adventure",
+      "type_line": "Legendary Creature — Dwarf Scout // Instant — Adventure",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Lifelink"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/hob/6/bofur-reliable-guardian-concerted-care?utm_source=api",
+      "set": "hob",
+      "status": "draft",
+      "model_calls": 5,
+      "script_revisions": 2,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Agent Phil Coulson",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Human Spy Hero",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Vigilance"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/4/agent-phil-coulson?utm_source=api",
+      "set": "msh",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "We Say Thee Nay!",
+      "layout": "normal",
+      "type_line": "Instant — Arcane",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Teamwork"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/82/we-say-thee-nay!?utm_source=api",
+      "set": "msh",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Roxxon Brutes",
+      "layout": "normal",
+      "type_line": "Creature — Human Berserker Villain",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Landcycling",
+        "Menace",
+        "Basic landcycling",
+        "Typecycling",
+        "Cycling"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/113/roxxon-brutes?utm_source=api",
+      "set": "msh",
+      "status": "draft",
+      "model_calls": 4,
+      "script_revisions": 0,
+      "planning_revisions": 1
+    },
+    {
+      "name": "Repulsor Blast",
+      "layout": "normal",
+      "type_line": "Sorcery",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [
+        "Teamwork"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/150/repulsor-blast?utm_source=api",
+      "set": "msh",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Serpent Specialist",
+      "layout": "normal",
+      "type_line": "Creature — Human Snake Villain",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Power-up",
+        "Deathtouch"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/186/serpent-specialist?utm_source=api",
+      "set": "msh",
+      "status": "draft",
+      "model_calls": 4,
+      "script_revisions": 1,
+      "planning_revisions": 0
+    },
+    {
+      "name": "The Kingpin of Crime",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Human Villain",
+      "color_identity": [
+        "B",
+        "W"
+      ],
+      "keywords": [
+        "Extort"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/220/the-kingpin-of-crime?utm_source=api",
+      "set": "msh",
+      "status": "needs_review",
+      "model_calls": 6,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "M.O.D.O.K.",
+      "layout": "normal",
+      "type_line": "Legendary Artifact Creature — Villain",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Mental Organism",
+        "Flying",
+        "Lifelink",
+        "Designed Only for Killing",
+        "Connive"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/106/modok?utm_source=api",
+      "set": "msh",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Claim the Kingdom",
+      "layout": "normal",
+      "type_line": "Enchantment — Plan",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Landfall"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/163/claim-the-kingdom?utm_source=api",
+      "set": "msh",
+      "status": "needs_review",
+      "model_calls": 7,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Villainous Hideout",
+      "layout": "normal",
+      "type_line": "Land",
+      "color_identity": [],
+      "keywords": [
+        "Connive"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/276/villainous-hideout?utm_source=api",
+      "set": "msh",
+      "status": "draft",
+      "model_calls": 4,
+      "script_revisions": 1,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Tony Stark // The Invincible Iron Man",
+      "layout": "modal_dfc",
+      "type_line": "Legendary Creature — Human Artificer Hero // Legendary Artifact Creature — Human Hero",
+      "color_identity": [
+        "R",
+        "U"
+      ],
+      "keywords": [
+        "Flying",
+        "Transform",
+        "Haste"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/msh/80/tony-stark-the-invincible-iron-man?utm_source=api",
+      "set": "msh",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Stand Up for Yourself",
+      "layout": "normal",
+      "type_line": "Instant",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/sos/34/stand-up-for-yourself?utm_source=api",
+      "set": "sos",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Muse's Encouragement",
+      "layout": "normal",
+      "type_line": "Instant",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Surveil"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/sos/61/muses-encouragement?utm_source=api",
+      "set": "sos",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Moseo, Vein's New Dean",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Bird Skeleton Warlock",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Infusion",
+        "Flying"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/sos/91/moseo-veins-new-dean?utm_source=api",
+      "set": "sos",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Improvisation Capstone",
+      "layout": "normal",
+      "type_line": "Sorcery — Lesson",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [
+        "Paradigm"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/sos/120/improvisation-capstone?utm_source=api",
+      "set": "sos",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0,
+      "audit_findings": {
+        "validation_issues": [],
+        "ineligible_main_deck_support": [
+          "When Will You Learn?"
+        ]
+      }
+    },
+    {
+      "name": "Studious First-Year // Rampant Growth",
+      "layout": "prepare",
+      "type_line": "Creature — Bear Wizard // Sorcery",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Prepared"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/sos/162/studious-first-year-rampant-growth?utm_source=api",
+      "set": "sos",
+      "status": "blocked",
+      "model_calls": 0,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Quandrix, the Proof",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Elder Dragon",
+      "color_identity": [
+        "G",
+        "U"
+      ],
+      "keywords": [
+        "Cascade",
+        "Flying",
+        "Trample"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/sos/218/quandrix-the-proof?utm_source=api",
+      "set": "sos",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Strixhaven Skycoach",
+      "layout": "normal",
+      "type_line": "Artifact — Vehicle",
+      "color_identity": [],
+      "keywords": [
+        "Flying",
+        "Crew"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/sos/252/strixhaven-skycoach?utm_source=api",
+      "set": "sos",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Additive Evolution",
+      "layout": "normal",
+      "type_line": "Enchantment",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/sos/139/additive-evolution?utm_source=api",
+      "set": "sos",
+      "status": "draft",
+      "model_calls": 4,
+      "script_revisions": 1,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Great Hall of the Biblioplex",
+      "layout": "normal",
+      "type_line": "Land",
+      "color_identity": [],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/sos/257/great-hall-of-the-biblioplex?utm_source=api",
+      "set": "sos",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Ral Zarek, Guest Lecturer",
+      "layout": "normal",
+      "type_line": "Legendary Planeswalker — Ral",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Surveil"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/sos/97/ral-zarek-guest-lecturer?utm_source=api",
+      "set": "sos",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Grounded for Life",
+      "layout": "normal",
+      "type_line": "Instant",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/tmt/7/grounded-for-life?utm_source=api",
+      "set": "tmt",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Kitsune's Technique",
+      "layout": "normal",
+      "type_line": "Instant",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Mill",
+        "Sneak"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tmt/42/kitsunes-technique?utm_source=api",
+      "set": "tmt",
+      "status": "draft",
+      "model_calls": 4,
+      "script_revisions": 1,
+      "planning_revisions": 0,
+      "audit_findings": {
+        "validation_issues": [
+          "Opponent-only mill targets all players: use an opponent-restricted target filter"
+        ],
+        "ineligible_main_deck_support": []
+      }
+    },
+    {
+      "name": "Bebop, Warthog Warrior",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Boar Mutant Warrior",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Landcycling",
+        "Menace",
+        "Typecycling",
+        "Cycling",
+        "Swampcycling"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tmt/59/bebop-warthog-warrior?utm_source=api",
+      "set": "tmt",
+      "status": "draft",
+      "model_calls": 4,
+      "script_revisions": 0,
+      "planning_revisions": 1
+    },
+    {
+      "name": "Broadcast Takeover",
+      "layout": "normal",
+      "type_line": "Sorcery",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/tmt/86/broadcast-takeover?utm_source=api",
+      "set": "tmt",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Rocksteady, Crash Courser",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Rhino Mutant",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Landcycling",
+        "Forestcycling",
+        "Typecycling",
+        "Cycling"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tmt/131/rocksteady-crash-courser?utm_source=api",
+      "set": "tmt",
+      "status": "needs_review",
+      "model_calls": 7,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Krang & Shredder",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Utrom Human Ninja",
+      "color_identity": [
+        "B",
+        "U"
+      ],
+      "keywords": [
+        "Disappear"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tmt/153/krang-&-shredder?utm_source=api",
+      "set": "tmt",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Turtle Van",
+      "layout": "normal",
+      "type_line": "Artifact — Vehicle",
+      "color_identity": [],
+      "keywords": [
+        "Crew",
+        "Double"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tmt/181/turtle-van?utm_source=api",
+      "set": "tmt",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Does Machines",
+      "layout": "class",
+      "type_line": "Enchantment — Class",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Mill"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tmt/34/does-machines?utm_source=api",
+      "set": "tmt",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Northampton Farm",
+      "layout": "normal",
+      "type_line": "Land",
+      "color_identity": [],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/tmt/188/northampton-farm?utm_source=api",
+      "set": "tmt",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Party Dude",
+      "layout": "class",
+      "type_line": "Enchantment — Class",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Food"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tmt/128/party-dude?utm_source=api",
+      "set": "tmt",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Wanderbrine Preacher",
+      "layout": "normal",
+      "type_line": "Creature — Merfolk Cleric",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/ecl/41/wanderbrine-preacher?utm_source=api",
+      "set": "ecl",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Rime Chill",
+      "layout": "normal",
+      "type_line": "Instant",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Vivid"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/ecl/64/rime-chill?utm_source=api",
+      "set": "ecl",
+      "status": "draft",
+      "model_calls": 4,
+      "script_revisions": 1,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Blighted Blackthorn",
+      "layout": "normal",
+      "type_line": "Creature — Treefolk Warlock",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Blight"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/ecl/90/blighted-blackthorn?utm_source=api",
+      "set": "ecl",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Burning Curiosity",
+      "layout": "normal",
+      "type_line": "Sorcery",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [
+        "Blight"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/ecl/129/burning-curiosity?utm_source=api",
+      "set": "ecl",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Chomping Changeling",
+      "layout": "normal",
+      "type_line": "Creature — Shapeshifter",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Changeling"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/ecl/172/chomping-changeling?utm_source=api",
+      "set": "ecl",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "High Perfect Morcant",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Elf Noble",
+      "color_identity": [
+        "B",
+        "G"
+      ],
+      "keywords": [
+        "Blight",
+        "Proliferate"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/ecl/229/high-perfect-morcant?utm_source=api",
+      "set": "ecl",
+      "status": "needs_review",
+      "model_calls": 7,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Gathering Stone",
+      "layout": "normal",
+      "type_line": "Artifact",
+      "color_identity": [],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/ecl/257/gathering-stone?utm_source=api",
+      "set": "ecl",
+      "status": "draft",
+      "model_calls": 4,
+      "script_revisions": 1,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Sapling Nursery",
+      "layout": "normal",
+      "type_line": "Enchantment",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Affinity",
+        "Landfall"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/ecl/192/sapling-nursery?utm_source=api",
+      "set": "ecl",
+      "status": "needs_review",
+      "model_calls": 7,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Eclipsed Realms",
+      "layout": "normal",
+      "type_line": "Land",
+      "color_identity": [],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/ecl/263/eclipsed-realms?utm_source=api",
+      "set": "ecl",
+      "status": "needs_review",
+      "model_calls": 7,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Oko, Lorwyn Liege // Oko, Shadowmoor Scion",
+      "layout": "transform",
+      "type_line": "Legendary Planeswalker — Oko // Legendary Planeswalker — Oko",
+      "color_identity": [
+        "G",
+        "U"
+      ],
+      "keywords": [
+        "Transform",
+        "Mill"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/ecl/61/oko-lorwyn-liege-oko-shadowmoor-scion?utm_source=api",
+      "set": "ecl",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Water Tribe Captain",
+      "layout": "normal",
+      "type_line": "Creature — Human Soldier Ally",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/tla/41/water-tribe-captain?utm_source=api",
+      "set": "tla",
+      "status": "needs_review",
+      "model_calls": 4,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Accumulate Wisdom",
+      "layout": "normal",
+      "type_line": "Instant — Lesson",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/tla/44/accumulate-wisdom?utm_source=api",
+      "set": "tla",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Fire Nation Raider",
+      "layout": "normal",
+      "type_line": "Creature — Human Soldier",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [
+        "Raid"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tla/135/fire-nation-raider?utm_source=api",
+      "set": "tla",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Jet's Brainwashing",
+      "layout": "normal",
+      "type_line": "Sorcery",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [
+        "Kicker"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tla/143/jets-brainwashing?utm_source=api",
+      "set": "tla",
+      "status": "needs_review",
+      "model_calls": 5,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Earth Kingdom General",
+      "layout": "normal",
+      "type_line": "Creature — Human Soldier Ally",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Earthbend"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tla/173/earth-kingdom-general?utm_source=api",
+      "set": "tla",
+      "status": "needs_review",
+      "model_calls": 7,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Hama, the Bloodbender",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Human Warlock",
+      "color_identity": [
+        "B",
+        "U"
+      ],
+      "keywords": [
+        "Mill",
+        "Waterbend"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tla/224/hama-the-bloodbender?utm_source=api",
+      "set": "tla",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Invasion Submersible",
+      "layout": "normal",
+      "type_line": "Artifact — Vehicle",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Exhaust",
+        "Waterbend"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tla/57/invasion-submersible?utm_source=api",
+      "set": "tla",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Airbender Ascension",
+      "layout": "normal",
+      "type_line": "Enchantment",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Airbend"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tla/6/airbender-ascension?utm_source=api",
+      "set": "tla",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0,
+      "audit_findings": {
+        "validation_issues": [
+          "Counter-count SVar contains an inline comparison: keep the count numeric and put the threshold in SVarCompare or ConditionSVarCompare"
+        ],
+        "ineligible_main_deck_support": []
+      }
+    },
+    {
+      "name": "Ba Sing Se",
+      "layout": "normal",
+      "type_line": "Land",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Earthbend"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tla/266/ba-sing-se?utm_source=api",
+      "set": "tla",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "The Legend of Kuruk // Avatar Kuruk",
+      "layout": "transform",
+      "type_line": "Enchantment — Saga // Legendary Creature — Avatar",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Transform",
+        "Exhaust",
+        "Waterbend",
+        "Scry"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/tla/61/the-legend-of-kuruk-avatar-kuruk?utm_source=api",
+      "set": "tla",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Sudden Strike",
+      "layout": "normal",
+      "type_line": "Instant",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/spm/19/sudden-strike?utm_source=api",
+      "set": "spm",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Secret Identity",
+      "layout": "normal",
+      "type_line": "Instant",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Conceal"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/spm/43/secret-identity?utm_source=api",
+      "set": "spm",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Swarm, Being of Bees",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Insect Villain",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Flying",
+        "Mayhem",
+        "Flash"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/spm/69/swarm-being-of-bees?utm_source=api",
+      "set": "spm",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Heroes' Hangout",
+      "layout": "normal",
+      "type_line": "Sorcery",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [
+        "Patrol Night",
+        "Date Night"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/spm/79/heroes-hangout?utm_source=api",
+      "set": "spm",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Guy in the Chair",
+      "layout": "normal",
+      "type_line": "Creature — Human Advisor",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Web Support"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/spm/102/guy-in-the-chair?utm_source=api",
+      "set": "spm",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Scarlet Spider, Ben Reilly",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Spider Human Hero",
+      "color_identity": [
+        "G",
+        "R"
+      ],
+      "keywords": [
+        "Trample",
+        "Web-slinging",
+        "Sensational Save"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/spm/142/scarlet-spider-ben-reilly?utm_source=api",
+      "set": "spm",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Bagel and Schmear",
+      "layout": "normal",
+      "type_line": "Artifact — Food",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [
+        "Nosh",
+        "Share"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/spm/161/bagel-and-schmear?utm_source=api",
+      "set": "spm",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Web of Life and Destiny",
+      "layout": "normal",
+      "type_line": "Enchantment",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Convoke"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/spm/122/web-of-life-and-destiny?utm_source=api",
+      "set": "spm",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Oscorp Industries",
+      "layout": "normal",
+      "type_line": "Land",
+      "color_identity": [
+        "B",
+        "R",
+        "U"
+      ],
+      "keywords": [
+        "Mayhem"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/spm/182/oscorp-industries?utm_source=api",
+      "set": "spm",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Norman Osborn // Green Goblin",
+      "layout": "modal_dfc",
+      "type_line": "Legendary Creature — Human Scientist Villain // Legendary Creature — Goblin Human Villain",
+      "color_identity": [
+        "B",
+        "R",
+        "U"
+      ],
+      "keywords": [
+        "Flying",
+        "Goblin Formula",
+        "Transform",
+        "Menace",
+        "Connive"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/spm/39/norman-osborn-green-goblin?utm_source=api",
+      "set": "spm",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Beyond the Quiet",
+      "layout": "normal",
+      "type_line": "Sorcery",
+      "color_identity": [
+        "W"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/eoe/7/beyond-the-quiet?utm_source=api",
+      "set": "eoe",
+      "status": "needs_review",
+      "model_calls": 7,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Consult the Star Charts",
+      "layout": "normal",
+      "type_line": "Instant",
+      "color_identity": [
+        "U"
+      ],
+      "keywords": [
+        "Kicker"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/eoe/51/consult-the-star-charts?utm_source=api",
+      "set": "eoe",
+      "status": "draft",
+      "model_calls": 4,
+      "script_revisions": 1,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Perigee Beckoner",
+      "layout": "normal",
+      "type_line": "Creature — Horror",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Warp"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/eoe/112/perigee-beckoner?utm_source=api",
+      "set": "eoe",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Terminal Velocity",
+      "layout": "normal",
+      "type_line": "Sorcery",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/eoe/163/terminal-velocity?utm_source=api",
+      "set": "eoe",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Famished Worldsire",
+      "layout": "normal",
+      "type_line": "Creature — Leviathan",
+      "color_identity": [
+        "G"
+      ],
+      "keywords": [
+        "Ward",
+        "Devour"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/eoe/182/famished-worldsire?utm_source=api",
+      "set": "eoe",
+      "status": "draft",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Ragost, Deft Gastronaut",
+      "layout": "normal",
+      "type_line": "Legendary Creature — Lobster Citizen",
+      "color_identity": [
+        "R",
+        "W"
+      ],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/eoe/224/ragost-deft-gastronaut?utm_source=api",
+      "set": "eoe",
+      "status": "needs_review",
+      "model_calls": 7,
+      "script_revisions": 3,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Infinite Guideline Station",
+      "layout": "normal",
+      "type_line": "Legendary Artifact — Spacecraft",
+      "color_identity": [
+        "B",
+        "G",
+        "R",
+        "U",
+        "W"
+      ],
+      "keywords": [
+        "Station"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/eoe/219/infinite-guideline-station?utm_source=api",
+      "set": "eoe",
+      "status": "needs_review",
+      "model_calls": 5,
+      "script_revisions": 3,
+      "planning_revisions": 1
+    },
+    {
+      "name": "Chorale of the Void",
+      "layout": "normal",
+      "type_line": "Enchantment — Aura",
+      "color_identity": [
+        "B"
+      ],
+      "keywords": [
+        "Enchant",
+        "Void"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/eoe/91/chorale-of-the-void?utm_source=api",
+      "set": "eoe",
+      "status": "blocked",
+      "model_calls": 1,
+      "script_revisions": 0,
+      "planning_revisions": 0
+    },
+    {
+      "name": "Kavaron, Memorial World",
+      "layout": "normal",
+      "type_line": "Land — Planet",
+      "color_identity": [
+        "R"
+      ],
+      "keywords": [
+        "Station"
+      ],
+      "scryfall_uri": "https://scryfall.com/card/eoe/255/kavaron-memorial-world?utm_source=api",
+      "set": "eoe",
+      "status": "needs_review",
+      "model_calls": 3,
+      "script_revisions": 0,
+      "planning_revisions": 3
+    },
+    {
+      "name": "Tezzeret, Cruel Captain",
+      "layout": "normal",
+      "type_line": "Legendary Planeswalker — Tezzeret",
+      "color_identity": [],
+      "keywords": [],
+      "scryfall_uri": "https://scryfall.com/card/eoe/2/tezzeret-cruel-captain?utm_source=api",
+      "set": "eoe",
+      "status": "needs_review",
+      "model_calls": 9,
+      "script_revisions": 3,
+      "planning_revisions": 2
+    }
+  ],
+  "observability": {
+    "verified_traces": 80,
+    "model_calls": 281,
+    "total_tokens": 6008700,
+    "withheld_script_paths_per_trace": 81,
+    "hidden_paths_in_model_inputs": 0
+  },
+  "engine_construction": {
+    "baseline": {
+      "passed": 27,
+      "total": 27
+    },
+    "rechecks": {
+      "passed": 5,
+      "total": 5
+    },
+    "gameplay_tested": false
+  },
+  "recheck": {
+    "application_commit": "9e6acd9cb2d0ccffcd6128cec151392a21ac025c",
+    "campaign_id": "campaign-48a2ded55c",
+    "started_at": "2026-09-05T22:40:53.602130+00:00",
+    "finished_at": "2026-09-05T22:46:06.599149+00:00",
+    "total": 10,
+    "completed": 10,
+    "passed": 5,
+    "holdout_card_count": 80,
+    "gameplay_tested": false,
+    "cards": [
+      {
+        "set": "hob",
+        "name": "Sound the Trumpets",
+        "before": "needs_review",
+        "after": "blocked",
+        "model_calls": 1
+      },
+      {
+        "set": "hob",
+        "name": "Tidings of War",
+        "before": "needs_review",
+        "after": "blocked",
+        "model_calls": 1
+      },
+      {
+        "set": "sos",
+        "name": "Moseo, Vein's New Dean",
+        "before": "blocked",
+        "after": "draft",
+        "model_calls": 3
+      },
+      {
+        "set": "sos",
+        "name": "Studious First-Year // Rampant Growth",
+        "before": "blocked",
+        "after": "needs_review",
+        "model_calls": 3
+      },
+      {
+        "set": "tmt",
+        "name": "Kitsune's Technique",
+        "before": "draft",
+        "after": "needs_review",
+        "model_calls": 3
+      },
+      {
+        "set": "ecl",
+        "name": "Rime Chill",
+        "before": "draft",
+        "after": "draft",
+        "model_calls": 4
+      },
+      {
+        "set": "tla",
+        "name": "Fire Nation Raider",
+        "before": "blocked",
+        "after": "draft",
+        "model_calls": 4
+      },
+      {
+        "set": "tla",
+        "name": "Invasion Submersible",
+        "before": "needs_review",
+        "after": "draft",
+        "model_calls": 3
+      },
+      {
+        "set": "tla",
+        "name": "Airbender Ascension",
+        "before": "draft",
+        "after": "draft",
+        "model_calls": 5,
+        "audit_findings": [
+          "Count$Compare requires both true and false result branches: Compare <value> <comparison>.<true>.<false>"
+        ]
+      },
+      {
+        "set": "eoe",
+        "name": "Chorale of the Void",
+        "before": "blocked",
+        "after": "blocked",
+        "model_calls": 1
+      }
+    ],
+    "observability": {
+      "verified_traces": 10,
+      "model_calls": 28,
+      "total_tokens": 538235,
+      "withheld_script_paths_per_trace": 81,
+      "hidden_paths_in_model_inputs": 0
+    }
+  },
+  "final_guard_fixes_commit": "1d965cc",
+  "interpretation": "Draft status means static validation plus model review only. Two baseline scripts, one baseline deck, and one recheck script have confirmed defects. All retained artifacts require gameplay verification."
+}

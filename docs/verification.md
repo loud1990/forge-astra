@@ -1,12 +1,14 @@
 # Verification record — 2026-09-05
 
-Application code checked: `686d503e45e9eddba578cb3dc956c9a889f8051e`.
-[CI passed lint, formatting, 74 tests, container build, and packaged CLI startup](https://github.com/loud1990/forge-astra/actions/runs/33991257113).
+Application code checked: `1d965ccabecd431e25fb418e9092232a098e104a`.
+[CI passed lint, formatting, 109 tests, container build, and packaged CLI startup](https://github.com/loud1990/forge-astra/actions/runs/33996988597).
 The application is running in a Docker container inside a Proxmox guest.
 This snapshot includes queue draining, interruption recovery, progress health
 checks, and CLI commands for listing cards and inspecting review results.
 It also includes temporary target-script exclusions for real-card evaluations
 and validation fixes found by the [Hobbit sample](hobbit-evaluation.md).
+The [eight-set evaluation](eight-set-evaluation.md) adds 80 real-card generations,
+ten focused rechecks, controlled Forge probes, and further validation fixes.
 Live Langfuse tracing was re-enabled and verified after the operator restored
 the server; the worker is healthy with tracing enabled.
 
@@ -20,6 +22,8 @@ the server; the worker is healthy with tracing enabled.
 | Eight-copy test decks and iteration | Integration tests export 60-card decks containing eight target copies, support cards and lands. Bounded plan/script repairs and explicit feedback/retry are tested. A deployed live acceptance run generated Astra Ember Lance with an eight-copy deck through three real model calls. |
 | One set per potential PR | A service-level test discovers cards from two sets together and verifies separate set manifests and exports. Rejected/error candidates do not become installable script/deck files. The application contains no upstream push or PR-creation path. |
 | Tiered renamed-card tests | Fourteen live cases span five tiers. The full run passed 12; both failed cases subsequently passed individual rechecks. See [the recorded benchmark](testing.md#recorded-live-generation-check-2026-09-05) for limitations and model settings. |
+| Eight-set real-card campaign | Ten varied cards from each of eight sets completed: 27 drafts, 37 needing review, 16 blocked. All 81 target script paths were withheld from every batch. Independent checks found two incorrect accepted scripts and a Scheme in an ordinary deck. Ten rechecks yielded five drafts, including another defective counter expression. The final guards reject the observed forms; the full card matrix and limitations are in the campaign report. |
+| Actual Forge construction and targeted checks | All 27 baseline and five recheck draft scripts constructed in the pinned engine. Positive and negative controls calibrated the loader and opponent-targeting probe. Separate targeting and counter-expression checks reproduced false passes; full casting and resolution remain untested. |
 | Public application repository and Conventional Commits | Published at `loud1990/forge-astra`; implementation, fixes and tests have separate Conventional Commits. The pre-existing Forge checkout remains clean. |
 | Container operation on Proxmox | The rebuilt worker starts, preserves its existing history, polls successfully and reports healthy. Runtime acceptance checked installed package resources, real model generation, artifacts and feedback using a separate verification database. |
 | Langfuse observability | An in-memory exporter test verifies connected card, graph, node and generation observations. Live API reads after server restoration verified persisted observations, inputs/outputs, token usage, session metadata, tier tags and scores for both passing and review-required benchmarks. Configured model and Langfuse secret keys were absent from both saved trace payloads. |
@@ -67,3 +71,9 @@ Gameplay execution remains outside this application's scope. No static check,
 model review, renamed benchmark or acceptance check above is labeled a gameplay
 pass. Controlled scenario execution belongs to the separate harness described
 in [the testing design](testing.md).
+
+The later eight-set campaign also verified all 90 persisted Langfuse traces,
+309 model calls and 6,546,935 total tokens. No withheld script path appeared in
+the recorded model inputs, and no configured secret key appeared in the trace
+payloads. The [campaign report](eight-set-evaluation.md) distinguishes automated
+review scores from independent behavior checks.

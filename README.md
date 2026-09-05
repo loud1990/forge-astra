@@ -276,6 +276,10 @@ upstream snapshot fixed. Card results are saved as they finish; the campaign
 summary under `output/campaigns/` is updated after each set. A set-level error
 is recorded without preventing the remaining sets from running.
 
+The [80-card, eight-set evaluation](docs/eight-set-evaluation.md) records every
+selected card, ten focused rechecks, Langfuse audits, and defects reproduced in
+Forge. Its automated draft counts include false passes and require gameplay checks.
+
 For focused rechecks, the Python `evaluate_sets` and `evaluate_cards` functions accept
 `holdout_cards=original_sample` separately from the cards being evaluated. Keep the
 entire original sample excluded when comparing a smaller recheck with its baseline.
