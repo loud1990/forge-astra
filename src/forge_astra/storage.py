@@ -153,7 +153,7 @@ class Store:
         identifier = digest([content, provenance])[:24]
         with self.db:
             self.db.execute(
-                "INSERT OR IGNORE INTO lessons VALUES (?,?,?,?,?,?,?)",
+                "INSERT OR IGNORE INTO lessons(id,card_key,content,status,provenance,created_at) VALUES (?,?,?,?,?,?)",
                 (identifier, card_key, content, status, json.dumps(provenance), now_iso()),
             )
         return identifier
